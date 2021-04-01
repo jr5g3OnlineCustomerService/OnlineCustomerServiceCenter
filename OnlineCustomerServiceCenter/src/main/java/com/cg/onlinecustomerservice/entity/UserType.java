@@ -1,5 +1,7 @@
 package com.cg.onlinecustomerservice.entity;
 
 public enum UserType {
-	CUSTOMER, OPERATOR
+	CUSTOMER,  OPERATOR
+	
+	// this userdefined class
 }

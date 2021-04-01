@@ -12,7 +12,7 @@ import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.service.CustomerService;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/cust")
 public class CustomerController {
 	@Autowired
 	CustomerService service;

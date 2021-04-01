@@ -14,7 +14,7 @@ public class Issue {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="issueId")
 	
-	private String issueID;
+	private int issueID;
 	
 	@Column
 	private String issueType;
@@ -25,7 +25,7 @@ public class Issue {
 	@Column
 	private String issueStatus;
 
-	public Issue(String issueID, String issueType, String description, String issueStatus) {
+	public Issue(int issueID, String issueType, String description, String issueStatus) {
 		super();
 		this.issueID = issueID;
 		this.issueType = issueType;
@@ -35,11 +35,11 @@ public class Issue {
    // issue
 	public Issue() {}
 
-	public String getIssueID() {
+	public int getIssueID() {
 		return issueID;
 	}
 
-	public void setIssueID(String issueID) {
+	public void setIssueID(int issueID) {
 		this.issueID = issueID;
 	}
 

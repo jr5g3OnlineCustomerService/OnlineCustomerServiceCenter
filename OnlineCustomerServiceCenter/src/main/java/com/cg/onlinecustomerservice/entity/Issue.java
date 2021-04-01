@@ -32,7 +32,7 @@ public class Issue {
 		this.description = description;
 		this.issueStatus = issueStatus;
 	}
-   // issue 
+   // issue
 	public Issue() {}
 
 	public String getIssueID() {

@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="operator")
 public class Operator {
-	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="operatorId")
@@ -26,7 +25,8 @@ public class Operator {
 		
 		@Column
 		private String city;
-		
+		public Operator()
+		{}
 
 		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
 			super();
@@ -37,7 +37,6 @@ public class Operator {
 			this.mobile = mobile;
 			this.city = city;
 		}
-		public Operator() {}
 
 		public int getOperatorId() {
 			return operatorId;
@@ -88,4 +87,3 @@ public class Operator {
 		}
 }
 	
-

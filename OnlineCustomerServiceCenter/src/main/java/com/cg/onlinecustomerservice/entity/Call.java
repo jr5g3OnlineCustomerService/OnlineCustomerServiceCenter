@@ -25,6 +25,18 @@ private double callDuration;
 
 @Column
 private String phoneNumber;
+public Call()
+{
+	
+}
+
+public Call(int callid, Date callDate, double callDuration, String phoneNumber) {
+	super();
+	this.callid = callid;
+	this.callDate = callDate;
+	this.callDuration = callDuration;
+	this.phoneNumber = phoneNumber;
+}
 
 public int getCallid() {
 	return callid;

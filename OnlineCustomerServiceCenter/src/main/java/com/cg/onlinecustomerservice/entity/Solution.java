@@ -1,5 +1,6 @@
 package com.cg.onlinecustomerservice.entity;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;

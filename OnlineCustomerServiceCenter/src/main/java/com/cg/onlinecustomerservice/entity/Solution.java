@@ -49,5 +49,4 @@ public class Solution {
 		this.solutionDate = solutionDate;
 	}
 
-
 }

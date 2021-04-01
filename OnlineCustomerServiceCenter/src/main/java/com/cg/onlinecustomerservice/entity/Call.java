@@ -27,9 +27,7 @@ private double callDuration;
 private String phoneNumber;
 public Call()
 {
-	
 }
-
 public Call(int callid, Date callDate, double callDuration, String phoneNumber) {
 	super();
 	this.callid = callid;

@@ -27,7 +27,6 @@ public class Operator {
 		@Column
 		private String city;
 		
-		
 
 		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
 			super();

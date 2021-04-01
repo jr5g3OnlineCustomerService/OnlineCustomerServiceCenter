@@ -23,3 +23,4 @@ public class CustomerController {
 		return new ResponseEntity<String>("Customer Added",HttpStatus.OK);
 	}
 }
+

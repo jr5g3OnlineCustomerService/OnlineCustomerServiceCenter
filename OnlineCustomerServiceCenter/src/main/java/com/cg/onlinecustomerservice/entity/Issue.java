@@ -13,29 +13,34 @@ public class Issue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="issueId")
-	private String issueId;
+	
+	private String issueID;
+	
 	@Column
 	private String issueType;
+	
 	@Column
 	private String description;
+	
 	@Column
 	private String issueStatus;
-	public Issue(String issueId, String issueType, String description, String issueStatus) {
+
+	public Issue(String issueID, String issueType, String description, String issueStatus) {
 		super();
-		this.issueId = issueId;
+		this.issueID = issueID;
 		this.issueType = issueType;
 		this.description = description;
 		this.issueStatus = issueStatus;
 	}
-	
+
 	public Issue() {}
 
-	public String getIssueId() {
-		return issueId;
+	public String getIssueID() {
+		return issueID;
 	}
 
-	public void setIssueId(String issueId) {
-		this.issueId = issueId;
+	public void setIssueID(String issueID) {
+		this.issueID = issueID;
 	}
 
 	public String getIssueType() {
@@ -61,4 +66,5 @@ public class Issue {
 	public void setIssueStatus(String issueStatus) {
 		this.issueStatus = issueStatus;
 	}
-}
+}	
+

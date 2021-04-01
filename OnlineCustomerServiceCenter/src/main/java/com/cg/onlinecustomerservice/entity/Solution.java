@@ -23,7 +23,6 @@ public class Solution {
 	private Date solutionDate;
     public Solution()
     {
-    	
     }
 	public Solution(int solutionId, String solutionDescription, Date solutionDate) {
 		super();

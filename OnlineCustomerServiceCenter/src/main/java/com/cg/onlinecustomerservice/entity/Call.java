@@ -50,7 +50,7 @@ public void setCallDuration(double callDuration) {
 	this.callDuration = callDuration;
 }
 
-public String getPhoneNumber() {
+public String getPhoneNumber(){
 	return phoneNumber;
 }
 

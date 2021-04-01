@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>OnlineCustomerService</name>
+=======
+	<name>OnlineCustomer</name>
+>>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
 	<comment></comment>
 	<projects>
 	</projects>

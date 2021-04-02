@@ -30,7 +30,6 @@ private String phoneNumber;
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
 private Operator operator;
-
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 private Customer customer;

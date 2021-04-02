@@ -1,13 +1,20 @@
 package com.cg.onlinecustomerservice.entity;
 import java.util.Date;
+<<<<<<< HEAD
+
+import javax.persistence.CascadeType;
+=======
+>>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
-@Table(name="Solution")
+@Table(name="solution")
 public class Solution {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +24,15 @@ public class Solution {
 	private String solutionDescription;
 	@Column
 	private Date solutionDate;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "issueId", referencedColumnName = "issueId")
+	private Issue issue;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
+	private Operator operator;
+	
     public Solution()
     {
     }
@@ -44,4 +60,15 @@ public class Solution {
 	public void setSolutionDate(Date solutionDate) {
 		this.solutionDate = solutionDate;
 	}
+<<<<<<< HEAD
+	public Issue getIssue() {
+		return issue;
+	}
+	public void setIssue(Issue issue) {
+		this.issue = issue;
+	}
+	
+
+=======
+>>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
 }

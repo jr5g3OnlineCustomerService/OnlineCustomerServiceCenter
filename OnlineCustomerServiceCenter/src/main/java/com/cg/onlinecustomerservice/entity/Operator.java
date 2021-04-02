@@ -1,10 +1,13 @@
 package com.cg.onlinecustomerservice.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="operator")
@@ -27,11 +30,30 @@ public class Operator {
 		
 		@Column
 		private String city;
+<<<<<<< HEAD
+		
+		@OneToOne(mappedBy="operator")
+		private Solution solution;
+		
+		
+		@OneToOne(cascade = CascadeType.ALL)
+	    @JoinColumn(name = "departmentID", referencedColumnName = "departmentID")
+		private Department department;
+		
+		@OneToOne(mappedBy="operator")
+		private Call call;
+		
+		public Operator()
+		{}
+
+		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
+=======
 		public Department()
 		{
 			
 		}
 		public Department(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
+>>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
 			super();
 			this.operatorId = operatorId;
 			this.firstName = firstName;

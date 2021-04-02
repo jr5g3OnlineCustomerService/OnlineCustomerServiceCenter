@@ -12,6 +12,13 @@ public class CustomerController {
 	@Autowired
 	CustomerService service;
 
+<<<<<<< HEAD
 	
+=======
+	@PostMapping
+	public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
+		service.registerCustomer(customer);
+		return new ResponseEntity<String>("Customer Added",HttpStatus.OK);
+	}
+>>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
 }
-

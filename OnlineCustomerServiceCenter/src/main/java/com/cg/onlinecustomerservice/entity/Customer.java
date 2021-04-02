@@ -46,6 +46,7 @@ public class Customer {
 		this.mobile = mobile;
 		this.city = city;
 	}
+	
 	public Customer() {}
 
 	public int getCustomerId() {

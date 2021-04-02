@@ -12,6 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="operator")
 public class Operator {
+	
+	public class Department {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="operatorId")
@@ -28,6 +30,7 @@ public class Operator {
 		
 		@Column
 		private String city;
+<<<<<<< HEAD
 		
 		@OneToOne(mappedBy="operator")
 		private Solution solution;
@@ -44,6 +47,13 @@ public class Operator {
 		{}
 
 		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
+=======
+		public Department()
+		{
+			
+		}
+		public Department(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
+>>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
 			super();
 			this.operatorId = operatorId;
 			this.firstName = firstName;
@@ -102,3 +112,4 @@ public class Operator {
 		}
 }
 	
+}

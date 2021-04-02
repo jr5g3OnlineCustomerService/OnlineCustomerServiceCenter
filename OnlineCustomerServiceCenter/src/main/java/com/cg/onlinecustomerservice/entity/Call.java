@@ -1,10 +1,7 @@
 package com.cg.onlinecustomerservice.entity;
 import java.util.Date;
-<<<<<<< HEAD
-
 import javax.persistence.CascadeType;
-=======
->>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +16,11 @@ import javax.persistence.Table;
 public class Call {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
+
 @Column(name="callId")
 private int callId;
-
-=======
 @Column(name="callid")
 private int callid;
->>>>>>> branch 'master' of https://github.com/jr5g3OnlineCustomerService/OnlineCustomerServiceCenter.git
 @Column
 private Date callDate;
 @Column

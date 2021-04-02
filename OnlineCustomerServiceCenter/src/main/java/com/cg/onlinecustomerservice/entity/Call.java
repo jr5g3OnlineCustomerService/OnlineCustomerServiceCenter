@@ -2,11 +2,14 @@ package com.cg.onlinecustomerservice.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +17,8 @@ import javax.persistence.Table;
 public class Call {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name="callid")
-private int callid;
+@Column(name="callId")
+private int callId;
 
 @Column
 private Date callDate;
@@ -25,23 +28,32 @@ private double callDuration;
 
 @Column
 private String phoneNumber;
+
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
+private Operator operator;
+
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "customerId", referencedColumnName = "customerId")
+private Customer customer;
+
 public Call()
 {
 }
 public Call(int callid, Date callDate, double callDuration, String phoneNumber) {
 	super();
-	this.callid = callid;
+	this.callId = callid;
 	this.callDate = callDate;
 	this.callDuration = callDuration;
 	this.phoneNumber = phoneNumber;
 }
 
 public int getCallid() {
-	return callid;
+	return callId;
 }
 
 public void setCallid(int callid) {
-	this.callid = callid;
+	this.callId = callid;
 }
 
 public Date getCallDate() {

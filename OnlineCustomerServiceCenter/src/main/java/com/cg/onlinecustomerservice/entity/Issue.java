@@ -1,10 +1,15 @@
 package com.cg.onlinecustomerservice.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +18,14 @@ public class Issue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="issueId")
-	
 	private int issueID;
+	
+	@OneToOne(mappedBy="issue")
+	private Solution solution;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
+	private Customer customer;
 	
 	@Column
 	private String issueType;
@@ -24,7 +35,7 @@ public class Issue {
 	
 	@Column
 	private String issueStatus;
-
+	
 	public Issue(int issueID, String issueType, String description, String issueStatus) {
 		super();
 		this.issueID = issueID;
@@ -32,9 +43,15 @@ public class Issue {
 		this.description = description;
 		this.issueStatus = issueStatus;
 	}
-   // issue
+   
 	public Issue() {}
-
+	
+	public Solution getSolution() {
+		return solution;
+	}
+	public void setSolution(Solution solution) {
+		this.solution = solution;
+	}
 	public int getIssueID() {
 		return issueID;
 	}

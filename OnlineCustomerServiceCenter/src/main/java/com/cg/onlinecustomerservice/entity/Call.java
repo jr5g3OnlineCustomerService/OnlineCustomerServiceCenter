@@ -18,8 +18,7 @@ public class Call {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name="callId")
 private int callId;
-@Column(name="callid")
-private int callid;
+
 @Column
 private Date callDate;
 @Column

@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="operator")
 public class Operator {
+	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="operatorId")
@@ -42,7 +43,7 @@ public class Operator {
 		
 		public Operator()
 		{}
-		
+
 		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
 			super();
 			this.operatorId = operatorId;
@@ -50,7 +51,8 @@ public class Operator {
 			this.lastName = lastName;
 			this.email = email;
 			this.mobile = mobile;
-			this.city = city;}
+			this.city = city;
+		}
 
 		public int getOperatorId() {
 			return operatorId;
@@ -99,6 +101,4 @@ public class Operator {
 		public void setCity(String city) {
 			this.city = city;
 		}
-}
-	
 }

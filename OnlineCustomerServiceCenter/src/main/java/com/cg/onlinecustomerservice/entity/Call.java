@@ -16,7 +16,6 @@ import javax.persistence.Table;
 public class Call {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-
 @Column(name="callId")
 private int callId;
 @Column(name="callid")

@@ -1,8 +1,5 @@
 package com.cg.onlinecustomerservice.entity;
-
-
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +13,8 @@ public class Solution {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="solutionId")
 	private int solutionId;
-
 	@Column
 	private String solutionDescription;
-
 	@Column
 	private Date solutionDate;
     public Solution()
@@ -49,6 +44,4 @@ public class Solution {
 	public void setSolutionDate(Date solutionDate) {
 		this.solutionDate = solutionDate;
 	}
-
-
 }

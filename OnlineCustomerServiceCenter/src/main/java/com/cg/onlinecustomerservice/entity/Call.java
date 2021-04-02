@@ -33,7 +33,6 @@ private Operator operator;
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 private Customer customer;
-
 public Call()
 {
 	

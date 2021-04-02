@@ -16,7 +16,7 @@ public class Department {
 	private int departmentID;
 	@Column
 	private String departmentName;
-	public Department(int departmentID, String departmentName) {
+	public Department(int departmentID, String departmentName) { // department 
 		super();
 		this.departmentID = departmentID;
 		this.departmentName = departmentName;
@@ -34,5 +34,4 @@ public class Department {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	
 }

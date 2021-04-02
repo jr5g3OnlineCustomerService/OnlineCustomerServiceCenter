@@ -1,7 +1,8 @@
-package com.cg.onlinecustomerservice;
+package com.cg.onlinecustomerservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication

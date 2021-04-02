@@ -16,9 +16,4 @@ import com.cg.onlinecustomerservice.service.CustomerService;
 public class CustomerController {
 	@Autowired
 	CustomerService service;
-	@PostMapping
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
-		service.registerCustomer(customer);
-		return new ResponseEntity<String>("Customer Added",HttpStatus.OK);
 	}
-}

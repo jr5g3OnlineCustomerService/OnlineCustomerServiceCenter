@@ -14,7 +14,7 @@ import com.cg.onlinecustomerservice.entity.Solution;
 
 
 @Service
-public class CustomerService {
+public class CustomerService implements ICustomerService{
 	@Autowired
 	LoginDao loginDao;
 	@Autowired
@@ -28,7 +28,7 @@ public class CustomerService {
 		else
 			return "User doesnt exist";
 		}
-	
+	@Override
 	public String registerCustomer(Customer customer)
 	{
 		Customer cust= customerDao.save(customer);
@@ -39,17 +39,31 @@ public class CustomerService {
 		}
 	}
 	
-	
+	@Override
 	public Issue viewIssuesById(int issueid)
 	{
 		return issueDao.getIssueById(issueid);
 	}
+	@Override
 	public int reopenIssue(int issueid)
 	{
 		return 0;
 	}
+	@Override
 	public String changePassword(Login l)
 	{
+		return null;
+	}
+
+	@Override
+	public String forgotPassword(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer emailPassword(int id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

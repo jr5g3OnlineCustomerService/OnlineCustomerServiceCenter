@@ -10,4 +10,6 @@ public interface ICustomerService {
 	public Issue viewIssuesById(int issueid);
 	public int reopenIssue(int issueid);
 	public String changePassword(Login login);
+	public String forgotPassword(int id);
+	public Customer emailPassword(int id);
 }

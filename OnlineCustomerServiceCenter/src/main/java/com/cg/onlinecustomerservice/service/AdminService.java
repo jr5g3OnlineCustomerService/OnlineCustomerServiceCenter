@@ -11,11 +11,12 @@ import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
 
 @Service
-public class AdminService {
+public class AdminService implements IAdminService{
 @Autowired
 DepartmentDao deptDao;
 @Autowired
 OperatorDao operatorDao;
+@Override
 public boolean addDepartment(Department dept){
 	boolean flag=true;
 	if(flag){
@@ -26,7 +27,7 @@ public boolean addDepartment(Department dept){
 	}
 	return flag;
 }
-
+@Override
 public boolean removeDepartment(int departmentID){ 
 	boolean flag=true;
 	if(flag){
@@ -37,7 +38,7 @@ public boolean removeDepartment(int departmentID){
 	}
 	return flag;
 	}
-
+@Override
 public Department modifyDepartment(Department dept){
 
 	int id=dept.getDepartmentID();
@@ -46,10 +47,12 @@ public Department modifyDepartment(Department dept){
 	deptDao.save(department);
 	return department;
 }
+@Override
 public Department findDepartmentById(int id) {
 	return deptDao.getDeptById(id);
 	//return deptDao.findById(id);
 }
+@Override
 public boolean addOperator(Operator operator){
 	boolean flag=true;
 	if(flag){
@@ -60,6 +63,7 @@ public boolean addOperator(Operator operator){
 	}
 	return flag;
 }
+@Override
 public boolean removeOperator(int operatorID){ 
 	boolean flag=true;
 	if(flag){
@@ -70,6 +74,7 @@ public boolean removeOperator(int operatorID){
 	}
 	return flag;
 	}
+@Override
 public Operator modifyOperator(Operator operator){
 
 	int id=operator.getOperatorId();
@@ -81,10 +86,12 @@ public Operator modifyOperator(Operator operator){
 	operatorDao.save(oper);
 	return oper;
 }
+@Override
 public Operator findOperator(int id) {
 	return operatorDao.findOperatorById(id);
 	//return operatorDao.findById(id);
 }
+@Override
 public List<Operator> findAllOperators(){
 	List<Operator> operators = operatorDao.findAll();
 	return operators;

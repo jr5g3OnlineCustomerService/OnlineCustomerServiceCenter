@@ -63,6 +63,6 @@ public Customer findCustomerByEmail(String email)
 	return customerDao.findCustomerByEmail(email);
 }
 public boolean lockCustomer(int id) {
-		return false;
+		
 }
 }

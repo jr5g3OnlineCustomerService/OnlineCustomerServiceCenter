@@ -1,13 +1,20 @@
 package com.cg.onlinecustomerservice.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cg.onlinecustomerservice.entity.Customer;
-import com.cg.onlinecustomerservice.entity.Issue;
 
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
-	
+	@Query(value = "from customer where customer.customerId=?1")
+	public Customer findCustomerById(int code);
+	@Query(value = "from customer where customer.firstname=?1")
+	public List<Customer> findCustomerByName(String name);
+	@Query(value = "from customer where customer.email=?1")
+	public Customer findCustomerByEmail(String email);
 	
 }

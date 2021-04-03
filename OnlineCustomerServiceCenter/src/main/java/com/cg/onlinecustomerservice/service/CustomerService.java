@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.cg.onlinecustomerservice.dao.CustomerDao;
+import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
@@ -15,19 +16,33 @@ import com.cg.onlinecustomerservice.entity.Solution;
 @Service
 public class CustomerService {
 	@Autowired
-	LoginDao login;
+	LoginDao loginDao;
+	@Autowired
+	CustomerDao customerDao;
+	@Autowired
+	IssueDao issueDao;
 	public String login(Login l)
 	{
-		
-		return null;
-	}
+		if(loginDao.existsById(l.getUsername()))
+			return "Login successful";
+		else
+			return "User doesnt exist";
+		}
+	
 	public String registerCustomer(Customer customer)
 	{
-		return null;
+		Customer cust= customerDao.save(customer);
+		if(cust!=null)
+		return "Customer inserted";
+		else{
+			return "Could not Insert";
+		}
 	}
-	public int viewIssuesById(int issueid)
+	
+	
+	public Issue viewIssuesById(int issueid)
 	{
-		return 0;
+		return issueDao.getIssueById(issueid);
 	}
 	public int reopenIssue(int issueid)
 	{
@@ -37,4 +52,5 @@ public class CustomerService {
 	{
 		return null;
 	}
+	
 }

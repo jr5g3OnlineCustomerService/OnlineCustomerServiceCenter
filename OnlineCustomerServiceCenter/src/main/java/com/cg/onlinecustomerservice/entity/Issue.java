@@ -16,7 +16,7 @@ public class Issue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="issueId")
-	private int issueID;
+	private int issueId;
 	
 	@OneToOne(mappedBy="issue")
 	private Solution solution;
@@ -34,9 +34,9 @@ public class Issue {
 	@Column
 	private String issueStatus;
 	
-	public Issue(int issueID, String issueType, String description, String issueStatus) {
+	public Issue(int issueId, String issueType, String description, String issueStatus) {
 		super();
-		this.issueID = issueID;
+		this.issueId = issueId;
 		this.issueType = issueType;
 		this.description = description;
 		this.issueStatus = issueStatus;
@@ -50,12 +50,12 @@ public class Issue {
 	public void setSolution(Solution solution) {
 		this.solution = solution;
 	}
-	public int getIssueID() {
-		return issueID;
+	public int getIssueId() {
+		return issueId;
 	}
 
-	public void setIssueID(int issueID) {
-		this.issueID = issueID;
+	public void setIssueId(int issueId) {
+		this.issueId = issueId;
 	}
 
 	public String getIssueType() {

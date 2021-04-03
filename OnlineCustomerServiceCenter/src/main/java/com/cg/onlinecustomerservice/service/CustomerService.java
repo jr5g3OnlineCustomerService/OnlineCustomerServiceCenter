@@ -33,7 +33,7 @@ public class CustomerService implements ICustomerService{
 	{
 		Customer cust= customerDao.save(customer);
 		if(cust!=null)
-		return "Customer inserted";
+			return "Customer inserted";
 		else{
 			return "Could not Insert";
 		}
@@ -45,25 +45,35 @@ public class CustomerService implements ICustomerService{
 		return issueDao.getIssueById(issueid);
 	}
 	@Override
-	public int reopenIssue(int issueid)
-	{
-		return 0;
-	}
-	@Override
-	public String changePassword(Login l)
+	public Issue reopenIssue(int issueid)
 	{
 		return null;
+	}
+	@Override
+	public String changePassword(Login login)
+	{	
+		int id=0;
+		id=login.getUsername();
+		if(id!=0) {
+			Login log=loginDao.findById(id).get();
+			log.setPassword(login.getPassword());
+			loginDao.save(log);
+			return "Email updated";
+		}
+		else {
+			return "User not found";
+		}
 	}
 
 	@Override
 	public String forgotPassword(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Customer emailPassword(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

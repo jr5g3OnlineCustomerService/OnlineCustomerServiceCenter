@@ -14,7 +14,7 @@ import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Operator;
 
 @Service
-public class OperatorService {
+public class OperatorService implements IOperatorService{
 @Autowired
 LoginDao loginDao;
 @Autowired
@@ -63,6 +63,16 @@ public Customer findCustomerByEmail(String email)
 	return customerDao.findCustomerByEmail(email);
 }
 public boolean lockCustomer(int id) {
-		
+		return true;
+}
+@Override
+public String sendInyimationEmailToCustomer(int a, int b) {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public String sendModificationEmailToCustomer(int a, int b) {
+	// TODO Auto-generated method stub
+	return null;
 }
 }

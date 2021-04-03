@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.cg.onlinecustomerservice.entity.Login;
 @Repository
 public interface LoginDao extends JpaRepository<Login , Integer>{
-	@Query(value = "from login where login.isActive=?1")
+	@Query(value = "from Login login where login.isActive=?1")
 	public boolean lockCustomer(int id);
 }

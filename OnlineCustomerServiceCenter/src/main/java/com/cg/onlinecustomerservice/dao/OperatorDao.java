@@ -8,6 +8,6 @@ import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
 @Repository
 public interface OperatorDao extends JpaRepository<Operator , Integer>{
-	@Query(value = "from Operator operator where operator.operatorID=?1")
+	@Query(value = "from Operator operator where operator.operatorId=?1")
 	public Operator findOperatorById(int code);
 }

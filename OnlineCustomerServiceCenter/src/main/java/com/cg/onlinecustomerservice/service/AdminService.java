@@ -82,6 +82,7 @@ public Operator modifyOperator(Operator operator){
 	oper.setFirstName(operator.getFirstName());
 	oper.setLastName(operator.getLastName());
 	oper.setMobile(operator.getMobile());
+	oper.setEmail(operator.getEmail());
 	oper.setCity(operator.getCity());
 	operatorDao.save(oper);
 	return oper;

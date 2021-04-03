@@ -14,6 +14,6 @@ import com.cg.onlinecustomerservice.service.CustomerService;
 @RestController
 @RequestMapping("/")
 public class CustomerController {
-	@Autowired
-	CustomerService service;
+	
+	
 	}

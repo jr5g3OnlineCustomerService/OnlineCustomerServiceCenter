@@ -13,35 +13,39 @@ public class AdminService {
 DepartmentDao deptDao;
 @Autowired
 OperatorDao operatorDao;
-public boolean addDepartment(Department dept)
-{
+public boolean addDepartment(Department dept){
 	boolean flag=true;
-	if(flag)
-	{
+	if(flag){
 	deptDao.save(dept);
 }
-	else
-	{
+	else{
 		flag=false;
 	}
 	return flag;
 }
-public boolean removeDepartment(int departmentID)
-{ 
+
+public boolean removeDepartment(int departmentID){ 
 	boolean flag=true;
-	if(flag)
-	{
+	if(flag){
 	deptDao.deleteById(departmentID);
 }
-	else
-	{
+	else{
 		flag=false;
 	}
 	return flag;
 	}
-public Department modifyDepartment(Department dept)
-{
-return dept;
+
+public Department modifyDepartment(Department dept){
+
+	int id=dept.getDepartmentID();
+	Department department=deptDao.findById(id).get();
+	department.setDepartmentName(dept.getDepartmentName());
+	deptDao.save(department);
+	return department;
+}
+public Department findDepartmentById(int id) {
+	return deptDao.getDeptById(id);
+	//return deptDao.findById(id);
 }
 
 }

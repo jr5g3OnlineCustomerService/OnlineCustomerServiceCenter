@@ -83,7 +83,7 @@ public Operator modifyOperator(Operator operator){
 }
 public Operator findOperator(int id) {
 	return operatorDao.findOperatorById(id);
-	//return operatorDao.findById(id);
+	 //return operatorDao.findById(id);
 }
 public List<Operator> findAllOperators(){
 	List<Operator> operators = operatorDao.findAll();

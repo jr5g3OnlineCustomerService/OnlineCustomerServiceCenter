@@ -17,7 +17,7 @@ import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.service.OperatorService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/operator")
 public class OperatorController {
 	@Autowired
 	OperatorService service;
@@ -41,7 +41,7 @@ public class OperatorController {
 		Customer response=service.findCustomerById(code);
 		return new ResponseEntity<Customer>(response,HttpStatus.OK);
 	}
-	@GetMapping("/findCustomerById")
+	@GetMapping("/findCustomerByName")
 	public ResponseEntity<List<Customer>> findCustomerByName(@RequestBody String name){
 		List<Customer> response=service.findCustomerByName(name);
 		return new ResponseEntity<List<Customer>>(response,HttpStatus.OK);

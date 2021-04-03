@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.service.AdminService;
@@ -71,5 +72,12 @@ public class AdminController {
 	public ResponseEntity<Operator> updateOperator(@RequestBody Operator operator){
 		Operator oper=service.modifyOperator(operator);
 		return new ResponseEntity<Operator>(oper,HttpStatus.OK);
+	}
+	@PostMapping("/addOperator")
+	public String addOperator(@RequestBody OperatorDto dto) {
+	if(service.addOperator(dto))
+		return "operator added";
+	else
+		return "Could not insert";
 	}
 }

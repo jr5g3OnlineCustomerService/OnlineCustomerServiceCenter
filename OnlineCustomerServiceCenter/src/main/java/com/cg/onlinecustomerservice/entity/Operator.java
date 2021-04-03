@@ -101,4 +101,29 @@ public class Operator {
 		public void setCity(String city) {
 			this.city = city;
 		}
+
+		public Solution getSolution() {
+			return solution;
+		}
+
+		public void setSolution(Solution solution) {
+			this.solution = solution;
+		}
+
+		public Department getDepartment() {
+			return department;
+		}
+
+		public void setDepartment(Department department) {
+			this.department = department;
+		}
+
+		public Call getCall() {
+			return call;
+		}
+
+		public void setCall(Call call) {
+			this.call = call;
+		}
+		
 }

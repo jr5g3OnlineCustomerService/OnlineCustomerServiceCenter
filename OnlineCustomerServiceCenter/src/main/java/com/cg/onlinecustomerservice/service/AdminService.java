@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.onlinecustomerservice.dao.DepartmentDao;
 import com.cg.onlinecustomerservice.dao.OperatorDao;
+import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
 
@@ -53,15 +54,17 @@ public Department findDepartmentById(int id) {
 	//return deptDao.findById(id);
 }
 @Override
-public boolean addOperator(Operator operator){
-	boolean flag=true;
-	if(flag){
+public boolean addOperator(OperatorDto operatordto){
+	Operator operator=new Operator();
+	operator.setFirstName(operatordto.getFirstName());
+	operator.setLastName(operatordto.getLastName());
+	operator.setEmail(operatordto.getEmail());
+	operator.setCity(operatordto.getCity());
+	operator.setMobile(operatordto.getMobile());
+	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
+	operator.setDepartment(dept);
 	operatorDao.save(operator);
-}
-	else{
-		flag=false;
-	}
-	return flag;
+	return true;
 }
 @Override
 public boolean removeOperator(int operatorID){ 

@@ -89,7 +89,7 @@ public Operator modifyOperator(Operator operator){
 @Override
 public Operator findOperator(int id) {
 	return operatorDao.findOperatorById(id);
-	//return operatorDao.findById(id);
+	 //return operatorDao.findById(id);
 }
 @Override
 public List<Operator> findAllOperators(){

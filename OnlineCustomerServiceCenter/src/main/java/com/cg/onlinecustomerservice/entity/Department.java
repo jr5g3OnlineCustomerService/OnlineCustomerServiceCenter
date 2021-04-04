@@ -15,7 +15,7 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="departmentID")
 	private int departmentID;
-	@Column
+	@Column(name="departmentName")
 	private String departmentName;
 	public Department(int departmentID, String departmentName) { // department 
 		super();

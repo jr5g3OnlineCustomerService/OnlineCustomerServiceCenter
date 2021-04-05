@@ -44,11 +44,7 @@ public class CustomerService implements ICustomerService{
 	{
 		return issueDao.getIssueById(issueid);
 	}
-	@Override
-	public Issue reopenIssue(int issueid)
-	{
-		return null;
-	}
+
 	@Override
 	public String changePassword(Login login)
 	{	
@@ -65,16 +61,6 @@ public class CustomerService implements ICustomerService{
 		}
 	}
 
-	@Override
-	public String forgotPassword(int id) {
-		
-		return null;
-	}
 
-	@Override
-	public Customer emailPassword(int id) {
-		
-		return null;
-	}
 	
 }

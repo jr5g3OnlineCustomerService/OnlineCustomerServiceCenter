@@ -50,9 +50,16 @@ public Department modifyDepartment(Department dept){
 }
 @Override
 public Department findDepartmentById(int id) {
-	return deptDao.getDeptById(id);
+	return deptDao.findDeptById(id);
 	//return deptDao.findById(id);
 }
+
+@Override
+public List<Department> findAllDepartments(){
+	List<Department> department = DepartmentDao.findAll();
+	return department;
+}
+
 @Override
 public boolean addOperator(OperatorDto operatordto){
 	Operator operator=new Operator();

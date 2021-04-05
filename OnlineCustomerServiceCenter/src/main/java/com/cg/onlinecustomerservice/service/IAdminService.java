@@ -11,6 +11,7 @@ public interface IAdminService {
 	public boolean removeDepartment(int departmentID);
 	public Department modifyDepartment(Department dept);
 	public Department findDepartmentById(int id);
+	public List<Department> findAllDepartments();
 	public boolean addOperator(OperatorDto operatordto);
 	public boolean removeOperator(int operatorID);
 	public Operator modifyOperator(Operator operator);

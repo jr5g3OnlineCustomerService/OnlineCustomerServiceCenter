@@ -16,4 +16,5 @@ public interface IAdminService {
 	public Operator modifyOperator(Operator operator);
 	public Operator findOperator(int id);
 	public List<Operator> findAllOperators();
+	
 }

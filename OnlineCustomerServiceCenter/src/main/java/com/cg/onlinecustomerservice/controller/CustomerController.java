@@ -31,11 +31,5 @@ public class CustomerController {
 		Issue response=service.viewIssuesById(code);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
-	@GetMapping("/reopenIssue")
-	public ResponseEntity<Issue> reopenIssue(@RequestBody int code){
-		Issue response=service.reopenIssue(code);
-		return new ResponseEntity<Issue>(response,HttpStatus.OK);
-	}
-	
 	
 	}

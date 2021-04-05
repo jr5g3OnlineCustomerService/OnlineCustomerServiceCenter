@@ -9,4 +9,5 @@ public interface ICustomerService {
 	public String registerCustomer(Customer customer);
 	public Issue viewIssuesById(int issueid);
 	public String changePassword(Login login);
+	
 }

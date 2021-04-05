@@ -100,5 +100,4 @@ public List<Operator> findAllOperators(){
 	List<Operator> operators = operatorDao.findAll();
 	return operators;
 }
-
 }

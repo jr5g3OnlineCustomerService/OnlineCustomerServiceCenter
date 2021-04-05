@@ -22,7 +22,7 @@ CustomerDao customerDao;
 IssueDao issueDao;
 public String login(Login l)
 {
-	if(loginDao.existsById(l.getUsername()))
+	if(loginDao.existsById(l.getUserId()))
 		return "Login successful";
 	else
 		return "User doesnt exist";

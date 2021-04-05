@@ -36,12 +36,12 @@ public class Login {
 	
 	public Login() {}
 
-	public int getUsername() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUsername(int username) {
-		this.userId = username;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getPassword() {

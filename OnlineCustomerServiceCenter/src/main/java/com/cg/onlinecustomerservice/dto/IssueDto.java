@@ -15,8 +15,8 @@ public class IssueDto {
 	public int getCustomerID() {
 		return customerID;
 	}
-	public void setCustomer(int customer) {
-		this.customerID = customer;
+	public void setCustomer(int customerID) {
+		this.customerID = customerID;
 	}
 	public String getIssueType() {
 		return issueType;

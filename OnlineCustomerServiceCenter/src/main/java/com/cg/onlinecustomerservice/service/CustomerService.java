@@ -23,7 +23,7 @@ public class CustomerService implements ICustomerService{
 	IssueDao issueDao;
   public String login(Login l)
 	{
-		if(loginDao.existsById(l.getUsername()))
+		if(loginDao.existsById(l.getUserId()))
 			return "Login successful";
 		else
 			return "User doesnt exist";
@@ -49,7 +49,7 @@ public class CustomerService implements ICustomerService{
 	public String changePassword(Login login)
 	{	
 		int id=0;
-		id=login.getUsername();
+		id=login.getUserId();
 		if(id!=0) {
 			Login log=loginDao.findById(id).get();
 			log.setPassword(login.getPassword());

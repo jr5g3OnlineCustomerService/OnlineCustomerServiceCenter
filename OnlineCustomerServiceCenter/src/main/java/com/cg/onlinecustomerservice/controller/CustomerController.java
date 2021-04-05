@@ -42,7 +42,7 @@ public class CustomerController {
 	}
 	@PutMapping("/ChangePassword")
 	public String changePassword(Login login) {
-		if(service.login(login) != null)
+		if(service.changePassword(login) != null)
 		  return "Changed Password Successfully";
 		else
 		   return "Could Not Change";

@@ -1,6 +1,4 @@
 package com.cg.onlinecustomerservice.dto;
-
-import com.cg.onlinecustomerservice.entity.Customer;
 public class IssueDto {
 	private int issueID;
 	private int customerID;

@@ -10,21 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.entity.Customer;
-import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Issue;
+import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.service.CustomerService;
+import com.cg.onlinecustomerservice.service.LoginService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
 	CustomerService service;
-	/*@Autowired
+     @Autowired
 	LoginService loginService;
 	public ResponseEntity<String> loginValidation(@RequestBody Login login){
 		String str=loginService.loginValidation(login);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
-	}*/
+	}
 	@PostMapping("/addCustomer")
 	public String registerCustomer(@RequestBody Customer customer) {
 	if(service.registerCustomer(customer) != null)

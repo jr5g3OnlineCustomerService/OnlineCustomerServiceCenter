@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
+import com.cg.onlinecustomerservice.entity.Login;
+import com.cg.onlinecustomerservice.service.LoginService;
 import com.cg.onlinecustomerservice.service.OperatorService;
 
 @RestController
@@ -21,6 +23,12 @@ import com.cg.onlinecustomerservice.service.OperatorService;
 public class OperatorController {
 	@Autowired
 	OperatorService service;
+	@Autowired
+	LoginService loginService;
+	public ResponseEntity<String> loginValidation(@RequestBody Login login){
+		String str=loginService.loginValidation(login);
+		return new ResponseEntity<String>(str,HttpStatus.OK);
+	}
 	@PostMapping("/addCustomer")
 	public ResponseEntity<Issue> addCustomerIssue(@RequestBody Issue issue) {
 	Issue response=service.addCustomerIssue(issue);

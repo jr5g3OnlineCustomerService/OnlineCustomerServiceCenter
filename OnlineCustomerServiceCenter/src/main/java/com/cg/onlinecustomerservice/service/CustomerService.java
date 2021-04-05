@@ -21,7 +21,7 @@ public class CustomerService implements ICustomerService{
 	CustomerDao customerDao;
 	@Autowired
 	IssueDao issueDao;
-	public String login(Login l)
+  public String login(Login l)
 	{
 		if(loginDao.existsById(l.getUsername()))
 			return "Login successful";
@@ -60,5 +60,4 @@ public class CustomerService implements ICustomerService{
 			return "User not found";
 		}
 	}
-
 }

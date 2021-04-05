@@ -50,7 +50,7 @@ public Department modifyDepartment(Department dept){
 }
 @Override
 public Department findDepartmentById(int id) {
-	return deptDao.getDeptById(id);
+	return deptDao.findDeptById(id);
 	//return deptDao.findById(id);
 }
 @Override
@@ -61,7 +61,7 @@ public boolean addOperator(OperatorDto operatordto){
 	operator.setEmail(operatordto.getEmail());
 	operator.setCity(operatordto.getCity());
 	operator.setMobile(operatordto.getMobile());
-	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
+	Department dept=deptDao.findDeptById(operatordto.getDepartmentID());
 	operator.setDepartment(dept);
 	operatorDao.save(operator);
 	return true;
@@ -100,4 +100,10 @@ public List<Operator> findAllOperators(){
 	List<Operator> operators = operatorDao.findAll();
 	return operators;
 }
+@Override
+public List<Department> findAllDepartments() {
+	List<Department> departments = deptDao.findAll();
+	return departments;
+}
+
 }

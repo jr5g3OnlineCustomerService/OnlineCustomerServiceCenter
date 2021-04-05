@@ -31,7 +31,7 @@ public class OperatorController {
 		Issue response=service. modifyCustomerIssue(issue);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
-	@PutMapping("/CloseIssue")
+	@PutMapping("/closeCustomer")
 	public ResponseEntity<Issue> closeCustomerIssue(@RequestBody Issue issue){
 		Issue response=service. closeCustomerIssue(issue);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);

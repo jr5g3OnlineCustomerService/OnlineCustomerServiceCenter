@@ -19,6 +19,12 @@ import com.cg.onlinecustomerservice.service.CustomerService;
 public class CustomerController {
 	@Autowired
 	CustomerService service;
+	@Autowired
+	LoginService loginService;
+	public ResponseEntity<String> loginValidation(@RequestBody Login login){
+		String str=loginService.loginValidation(login);
+		return new ResponseEntity<String>(str,HttpStatus.OK);
+	}
 	@PostMapping("/addCustomer")
 	public String registerCustomer(@RequestBody Customer customer) {
 	if(service.registerCustomer(customer) != null)

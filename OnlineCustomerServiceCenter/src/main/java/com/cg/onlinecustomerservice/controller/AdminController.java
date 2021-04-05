@@ -48,6 +48,11 @@ public class AdminController {
 		Department depart=service.findDepartmentById(code);
 		return new ResponseEntity<Department>(depart,HttpStatus.OK);
 	}
+	/*@GetMapping("/allDepartment")
+	public ResponseEntity<List<Department>> findAll(){
+		List<Operator> operators=service.findAll();
+		return new ResponseEntity<List<Department>>(operators,HttpStatus.OK);
+	}*/
 	
 	@DeleteMapping("/deleteOperator")
 	public String deleteOperator(@RequestBody int code){
@@ -80,11 +85,4 @@ public class AdminController {
 	else
 		return "Could not insert";
 	}
-	
-	@GetMapping("/allDepartments")
-	public ResponseEntity<List<Department>> findAll1(){
-		List<Department> departments=service.findAllDepartments();
-		return new ResponseEntity<List<Department>>(departments,HttpStatus.OK);
 }
-}
-  

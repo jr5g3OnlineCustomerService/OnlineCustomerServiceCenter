@@ -21,13 +21,13 @@ public class CustomerService implements ICustomerService{
 	CustomerDao customerDao;
 	@Autowired
 	IssueDao issueDao;
-	public String login(Login l)
+	/*public String login(Login l)
 	{
 		if(loginDao.existsById(l.getUsername()))
 			return "Login successful";
 		else
 			return "User doesnt exist";
-		}
+		}*/
 	@Override
 	public String registerCustomer(Customer customer)
 	{
@@ -59,6 +59,12 @@ public class CustomerService implements ICustomerService{
 		else {
 			return "User not found";
 		}
+	}
+
+	@Override
+	public String login(Login login) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

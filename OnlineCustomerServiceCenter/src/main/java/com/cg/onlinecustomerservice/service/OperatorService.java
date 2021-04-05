@@ -12,7 +12,6 @@ import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Operator;
-
 @Service
 public class OperatorService implements IOperatorService{
 @Autowired

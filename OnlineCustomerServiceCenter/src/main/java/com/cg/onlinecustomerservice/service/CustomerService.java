@@ -44,7 +44,7 @@ public class CustomerService implements ICustomerService{
 	{
 		return issueDao.getIssueById(issueid);
 	}
-
+	
 	@Override
 	public String changePassword(Login login)
 	{	
@@ -61,6 +61,4 @@ public class CustomerService implements ICustomerService{
 		}
 	}
 
-
-	
 }

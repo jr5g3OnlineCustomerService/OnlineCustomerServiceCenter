@@ -65,13 +65,12 @@ public boolean lockCustomer(int id) {
 		return true;
 }
 @Override
-public String sendInyimationEmailToCustomer(int a, int b) {
-	// TODO Auto-generated method stub
+public String sendIntimationEmailToCustomer(int a, int b) {
+         
 	return null;
 }
 @Override
 public String sendModificationEmailToCustomer(int a, int b) {
-	// TODO Auto-generated method stub
 	return null;
 }
 }

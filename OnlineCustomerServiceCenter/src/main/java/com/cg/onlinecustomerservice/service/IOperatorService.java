@@ -8,8 +8,6 @@ import com.cg.onlinecustomerservice.entity.Login;
 
 public interface IOperatorService {
 	public String login(Login login);
-	public Issue addCustomerIssue(Issue issue);
-	public String sendInyimationEmailToCustomer(int a,int b);
 	public Issue modifyCustomerIssue(Issue issue);
 	public String sendModificationEmailToCustomer(int a,int b);
 	public Issue closeCustomerIssue(Issue issue);
@@ -17,6 +15,7 @@ public interface IOperatorService {
 	public List<Customer> findCustomerByName(String name);
 	public Customer findCustomerByEmail(String email);
 	public boolean lockCustomer(int id);
+	String sendIntimationEmailToCustomer(int a, int b);
 	
 	
 }

@@ -1,12 +1,12 @@
 package com.cg.onlinecustomerservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.cg.onlinecustomerservice.dao.ILoginRepository;
+import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.entity.Login;
 
 public class LoginService implements ILoginService {
 		@Autowired
-		ILoginRepository loginRepository;
+		LoginDao loginRepository;
 		@Override
 		public String loginValidation(Login login) {
 			if(loginRepository.equals(login)) {

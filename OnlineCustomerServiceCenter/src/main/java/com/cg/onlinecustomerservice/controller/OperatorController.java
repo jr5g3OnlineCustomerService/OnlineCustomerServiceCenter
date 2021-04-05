@@ -25,6 +25,7 @@ public class OperatorController {
 	OperatorService service;
 	@Autowired
 	LoginService loginService;
+	@PostMapping("/login")
 	public ResponseEntity<String> loginValidation(@RequestBody Login login){
 		String str=loginService.loginValidation(login);
 		return new ResponseEntity<String>(str,HttpStatus.OK);

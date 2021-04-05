@@ -80,4 +80,11 @@ public class AdminController {
 	else
 		return "Could not insert";
 	}
+	
+	@GetMapping("/allDepartments")
+	public ResponseEntity<List<Department>> findAll1(){
+		List<Department> departments=service.findAllDepartments();
+		return new ResponseEntity<List<Department>>(departments,HttpStatus.OK);
 }
+}
+  

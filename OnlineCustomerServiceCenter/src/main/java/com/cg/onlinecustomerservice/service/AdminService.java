@@ -54,11 +54,6 @@ public Department findDepartmentById(int id) {
 	//return deptDao.findById(id);
 }
 
-@Override
-public List<Department> findAllDepartments(){
-	List<Department> department = DepartmentDao.findAll();
-	return department;
-}
 
 @Override
 public boolean addOperator(OperatorDto operatordto){
@@ -68,7 +63,7 @@ public boolean addOperator(OperatorDto operatordto){
 	operator.setEmail(operatordto.getEmail());
 	operator.setCity(operatordto.getCity());
 	operator.setMobile(operatordto.getMobile());
-	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
+	Department dept=deptDao.findDeptById(operatordto.getDepartmentID());
 	operator.setDepartment(dept);
 	operatorDao.save(operator);
 	return true;
@@ -106,5 +101,10 @@ public Operator findOperator(int id) {
 public List<Operator> findAllOperators(){
 	List<Operator> operators = operatorDao.findAll();
 	return operators;
+}
+public List<Department> findAllDepartments() {
+	// TODO Auto-generated method stub
+	List<Department> departments = deptDao.findAll();
+	return departments;
 }
 }

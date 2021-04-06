@@ -9,4 +9,5 @@ import com.cg.onlinecustomerservice.entity.Issue;
 public interface IssueDao extends JpaRepository<Issue , Integer>{
 	@Query(value = "from Issue issue where issue.issueId=?1")
 	public Issue getIssueById(int code);
+	
 }

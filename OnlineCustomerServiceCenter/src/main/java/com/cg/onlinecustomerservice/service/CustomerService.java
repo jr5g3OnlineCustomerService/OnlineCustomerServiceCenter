@@ -92,6 +92,7 @@ public class CustomerService implements ICustomerService{
 		
 		return solutionDao.getSolutionById(code);
 	}
+	
 	@Override
 	public List<Solution> ViewAllSolutions() {
 		List<Solution> response=solutionDao.findAll();

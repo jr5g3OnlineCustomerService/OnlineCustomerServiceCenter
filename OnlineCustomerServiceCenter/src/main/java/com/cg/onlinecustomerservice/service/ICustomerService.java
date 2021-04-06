@@ -16,6 +16,5 @@ public interface ICustomerService {
 	List<Customer> ViewAllCustomers();
 	Issue reOpenIssue(int id);
 	List<Solution> ViewAllSolutions();
-	Solution viewSolutionsById(int code);
-	
+	Solution viewSolutionsById(int code);	
 }

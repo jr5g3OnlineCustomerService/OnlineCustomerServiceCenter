@@ -10,3 +10,4 @@ public interface SolutionDao extends JpaRepository<Solution , Integer>{
 	@Query(value = "from Issue issue where solution.solutionId=?1")
 	public Solution getSolutionById(int code);
 }
+

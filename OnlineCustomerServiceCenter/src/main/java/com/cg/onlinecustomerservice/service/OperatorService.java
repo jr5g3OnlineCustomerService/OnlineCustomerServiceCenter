@@ -106,5 +106,4 @@ public Solution addSolution(SolutionDto solutiondto) {
 	soln.setIssue(issue);
 	return solutionDao.save(soln);
 }
-
 }

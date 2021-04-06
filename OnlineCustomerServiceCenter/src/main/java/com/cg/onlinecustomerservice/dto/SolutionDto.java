@@ -11,6 +11,7 @@ public class SolutionDto {
 	public int getSolutionId() {
 		return solutionId;
 	}
+	
 	public void setSolutionId(int solutionId) {
 		this.solutionId = solutionId;
 	}

@@ -19,4 +19,5 @@ public interface IOperatorService {
 	public Customer findCustomerByEmail(String email);
 	public boolean lockCustomer(int id);
 	public Solution addSolution(SolutionDto solutiondto);
+	
 }

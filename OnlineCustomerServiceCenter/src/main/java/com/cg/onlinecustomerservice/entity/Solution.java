@@ -38,7 +38,6 @@ public class Solution {
 		this.solutionDescription = solutionDescription;
 		this.solutionDate = solutionDate;
 	}
-	
 	public Operator getOperator() {
 		return operator;
 	}

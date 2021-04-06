@@ -61,5 +61,9 @@ public class OperatorController {
 		Customer response=service.findCustomerByEmail(email);
 		return new ResponseEntity<Customer>(response,HttpStatus.OK);
 	}
+	@PutMapping("/lockAccount")
+	public ResponseEntity<Boolean> lockCustomer(@RequestBody int code){
+		boolean response=service.lockCustomer(code);
+		return new ResponseEntity<Boolean>(response,HttpStatus.OK);
 	}
-	
+}

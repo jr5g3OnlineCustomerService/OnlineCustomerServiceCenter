@@ -59,4 +59,9 @@ public class CustomerController {
 		else
 		   return "Could Not Change";
 	}
+	@PutMapping("/reopenissue")
+	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) {
+		Issue issues=service.reOpenIssue(id);
+		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
+	}
 }

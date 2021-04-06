@@ -69,16 +69,15 @@ public Customer findCustomerByEmail(String email)
 	return customerDao.findCustomerByEmail(email);
 }
 public boolean lockCustomer(int id) {
+	Login login=loginDao.getLogById(id);
+	if(login!=null) {
+		login.setActive(false);
+		loginDao.save(login);
 		return true;
-}
-@Override
-public String sendIntimationEmailToCustomer(int a, int b) {
-         
-	return null;
-}
-@Override
-public String sendModificationEmailToCustomer(int a, int b) {
-	return null;
+	}
+	else
+		return false;
+
 }
 
 }

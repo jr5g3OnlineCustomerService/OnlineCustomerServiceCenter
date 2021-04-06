@@ -13,5 +13,6 @@ public interface ICustomerService {
 	public List<Issue> ViewAllIssues();
 	public String changePassword(Login login);
 	List<Customer> ViewAllCustomers();
+	Issue reOpenIssue(int id);
 	
 }

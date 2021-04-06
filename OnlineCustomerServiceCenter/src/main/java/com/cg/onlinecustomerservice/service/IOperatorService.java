@@ -11,13 +11,9 @@ public interface IOperatorService {
 	public String login(Login login);
 	public Issue modifyCustomerIssue(Issue issue);
 	public Issue addCustomerIssue(IssueDto issueDto);
-	public String sendModificationEmailToCustomer(int a,int b);
 	public Issue closeCustomerIssue(Issue issue);
 	public Customer findCustomerById(int id);
 	public List<Customer> findCustomerByName(String name);
 	public Customer findCustomerByEmail(String email);
 	public boolean lockCustomer(int id);
-	String sendIntimationEmailToCustomer(int a, int b);
-	
-	
 }

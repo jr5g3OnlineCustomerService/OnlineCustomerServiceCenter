@@ -71,4 +71,16 @@ public class CustomerService implements ICustomerService{
 		List<Customer>response=customerDao.findAll();
 		return response;
 	}
+	@Override
+	public Issue reOpenIssue(int id) {
+		Issue result=issueDao.getIssueById(id);
+		result.setIssueStatus("Pending");
+		issueDao.save(result);
+		return result;
+		/*int id=issue.getIssueId();
+		Issue result=issueDao.findById(id).get();
+		result.setIssueStatus(issue.getIssueStatus());
+		issueDao.save(result);
+		return result;*/
+	}
 }

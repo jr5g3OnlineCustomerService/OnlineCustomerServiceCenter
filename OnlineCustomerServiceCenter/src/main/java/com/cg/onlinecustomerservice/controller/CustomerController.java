@@ -18,6 +18,9 @@ import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.service.LoginService;
+import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
+import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
+import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 @RestController
 @RequestMapping("/customer")
@@ -39,27 +42,27 @@ public class CustomerController {
 		return "Could not insert";
 	}
 	@GetMapping("/allCustomers")
-	public ResponseEntity<List<Customer>> ViewAllCustomers(){
+	public ResponseEntity<List<Customer>> ViewAllCustomers() throws CustomerNotFoundException{
 		List<Customer> response=service.ViewAllCustomers();
 		return new ResponseEntity<List<Customer>>(response,HttpStatus.OK);
 	}
 	@GetMapping("/viewIssuesById")
-	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code){
+	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code) throws IssueNotFoundException{
 		Issue response=service.viewIssuesById(code);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
 	@GetMapping("/allIssues")
-	public ResponseEntity<List<Issue>> ViewAllIssues(){
+	public ResponseEntity<List<Issue>> ViewAllIssues() throws IssueNotFoundException{
 		List<Issue> issues=service.ViewAllIssues();
 		return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
 	}
 	@GetMapping("/viewSolutionsById")
-	public ResponseEntity<Solution> viewSolutionsById(@RequestBody int code){
+	public ResponseEntity<Solution> viewSolutionsById(@RequestBody int code) throws SolutionNotFoundException{
 		Solution response=service.viewSolutionsById(code);
 		return new ResponseEntity<Solution>(response,HttpStatus.OK);
 	}
 	@GetMapping("/allSolutions")
-	public ResponseEntity<List<Solution>> ViewAllSolution(){
+	public ResponseEntity<List<Solution>> ViewAllSolution() throws SolutionNotFoundException{
 		List<Solution> issues=service.ViewAllSolutions();
 		return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
 	}
@@ -71,7 +74,7 @@ public class CustomerController {
 		   return "Could Not Change";
 	}
 	@PutMapping("/reopenissue")
-	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) {
+	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {
 		Issue issues=service.reOpenIssue(id);
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
 	}

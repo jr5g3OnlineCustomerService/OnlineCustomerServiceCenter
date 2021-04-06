@@ -61,7 +61,7 @@ public Department findDepartmentById(int id) throws DepartmentNotFoundException{
 	if(!deptDao.findById(id).isPresent())
 		throw new DepartmentNotFoundException();
 	else
-		return deptDao.getDeptById(id);
+		return deptDao.findDeptById(id);
 	//return deptDao.findById(id);
 }
 @Override
@@ -72,7 +72,7 @@ public boolean addOperator(OperatorDto operatordto)throws OperatorNotFoundExcept
 	operator.setEmail(operatordto.getEmail());
 	operator.setCity(operatordto.getCity());
 	operator.setMobile(operatordto.getMobile());
-	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
+	Department dept=deptDao.findDeptById(operatordto.getDepartmentID());
 	operator.setDepartment(dept);
 	operatorDao.save(operator);
 	return true;

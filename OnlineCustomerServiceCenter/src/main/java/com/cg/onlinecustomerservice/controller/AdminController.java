@@ -26,7 +26,7 @@ public class AdminController {    //Admin is one of the three actors
 	@Autowired
 	AdminService service;
 	@PostMapping("/addDepartment")    // adds department for whatever values given to the members
-	public String addDepartment(@RequestBody Department department) throws DepartmentNotFoundException {
+	public String addDepartment(@RequestBody Department department) {
 	if(service.addDepartment(department))
 		return "Department added";
 	else
@@ -39,7 +39,7 @@ public class AdminController {    //Admin is one of the three actors
 		else
 			return "department not found";
 	}
-	@PutMapping("/updateDepartment")    // Makes modification to department without altering primarykey and throws exception if ID not found
+	@PostMapping("/updateDepartment")    // Makes modification to department without altering primarykey and throws exception if ID not found
 	public ResponseEntity<Department> updateDepartment(@RequestBody Department department) throws DepartmentNotFoundException{
 		Department depart=service.modifyDepartment(department);
 		return new ResponseEntity<Department>(depart,HttpStatus.OK);
@@ -73,7 +73,8 @@ public class AdminController {    //Admin is one of the three actors
 		Operator oper=service.modifyOperator(operator);
 		return new ResponseEntity<Operator>(oper,HttpStatus.OK);
 	}
-	public String addOperator(@RequestBody OperatorDto dto) throws OperatorNotFoundException {
+	@PostMapping("/addOperator")
+	public String addOperator(@RequestBody OperatorDto dto){
 	if(service.addOperator(dto))
 		return "operator added";
 	else

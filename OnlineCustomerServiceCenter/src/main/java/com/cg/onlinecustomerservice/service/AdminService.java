@@ -20,7 +20,7 @@ DepartmentDao deptDao;
 @Autowired
 OperatorDao operatorDao;
 @Override
-public boolean addDepartment(Department dept)throws DepartmentNotFoundException{
+public boolean addDepartment(Department dept){
 	boolean flag=true;
 	if(flag){
 	deptDao.save(dept);
@@ -65,7 +65,7 @@ public Department findDepartmentById(int id) throws DepartmentNotFoundException{
 	//return deptDao.findById(id);
 }
 @Override
-public boolean addOperator(OperatorDto operatordto)throws OperatorNotFoundException{
+public boolean addOperator(OperatorDto operatordto){
 	Operator operator=new Operator();
 	operator.setFirstName(operatordto.getFirstName());
 	operator.setLastName(operatordto.getLastName());

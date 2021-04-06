@@ -25,7 +25,6 @@ import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 public class AdminController {    //Admin is one of the three actors
 	@Autowired
 	AdminService service;
-	
 	@PostMapping("/addDepartment")    // adds department for whatever values given to the members
 	public String addDepartment(@RequestBody Department department) throws DepartmentNotFoundException {
 	if(service.addDepartment(department))
@@ -74,7 +73,6 @@ public class AdminController {    //Admin is one of the three actors
 		Operator oper=service.modifyOperator(operator);
 		return new ResponseEntity<Operator>(oper,HttpStatus.OK);
 	}
-	@PostMapping("/addOperator")  //Adds a new operator
 	public String addOperator(@RequestBody OperatorDto dto) throws OperatorNotFoundException {
 	if(service.addOperator(dto))
 		return "operator added";

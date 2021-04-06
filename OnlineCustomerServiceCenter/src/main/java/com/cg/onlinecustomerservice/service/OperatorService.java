@@ -20,7 +20,6 @@ import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
-import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 @Service
 public class OperatorService implements IOperatorService{
 @Autowired
@@ -42,7 +41,7 @@ public String login(Login l)
 		return "User doesnt exist";
 	}
 @Override
-public Issue addCustomerIssue(IssueDto issueDto) throws IssueNotFoundException{
+public Issue addCustomerIssue(IssueDto issueDto){
 	Issue issues=new Issue();
 	issues.setIssueStatus(issueDto.getIssueStatus());
 	issues.setIssueType(issueDto.getIssueType());
@@ -116,7 +115,7 @@ public boolean lockCustomer(int id)throws InvalidCredentialException  {
 
 }
 @Override
-public Solution addSolution(SolutionDto solutiondto) throws SolutionNotFoundException {
+public Solution addSolution(SolutionDto solutiondto){
 	Solution soln=new Solution();
 	soln.setSolutionDate(solutiondto.getSolutionDate());
 	soln.setSolutionDescription(solutiondto.getSolutionDescription());

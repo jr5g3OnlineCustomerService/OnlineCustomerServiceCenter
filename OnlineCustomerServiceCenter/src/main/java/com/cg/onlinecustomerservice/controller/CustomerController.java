@@ -19,6 +19,7 @@ import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.service.LoginService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
+import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
@@ -30,7 +31,7 @@ public class CustomerController {
      @Autowired
 	LoginService loginService;
      @PostMapping("/login")
-	public ResponseEntity<String> loginValidation(@RequestBody Login login){
+	public ResponseEntity<String> loginValidation(@RequestBody Login login)throws InvalidCredentialException {
 		String str=loginService.loginValidation(login);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}

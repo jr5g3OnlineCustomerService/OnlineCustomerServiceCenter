@@ -15,6 +15,7 @@ import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
+import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
@@ -29,14 +30,18 @@ public class CustomerService implements ICustomerService{
 	IssueDao issueDao;
 	@Autowired
 	SolutionDao solutionDao;
-  public String login(Login l)
+  public String login(Login l)throws InvalidCredentialException
 	{
-		if(loginDao.existsById(l.getUserId()))
-			
+	  int id=l.getUserId();
+	  if(!loginDao.findById(id).isPresent()) {
+		  throw new InvalidCredentialException();
+	  }
+	  else {
+		loginDao.existsById(l.getUserId());
 			return "Login successful";
-		else
-			return "User doesnt exist";
-		}
+		
+	}
+	}
 	@Override
 	public String registerCustomer(Customer customer)
 	{
@@ -52,8 +57,8 @@ public class CustomerService implements ICustomerService{
 	public Issue viewIssuesById(int issueid) throws IssueNotFoundException{
 		if(!issueDao.findById(issueid).isPresent())
 			 throw new IssueNotFoundException();
-			else		
-		return issueDao.getIssueById(issueid);
+		else		
+			return issueDao.getIssueById(issueid);
 	}
 	
 	@Override

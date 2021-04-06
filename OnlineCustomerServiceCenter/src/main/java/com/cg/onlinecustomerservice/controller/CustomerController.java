@@ -25,56 +25,56 @@ import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 @RestController
 @RequestMapping("/customer")
-public class CustomerController {
+public class CustomerController {  //Customer is One of the Three actors
 	@Autowired
 	CustomerService service;
      @Autowired
 	LoginService loginService;
-     @PostMapping("/login")
+     @PostMapping("/login") //Takes  Login in credentials and shows successful or  not
 	public ResponseEntity<String> loginValidation(@RequestBody Login login)throws InvalidCredentialException {
 		String str=loginService.loginValidation(login);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
-	@PostMapping("/addCustomer")
+	@PostMapping("/addCustomer") //adds customer for given input data given
 	public String registerCustomer(@RequestBody Customer customer) {
 	if(service.registerCustomer(customer) != null)
 		return "Customer added";
 	else
 		return "Could not insert";
 	}
-	@GetMapping("/allCustomers")
+	@GetMapping("/allCustomers") //shows the contents of the customer table and exception if table is empty
 	public ResponseEntity<List<Customer>> ViewAllCustomers() throws CustomerNotFoundException{
 		List<Customer> response=service.ViewAllCustomers();
 		return new ResponseEntity<List<Customer>>(response,HttpStatus.OK);
 	}
-	@GetMapping("/viewIssuesById")
+	@GetMapping("/viewIssuesById") //shows Issue having given id value and exception if it does not exist
 	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code) throws IssueNotFoundException{
 		Issue response=service.viewIssuesById(code);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
-	@GetMapping("/allIssues")
+	@GetMapping("/allIssues") //shows the issue table and exception if table is empty 
 	public ResponseEntity<List<Issue>> ViewAllIssues() throws IssueNotFoundException{
 		List<Issue> issues=service.ViewAllIssues();
 		return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
 	}
-	@GetMapping("/viewSolutionsById")
+	@GetMapping("/viewSolutionsById") //Shows solution for given ID and exception if the ID value given does not exist
 	public ResponseEntity<Solution> viewSolutionsById(@RequestBody int code) throws SolutionNotFoundException{
 		Solution response=service.viewSolutionsById(code);
 		return new ResponseEntity<Solution>(response,HttpStatus.OK);
 	}
-	@GetMapping("/allSolutions")
+	@GetMapping("/allSolutions")  //displays the solution table
 	public ResponseEntity<List<Solution>> ViewAllSolution() throws SolutionNotFoundException{
 		List<Solution> issues=service.ViewAllSolutions();
 		return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
 	}
-	@PutMapping("/ChangePassword")
+	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
 	public String changePassword(Login login) {
 		if(service.changePassword(login) != null)
 		  return "Changed Password Successfully";
 		else
 		   return "Could Not Change";
 	}
-	@PutMapping("/reopenissue")
+	@PutMapping("/reopenissue")  //re-activates issue for given id and exception if value does not exist
 	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {
 		Issue issues=service.reOpenIssue(id);
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);

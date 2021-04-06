@@ -22,7 +22,7 @@ import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController {    //Admin is one of the three actors
 	@Autowired
 	AdminService service;
 	

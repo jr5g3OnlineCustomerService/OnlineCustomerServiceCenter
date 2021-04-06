@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
+import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
+import com.cg.onlinecustomerservice.entity.Solution;
 
 
 @Service
@@ -22,6 +24,8 @@ public class CustomerService implements ICustomerService{
 	CustomerDao customerDao;
 	@Autowired
 	IssueDao issueDao;
+	@Autowired
+	SolutionDao solutionDao;
   public String login(Login l)
 	{
 		if(loginDao.existsById(l.getUserId()))
@@ -82,5 +86,15 @@ public class CustomerService implements ICustomerService{
 		result.setIssueStatus(issue.getIssueStatus());
 		issueDao.save(result);
 		return result;*/
+	}
+	@Override
+	public Solution viewSolutionsById(int code) {
+		
+		return solutionDao.getSolutionById(code);
+	}
+	@Override
+	public List<Solution> ViewAllSolutions() {
+		List<Solution> response=solutionDao.findAll();
+		return response;
 	}
 }

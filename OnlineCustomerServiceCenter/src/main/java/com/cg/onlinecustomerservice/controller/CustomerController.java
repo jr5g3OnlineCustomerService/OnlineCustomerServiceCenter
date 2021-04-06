@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
+import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.service.LoginService;
 
@@ -47,10 +48,20 @@ public class CustomerController {
 		Issue response=service.viewIssuesById(code);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
-	@GetMapping("/allIssuesById")
+	@GetMapping("/allIssues")
 	public ResponseEntity<List<Issue>> ViewAllIssues(){
 		List<Issue> issues=service.ViewAllIssues();
 		return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
+	}
+	@GetMapping("/viewSolutionsById")
+	public ResponseEntity<Solution> viewSolutionsById(@RequestBody int code){
+		Solution response=service.viewSolutionsById(code);
+		return new ResponseEntity<Solution>(response,HttpStatus.OK);
+	}
+	@GetMapping("/allSolutions")
+	public ResponseEntity<List<Solution>> ViewAllSolution(){
+		List<Solution> issues=service.ViewAllSolutions();
+		return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
 	}
 	@PutMapping("/ChangePassword")
 	public String changePassword(Login login) {

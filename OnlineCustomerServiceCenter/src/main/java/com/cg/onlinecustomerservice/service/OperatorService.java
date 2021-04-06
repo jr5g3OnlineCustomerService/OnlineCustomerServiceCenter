@@ -8,10 +8,15 @@ import org.springframework.stereotype.Service;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
+import com.cg.onlinecustomerservice.dao.OperatorDao;
+import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.dto.IssueDto;
+import com.cg.onlinecustomerservice.dto.SolutionDto;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
+import com.cg.onlinecustomerservice.entity.Operator;
+import com.cg.onlinecustomerservice.entity.Solution;
 @Service
 public class OperatorService implements IOperatorService{
 @Autowired
@@ -20,6 +25,11 @@ LoginDao loginDao;
 CustomerDao customerDao;
 @Autowired
 IssueDao issueDao;
+@Autowired
+OperatorDao operatorDao;
+@Autowired
+SolutionDao solutionDao;
+@Override
 public String login(Login l)
 {
 	if(loginDao.existsById(l.getUserId()))
@@ -27,6 +37,7 @@ public String login(Login l)
 	else
 		return "User doesnt exist";
 	}
+@Override
 public Issue addCustomerIssue(IssueDto issueDto)
 {
 	Issue issues=new Issue();
@@ -37,7 +48,7 @@ public Issue addCustomerIssue(IssueDto issueDto)
 	issues.setCustomer(cust);
 	return issueDao.save(issues);		
 }
-
+@Override
 public Issue closeCustomerIssue(Issue issue)
 {
 	int id=issue.getIssueId();
@@ -46,6 +57,7 @@ public Issue closeCustomerIssue(Issue issue)
 	issueDao.save(result);
 	return result;
 }
+@Override
 public Issue modifyCustomerIssue(Issue issue) {
 	int id=issue.getIssueId();
 	Issue result=issueDao.findById(id).get();
@@ -55,19 +67,23 @@ public Issue modifyCustomerIssue(Issue issue) {
 	issueDao.save(result);
 	return result;
 }
+@Override
 public Customer findCustomerById(int id)
 {
 	return customerDao.findCustomerById(id);
 	
 }
+@Override
 public List<Customer> findCustomerByName(String name)
 {
 	return customerDao.findCustomerByName(name);
 }
+@Override
 public Customer findCustomerByEmail(String email)
 {
 	return customerDao.findCustomerByEmail(email);
 }
+@Override
 public boolean lockCustomer(int id) {
 	Login login=loginDao.getLogById(id);
 	if(login!=null) {
@@ -78,6 +94,17 @@ public boolean lockCustomer(int id) {
 	else
 		return false;
 
+}
+@Override
+public Solution addSolution(SolutionDto solutiondto) {
+	Solution soln=new Solution();
+	soln.setSolutionDate(solutiondto.getSolutionDate());
+	soln.setSolutionDescription(solutiondto.getSolutionDescription());
+	Operator operator=operatorDao.findOperatorById(solutiondto.getOperatorId());
+     soln.setOperator(operator);
+	Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
+	soln.setIssue(issue);
+	return solutionDao.save(soln);
 }
 
 }

@@ -38,6 +38,13 @@ public class Solution {
 		this.solutionDescription = solutionDescription;
 		this.solutionDate = solutionDate;
 	}
+	
+	public Operator getOperator() {
+		return operator;
+	}
+	public void setOperator(Operator operator) {
+		this.operator = operator;
+	}
 	public int getSolutionId() {
 		return solutionId;
 	}

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.dto.IssueDto;
+import com.cg.onlinecustomerservice.dto.SolutionDto;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
+import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.LoginService;
 import com.cg.onlinecustomerservice.service.OperatorService;
 
@@ -65,5 +67,10 @@ public class OperatorController {
 	public ResponseEntity<Boolean> lockCustomer(@RequestBody int code){
 		boolean response=service.lockCustomer(code);
 		return new ResponseEntity<Boolean>(response,HttpStatus.OK);
+	}
+	@PostMapping("/addSolution")
+	public ResponseEntity<Solution> addSolution(@RequestBody SolutionDto solutiondto) {
+		Solution response=service.addSolution(solutiondto);
+	return new ResponseEntity<Solution>(response,HttpStatus.OK);
 	}
 }

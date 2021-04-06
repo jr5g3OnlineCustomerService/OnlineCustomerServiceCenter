@@ -17,6 +17,10 @@ import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
+import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
+import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
+import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
+import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 @Service
 public class OperatorService implements IOperatorService{
 @Autowired
@@ -38,8 +42,7 @@ public String login(Login l)
 		return "User doesnt exist";
 	}
 @Override
-public Issue addCustomerIssue(IssueDto issueDto)
-{
+public Issue addCustomerIssue(IssueDto issueDto) throws IssueNotFoundException{
 	Issue issues=new Issue();
 	issues.setIssueStatus(issueDto.getIssueStatus());
 	issues.setIssueType(issueDto.getIssueType());
@@ -49,16 +52,22 @@ public Issue addCustomerIssue(IssueDto issueDto)
 	return issueDao.save(issues);		
 }
 @Override
-public Issue closeCustomerIssue(Issue issue)
-{
+public Issue closeCustomerIssue(Issue issue)throws IssueNotFoundException{	
+	if(!issueDao.findById(issue.getIssueId()).isPresent())
+	throw new IssueNotFoundException();
+else {
 	int id=issue.getIssueId();
 	Issue result=issueDao.getIssueById(id);
 	result.setIssueStatus(issue.getIssueStatus());
 	issueDao.save(result);
 	return result;
 }
+}
 @Override
-public Issue modifyCustomerIssue(Issue issue) {
+public Issue modifyCustomerIssue(Issue issue)throws IssueNotFoundException {
+	if(!issueDao.findById(issue.getIssueId()).isPresent())
+		throw new IssueNotFoundException();
+	else {
 	int id=issue.getIssueId();
 	Issue result=issueDao.findById(id).get();
 	result.setDescription(issue.getDescription());
@@ -67,24 +76,35 @@ public Issue modifyCustomerIssue(Issue issue) {
 	issueDao.save(result);
 	return result;
 }
+}
 @Override
-public Customer findCustomerById(int id)
-{
+public Customer findCustomerById(int id)throws CustomerNotFoundException{
+	if(!customerDao.findById(id).isPresent())
+	throw new CustomerNotFoundException();
+else
 	return customerDao.findCustomerById(id);
 	
 }
 @Override
-public List<Customer> findCustomerByName(String name)
+public List<Customer> findCustomerByName(String name)throws CustomerNotFoundException
 {
-	return customerDao.findCustomerByName(name);
+	if(customerDao.findCustomerByName(name)!=null)
+	{
+		return customerDao.findCustomerByName(name);
+	}
+	else
+		throw new CustomerNotFoundException();
 }
 @Override
-public Customer findCustomerByEmail(String email)
+public Customer findCustomerByEmail(String email)throws CustomerNotFoundException
 {
-	return customerDao.findCustomerByEmail(email);
+	if(customerDao.findCustomerByEmail(email)!=null)
+		return customerDao.findCustomerByEmail(email);
+	else
+	throw new CustomerNotFoundException();
 }
 @Override
-public boolean lockCustomer(int id) {
+public boolean lockCustomer(int id)throws InvalidCredentialException  {
 	Login login=loginDao.getLogById(id);
 	if(login!=null) {
 		login.setActive(false);
@@ -96,7 +116,7 @@ public boolean lockCustomer(int id) {
 
 }
 @Override
-public Solution addSolution(SolutionDto solutiondto) {
+public Solution addSolution(SolutionDto solutiondto) throws SolutionNotFoundException {
 	Solution soln=new Solution();
 	soln.setSolutionDate(solutiondto.getSolutionDate());
 	soln.setSolutionDescription(solutiondto.getSolutionDescription());

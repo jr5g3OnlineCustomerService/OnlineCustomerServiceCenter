@@ -43,7 +43,12 @@ public class Issue {
 	}
    
 	public Issue() {}
-	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public Solution getSolution() {
 		return solution;
 	}
@@ -53,31 +58,25 @@ public class Issue {
 	public int getIssueId() {
 		return issueId;
 	}
-
 	public void setIssueId(int issueId) {
 		this.issueId = issueId;
 	}
-
 	public String getIssueType() {
 		return issueType;
 	}
-
 	public void setIssueType(String issueType) {
 		this.issueType = issueType;
 	}
-
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public String getIssueStatus() {
 		return issueStatus;
 	}
-
-	public void setIssueStatus(String issueStatus) {
+    public void setIssueStatus(String issueStatus) {
 		this.issueStatus = issueStatus;
 	}
 }	

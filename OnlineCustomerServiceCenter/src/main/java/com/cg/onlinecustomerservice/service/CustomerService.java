@@ -1,5 +1,7 @@
 package com.cg.onlinecustomerservice.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,6 @@ import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
-import com.cg.onlinecustomerservice.entity.Solution;
 
 
 @Service
@@ -59,5 +60,15 @@ public class CustomerService implements ICustomerService{
 		else {
 			return "User not found";
 		}
+	}
+	@Override
+	public List<Issue> ViewAllIssues() {
+		List<Issue> response=issueDao.findAll();
+		return response;
+	}
+	@Override
+	public List<Customer> ViewAllCustomers() {
+		List<Customer>response=customerDao.findAll();
+		return response;
 	}
 }

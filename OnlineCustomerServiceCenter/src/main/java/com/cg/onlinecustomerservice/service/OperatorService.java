@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
+import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
-import com.cg.onlinecustomerservice.entity.Operator;
 @Service
 public class OperatorService implements IOperatorService{
 @Autowired
@@ -27,10 +27,17 @@ public String login(Login l)
 	else
 		return "User doesnt exist";
 	}
-public Issue addCustomerIssue(Issue issue)
+public Issue addCustomerIssue(IssueDto issueDto)
 {
-	return issueDao.save(issue);
+	Issue issues=new Issue();
+	issues.setIssueStatus(issueDto.getIssueStatus());
+	issues.setIssueType(issueDto.getIssueType());
+	issues.setDescription(issueDto.getDescription());
+	Customer cust=customerDao.findCustomerById(issueDto.getCustomerID());
+	issues.setCustomer(cust);
+	return issueDao.save(issues);		
 }
+
 public Issue closeCustomerIssue(Issue issue)
 {
 	int id=issue.getIssueId();
@@ -73,4 +80,5 @@ public String sendIntimationEmailToCustomer(int a, int b) {
 public String sendModificationEmailToCustomer(int a, int b) {
 	return null;
 }
+
 }

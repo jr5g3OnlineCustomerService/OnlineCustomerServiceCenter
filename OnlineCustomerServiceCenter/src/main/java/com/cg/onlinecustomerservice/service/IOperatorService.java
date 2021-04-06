@@ -2,6 +2,7 @@ package com.cg.onlinecustomerservice.service;
 
 import java.util.List;
 
+import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -9,6 +10,7 @@ import com.cg.onlinecustomerservice.entity.Login;
 public interface IOperatorService {
 	public String login(Login login);
 	public Issue modifyCustomerIssue(Issue issue);
+	public Issue addCustomerIssue(IssueDto issueDto);
 	public String sendModificationEmailToCustomer(int a,int b);
 	public Issue closeCustomerIssue(Issue issue);
 	public Customer findCustomerById(int id);

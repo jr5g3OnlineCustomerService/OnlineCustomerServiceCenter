@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -31,8 +32,8 @@ public class OperatorController {
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addCustomer")
-	public ResponseEntity<Issue> addCustomerIssue(@RequestBody Issue issue) {
-	Issue response=service.addCustomerIssue(issue);
+	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) {
+	Issue response=service.addCustomerIssue(issueDto);
 	return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
 	@PutMapping("/updateCustomerIssue")

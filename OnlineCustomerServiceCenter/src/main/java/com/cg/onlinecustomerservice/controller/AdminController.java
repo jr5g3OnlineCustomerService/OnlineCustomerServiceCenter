@@ -62,7 +62,6 @@ public class AdminController {
 		Operator operator=service.findOperator(code);
 		return new ResponseEntity<Operator>(operator,HttpStatus.OK);
 	}
-	
 	@GetMapping("/allOperators")
 	public ResponseEntity<List<Operator>> findAll(){
 		List<Operator> operators=service.findAllOperators();
@@ -80,4 +79,10 @@ public class AdminController {
 	else
 		return "Could not insert";
 	}
+	@GetMapping("/allDepartments")
+	public ResponseEntity<List<Department>> findAll1(){
+		List<Department> response=service.findAllDepartments();
+		return new ResponseEntity<List<Department>>(response,HttpStatus.OK);
+	}
+	
 }

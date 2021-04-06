@@ -1,5 +1,7 @@
 package com.cg.onlinecustomerservice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,10 +37,20 @@ public class CustomerController {
 	else
 		return "Could not insert";
 	}
+	@GetMapping("/allCustomers")
+	public ResponseEntity<List<Customer>> ViewAllCustomers(){
+		List<Customer> response=service.ViewAllCustomers();
+		return new ResponseEntity<List<Customer>>(response,HttpStatus.OK);
+	}
 	@GetMapping("/viewIssuesById")
 	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code){
 		Issue response=service.viewIssuesById(code);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
+	}
+	@GetMapping("/allIssuesById")
+	public ResponseEntity<List<Issue>> ViewAllIssues(){
+		List<Issue> issues=service.ViewAllIssues();
+		return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
 	}
 	@PutMapping("/ChangePassword")
 	public String changePassword(Login login) {

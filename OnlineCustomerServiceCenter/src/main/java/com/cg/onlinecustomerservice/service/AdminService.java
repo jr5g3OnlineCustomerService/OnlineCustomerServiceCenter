@@ -19,6 +19,7 @@ public class AdminService implements IAdminService{
 DepartmentDao deptDao;
 @Autowired
 OperatorDao operatorDao;
+//adding department
 @Override
 public boolean addDepartment(Department dept)throws DepartmentNotFoundException{
 	boolean flag=true;
@@ -30,6 +31,7 @@ public boolean addDepartment(Department dept)throws DepartmentNotFoundException{
 	}
 	return flag;
 }
+//removing department
 @Override
 public boolean removeDepartment(int departmentID)throws DepartmentNotFoundException{ 
 	boolean flag=true;
@@ -44,6 +46,7 @@ public boolean removeDepartment(int departmentID)throws DepartmentNotFoundExcept
 	}
 	return flag;
 	}
+//modifying department name
 @Override
 public Department modifyDepartment(Department dept)throws DepartmentNotFoundException{
 	if(!deptDao.findById(dept.getDepartmentID()).isPresent())
@@ -56,6 +59,8 @@ public Department modifyDepartment(Department dept)throws DepartmentNotFoundExce
 	return department;
 	}
 }
+
+//finding department by ID
 @Override
 public Department findDepartmentById(int id) throws DepartmentNotFoundException{
 	if(!deptDao.findById(id).isPresent())
@@ -64,6 +69,7 @@ public Department findDepartmentById(int id) throws DepartmentNotFoundException{
 		return deptDao.getDeptById(id);
 	//return deptDao.findById(id);
 }
+//adding new operator
 @Override
 public boolean addOperator(OperatorDto operatordto)throws OperatorNotFoundException{
 	Operator operator=new Operator();
@@ -77,6 +83,7 @@ public boolean addOperator(OperatorDto operatordto)throws OperatorNotFoundExcept
 	operatorDao.save(operator);
 	return true;
 }
+//removing operator
 @Override
 public boolean removeOperator(int operatorID)throws OperatorNotFoundException{ 
 	boolean flag=true;
@@ -91,6 +98,7 @@ public boolean removeOperator(int operatorID)throws OperatorNotFoundException{
 	}
 	return flag;
 	}
+//modifying operator
 @Override
 public Operator modifyOperator(Operator operator)throws OperatorNotFoundException{
 	if(!operatorDao.findById(operator.getOperatorId()).isPresent())
@@ -107,14 +115,16 @@ public Operator modifyOperator(Operator operator)throws OperatorNotFoundExceptio
 	return oper;
 	}
 }
+//finding operator using ID
 @Override
 public Operator findOperator(int id) throws OperatorNotFoundException{
 	if(!operatorDao.findById(id).isPresent())
 		throw new OperatorNotFoundException();
 	else
 		return operatorDao.findOperatorById(id);
-	 //return operatorDao.findById(id);
+	
 }
+//view all operators
 @Override
 public List<Operator> findAllOperators()throws OperatorNotFoundException{
 	List<Operator> operators = operatorDao.findAll();
@@ -124,6 +134,7 @@ public List<Operator> findAllOperators()throws OperatorNotFoundException{
 	else
 		throw new OperatorNotFoundException();
 }
+//view all department
 @Override
 public List<Department> findAllDepartments() throws DepartmentNotFoundException{
 	List<Department> departments = deptDao.findAll();

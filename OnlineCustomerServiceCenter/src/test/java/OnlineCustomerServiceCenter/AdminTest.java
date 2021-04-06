@@ -23,7 +23,7 @@ import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
 import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LibraryTest {
+public class AdminTest {
 	@InjectMocks
 	AdminService service;
 	@Mock
@@ -36,10 +36,10 @@ public class LibraryTest {
 		//System.out.println("** before method ***");
 		//MockitoAnnotations.initMocks(this); 
 	}
-	
+	//Testing getAllDepartment method
 	@Test
 	public void testGetAllDepartments() throws DepartmentNotFoundException {
-		//List<Department> departments = service.findAllDepartments();
+		
 		
 		List<Department> itemsList = new ArrayList<Department>();
 		itemsList.add(new Department(1,"IT"));
@@ -51,6 +51,7 @@ public class LibraryTest {
 		Assertions.assertEquals(3, list.size()); 
 		Mockito.verify(dDao,Mockito.times(1)).findAll();
 	}
+	//Testing getAllOperator method
 	@Test
 	public void testGetAllOperator() throws OperatorNotFoundException {
 		List<Operator> operators=new ArrayList<Operator>();
@@ -83,12 +84,5 @@ public class LibraryTest {
 		Assertions.assertNotNull(department.getDepartmentID());
 		Mockito.verify(dDao, Mockito.times(1)).getDeptById(1);
 	}
-	/*@Test
-	public void testUpdateDepartment() {
-		Department department=new Department();
-		department.setDepartmentName("IT");
-		service.modifyDepartment(department);
-		Assertions.assertNotNull(department.getDepartmentID());
-		Mockito.verify(dDao, Mockito.times(1)).save(department);
-	}*/
+	
 }

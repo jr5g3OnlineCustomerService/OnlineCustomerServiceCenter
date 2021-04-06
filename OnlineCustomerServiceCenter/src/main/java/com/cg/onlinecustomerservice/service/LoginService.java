@@ -11,7 +11,10 @@ public class LoginService implements ILoginService {
 		LoginDao loginRepository;
 		@Override
 		public String loginValidation(Login login) {
-			if(loginRepository.equals(login)) {
+			
+			int id=login.getUserId();
+			boolean log=loginRepository.existsById(id);
+			if(log) {
 				return "Logged in successfully";
 			}
 			else {

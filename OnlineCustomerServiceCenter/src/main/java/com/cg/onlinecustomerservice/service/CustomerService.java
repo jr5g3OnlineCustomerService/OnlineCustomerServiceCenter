@@ -30,6 +30,8 @@ public class CustomerService implements ICustomerService{
 	IssueDao issueDao;
 	@Autowired
 	SolutionDao solutionDao;
+	
+	//customer login
   public String login(Login l)throws InvalidCredentialException
 	{
 	  int id=l.getUserId();
@@ -42,6 +44,8 @@ public class CustomerService implements ICustomerService{
 		
 	}
 	}
+  
+  //customer table insertion
 	@Override
 	public String registerCustomer(Customer customer)
 	{
@@ -52,7 +56,7 @@ public class CustomerService implements ICustomerService{
 			return "Could not Insert";
 		}
 	}
-	
+	//view issues using id
 	@Override
 	public Issue viewIssuesById(int issueid) throws IssueNotFoundException{
 		if(!issueDao.findById(issueid).isPresent())
@@ -60,7 +64,7 @@ public class CustomerService implements ICustomerService{
 		else		
 			return issueDao.getIssueById(issueid);
 	}
-	
+	//Change password
 	@Override
 	public String changePassword(Login login)
 	{	
@@ -76,6 +80,7 @@ public class CustomerService implements ICustomerService{
 			return "User not found";
 		}
 	}
+	//viewing all issue
 	@Override
 	public List<Issue> ViewAllIssues()throws IssueNotFoundException {
 		List<Issue> response=issueDao.findAll();
@@ -84,6 +89,7 @@ public class CustomerService implements ICustomerService{
 		else
 			throw new IssueNotFoundException();
 	}
+	//viewing all customers
 	@Override
 	public List<Customer> ViewAllCustomers() throws CustomerNotFoundException{
 		List<Customer>response=customerDao.findAll();
@@ -92,6 +98,7 @@ public class CustomerService implements ICustomerService{
 		else
 			throw new CustomerNotFoundException();
 	}
+	//changing issue status
 	@Override
 	public Issue reOpenIssue(int id) throws IssueNotFoundException {
 		if(!issueDao.findById(id).isPresent())
@@ -107,6 +114,7 @@ public class CustomerService implements ICustomerService{
 		issueDao.save(result);
 		return result;*/
 	}
+	//viewing solution using ID
 	@Override
 	public Solution viewSolutionsById(int code) throws SolutionNotFoundException{
 		if(!solutionDao.findById(code).isPresent())
@@ -114,7 +122,7 @@ public class CustomerService implements ICustomerService{
 		else		
 		return solutionDao.getSolutionById(code);
 	}
-	
+	//viewing all solution
 	@Override
 	public List<Solution> ViewAllSolutions() throws SolutionNotFoundException {
 		List<Solution> response=solutionDao.findAll();

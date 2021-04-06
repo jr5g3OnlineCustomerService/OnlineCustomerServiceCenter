@@ -33,6 +33,8 @@ OperatorDao operatorDao;
 @Autowired
 SolutionDao solutionDao;
 @Override
+
+//Operator Login method
 public String login(Login l)
 {
 	if(loginDao.existsById(l.getUserId()))
@@ -40,6 +42,8 @@ public String login(Login l)
 	else
 		return "User doesnt exist";
 	}
+
+//Add customer method
 @Override
 public Issue addCustomerIssue(IssueDto issueDto){
 	Issue issues=new Issue();
@@ -50,6 +54,8 @@ public Issue addCustomerIssue(IssueDto issueDto){
 	issues.setCustomer(cust);
 	return issueDao.save(issues);		
 }
+
+//closing customer issue
 @Override
 public Issue closeCustomerIssue(Issue issue)throws IssueNotFoundException{	
 	if(!issueDao.findById(issue.getIssueId()).isPresent())
@@ -62,6 +68,8 @@ else {
 	return result;
 }
 }
+
+//modifying issue
 @Override
 public Issue modifyCustomerIssue(Issue issue)throws IssueNotFoundException {
 	if(!issueDao.findById(issue.getIssueId()).isPresent())
@@ -76,6 +84,8 @@ public Issue modifyCustomerIssue(Issue issue)throws IssueNotFoundException {
 	return result;
 }
 }
+
+//finding customer using Id
 @Override
 public Customer findCustomerById(int id)throws CustomerNotFoundException{
 	if(!customerDao.findById(id).isPresent())
@@ -84,6 +94,7 @@ else
 	return customerDao.findCustomerById(id);
 	
 }
+//finding customer by Name
 @Override
 public List<Customer> findCustomerByName(String name)throws CustomerNotFoundException
 {
@@ -94,6 +105,8 @@ public List<Customer> findCustomerByName(String name)throws CustomerNotFoundExce
 	else
 		throw new CustomerNotFoundException();
 }
+
+//finding customer by Email
 @Override
 public Customer findCustomerByEmail(String email)throws CustomerNotFoundException
 {
@@ -103,6 +116,8 @@ public Customer findCustomerByEmail(String email)throws CustomerNotFoundExceptio
 	throw new CustomerNotFoundException();
 }
 @Override
+
+//changing the active status of login
 public boolean lockCustomer(int id)throws InvalidCredentialException  {
 	Login login=loginDao.getLogById(id);
 	if(login!=null) {
@@ -114,6 +129,8 @@ public boolean lockCustomer(int id)throws InvalidCredentialException  {
 		return false;
 
 }
+
+//adding solution by operator
 @Override
 public Solution addSolution(SolutionDto solutiondto){
 	Solution soln=new Solution();

@@ -37,6 +37,6 @@ public class ExceptionHandlers {
 	}
 	@ExceptionHandler(value=SolutionNotFoundException.class)
 	public ResponseEntity<Object> exception(SolutionNotFoundException exception){
-	  return new ResponseEntity<Object>("Operator not found...",HttpStatus.NOT_FOUND);
+	  return new ResponseEntity<Object>("Solution not found...",HttpStatus.NOT_FOUND);
 	}
 }

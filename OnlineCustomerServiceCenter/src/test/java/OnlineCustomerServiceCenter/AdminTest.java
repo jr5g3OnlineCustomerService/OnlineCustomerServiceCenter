@@ -19,9 +19,11 @@ import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.service.AdminService;
+import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
+import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LibraryTest {
+public class AdminTest {
 	@InjectMocks
 	AdminService service;
 	@Mock
@@ -31,13 +33,13 @@ public class LibraryTest {
 	
 	@Before
 	public void init() {
-		System.out.println("** before method ***");
-		MockitoAnnotations.initMocks(this); 
+		//System.out.println("** before method ***");
+		//MockitoAnnotations.initMocks(this); 
 	}
-	
+	//Testing getAllDepartment method
 	@Test
-	public void testGetAllDepartments() {
-		//List<Department> departments = service.findAllDepartments();
+	public void testGetAllDepartments() throws DepartmentNotFoundException {
+		
 		
 		List<Department> itemsList = new ArrayList<Department>();
 		itemsList.add(new Department(1,"IT"));
@@ -49,8 +51,9 @@ public class LibraryTest {
 		Assertions.assertEquals(3, list.size()); 
 		Mockito.verify(dDao,Mockito.times(1)).findAll();
 	}
+	//Testing getAllOperator method
 	@Test
-	public void testGetAllOperator() {
+	public void testGetAllOperator() throws OperatorNotFoundException {
 		List<Operator> operators=new ArrayList<Operator>();
 		operators.add(new Operator(1,"Nikhil","naik","sds","sds","sds"));
 		Mockito.when(oDao.findAll()).thenReturn(operators);
@@ -59,7 +62,7 @@ public class LibraryTest {
 		Mockito.verify(oDao,Mockito.times(1)).findAll();
 	}
 	@Test
-	public void testAddDepartment() {
+	public void testAddDepartment() throws DepartmentNotFoundException {
 		Department department=new Department();
 		department.setDepartmentID(1);
 		department.setDepartmentName("IT");
@@ -67,26 +70,19 @@ public class LibraryTest {
 		Assertions.assertNotNull(department.getDepartmentID());
 		Mockito.verify(dDao, Mockito.times(1)).save(department);
 	}
-	@Test
-	public void testRemoveDepartment() {
+	@Test(expected=DepartmentNotFoundException.class)
+	public void testRemoveDepartment() throws DepartmentNotFoundException {
 		Department department=new Department();
 		service.removeDepartment(1);
 		Assertions.assertNotNull(department.getDepartmentID());
 		Mockito.verify(dDao, Mockito.times(1)).deleteById(1);
 	}
-	@Test
-	public void testfindDepartmentById() {
+	@Test(expected=DepartmentNotFoundException.class)
+	public void testfindDepartmentById() throws DepartmentNotFoundException {
 		Department department=new Department();
 		service.findDepartmentById(1);
 		Assertions.assertNotNull(department.getDepartmentID());
 		Mockito.verify(dDao, Mockito.times(1)).getDeptById(1);
 	}
-	/*@Test
-	public void testUpdateDepartment() {
-		Department department=new Department();
-		department.setDepartmentName("IT");
-		service.modifyDepartment(department);
-		Assertions.assertNotNull(department.getDepartmentID());
-		Mockito.verify(dDao, Mockito.times(1)).save(department);
-	}*/
+	
 }

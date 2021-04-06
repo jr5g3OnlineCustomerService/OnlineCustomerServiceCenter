@@ -49,9 +49,9 @@ public class Issue {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public Solution getSolution() {
-		return solution;
-	}
+	//public Solution getSolution() {
+	//	return solution;
+	//}
 	public void setSolution(Solution solution) {
 		this.solution = solution;
 	}

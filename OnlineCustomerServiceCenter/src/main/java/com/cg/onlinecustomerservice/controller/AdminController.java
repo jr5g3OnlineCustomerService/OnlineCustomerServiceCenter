@@ -17,6 +17,8 @@ import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.service.AdminService;
+import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
+import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 
 @RestController
 @RequestMapping("/admin")
@@ -25,32 +27,32 @@ public class AdminController {
 	AdminService service;
 	
 	@PostMapping("/addDepartment")
-	public String addDepartment(@RequestBody Department department) {
+	public String addDepartment(@RequestBody Department department) throws DepartmentNotFoundException {
 	if(service.addDepartment(department))
 		return "Department added";
 	else
 		return "Could not insert";
 	}
 	@DeleteMapping("/deleteDepartment")
-	public String deleteDepartment(@RequestBody int code){
+	public String deleteDepartment(@RequestBody int code) throws DepartmentNotFoundException{
 		if(service.removeDepartment(code))
 			return "Deleted";
 		else
 			return "department not found";
 	}
 	@PutMapping("/updateDepartment")
-	public ResponseEntity<Department> updateDepartment(@RequestBody Department department){
+	public ResponseEntity<Department> updateDepartment(@RequestBody Department department) throws DepartmentNotFoundException{
 		Department depart=service.modifyDepartment(department);
 		return new ResponseEntity<Department>(depart,HttpStatus.OK);
 	}
 	@GetMapping("/findDepartment")
-	public ResponseEntity<Department> findDepartment(@RequestBody int code){
+	public ResponseEntity<Department> findDepartment(@RequestBody int code) throws DepartmentNotFoundException{
 		Department depart=service.findDepartmentById(code);
 		return new ResponseEntity<Department>(depart,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deleteOperator")
-	public String deleteOperator(@RequestBody int code){
+	public String deleteOperator(@RequestBody int code) throws OperatorNotFoundException{
 		if(service.removeOperator(code))
 			return "Deleted";
 		else
@@ -58,29 +60,29 @@ public class AdminController {
 	}
 	
 	@GetMapping("/findOperator")
-	public ResponseEntity<Operator> findOperator(@RequestBody int code){
+	public ResponseEntity<Operator> findOperator(@RequestBody int code) throws OperatorNotFoundException{
 		Operator operator=service.findOperator(code);
 		return new ResponseEntity<Operator>(operator,HttpStatus.OK);
 	}
 	@GetMapping("/allOperators")
-	public ResponseEntity<List<Operator>> findAll(){
+	public ResponseEntity<List<Operator>> findAll() throws OperatorNotFoundException{
 		List<Operator> operators=service.findAllOperators();
 		return new ResponseEntity<List<Operator>>(operators,HttpStatus.OK);
 	}
 	@PutMapping("/updateOperator")
-	public ResponseEntity<Operator> updateOperator(@RequestBody Operator operator){
+	public ResponseEntity<Operator> updateOperator(@RequestBody Operator operator) throws OperatorNotFoundException{
 		Operator oper=service.modifyOperator(operator);
 		return new ResponseEntity<Operator>(oper,HttpStatus.OK);
 	}
 	@PostMapping("/addOperator")
-	public String addOperator(@RequestBody OperatorDto dto) {
+	public String addOperator(@RequestBody OperatorDto dto) throws OperatorNotFoundException {
 	if(service.addOperator(dto))
 		return "operator added";
 	else
 		return "Could not insert";
 	}
 	@GetMapping("/allDepartments")
-	public ResponseEntity<List<Department>> findAll1(){
+	public ResponseEntity<List<Department>> findAll1() throws DepartmentNotFoundException{
 		List<Department> response=service.findAllDepartments();
 		return new ResponseEntity<List<Department>>(response,HttpStatus.OK);
 	}

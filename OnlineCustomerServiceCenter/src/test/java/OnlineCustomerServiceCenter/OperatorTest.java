@@ -15,6 +15,7 @@ import com.cg.onlinecustomerservice.dao.OperatorDao;
 import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Department;
+import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.service.AdminService;
 import com.cg.onlinecustomerservice.service.OperatorService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
@@ -45,6 +46,14 @@ public class OperatorTest {
 		opService.findCustomerById(0);
 		Assertions.assertNotNull(customer.getCustomerId());
 		Mockito.verify(custDao, Mockito.times(1)).findCustomerById(1);
+	}
+	
+	@Test(expected=CustomerNotFoundException.class)
+	public void testfindCustomerByEmail() throws CustomerNotFoundException {
+		Customer customer=new Customer();
+		opService.findCustomerByEmail("Nikhil");
+		Assertions.assertNotNull(customer.getFirstname());
+		Mockito.verify(custDao, Mockito.times(1)).findCustomerByEmail("Nikhil");
 	}
 	
 }

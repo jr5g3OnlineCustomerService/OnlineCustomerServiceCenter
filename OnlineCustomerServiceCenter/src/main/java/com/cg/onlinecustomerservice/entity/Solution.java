@@ -20,15 +20,12 @@ public class Solution {
 	private String solutionDescription;
 	@Column
 	private Date solutionDate;
-	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "issueId", referencedColumnName = "issueId")
 	private Issue issue;
-	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
 	private Operator operator;
-	
     public Solution()
     {
     }

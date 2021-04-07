@@ -17,23 +17,17 @@ public class Issue {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="issueId")
 	private int issueId;
-	
 	@OneToOne(mappedBy="issue")
 	private Solution solution;
-	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 	private Customer customer;
-	
 	@Column
 	private String issueType;
-	
 	@Column
 	private String description;
-	
 	@Column
 	private String issueStatus;
-	
 	public Issue(int issueId, String issueType, String description, String issueStatus) {
 		super();
 		this.issueId = issueId;
@@ -41,7 +35,6 @@ public class Issue {
 		this.description = description;
 		this.issueStatus = issueStatus;
 	}
-   
 	public Issue() {}
 	//public Customer getCustomer() {
 	//	return customer;

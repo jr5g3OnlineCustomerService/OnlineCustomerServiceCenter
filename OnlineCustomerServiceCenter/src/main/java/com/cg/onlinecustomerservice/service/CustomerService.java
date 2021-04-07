@@ -120,7 +120,7 @@ public class CustomerService implements ICustomerService{
 		if(!solutionDao.findById(code).isPresent())
 			throw new SolutionNotFoundException();
 		else		
-		return solutionDao.getSolutionById(code);
+			return solutionDao.getSolutionById(code);
 	}
 	//viewing all solution
 	@Override

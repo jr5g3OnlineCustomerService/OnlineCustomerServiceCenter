@@ -68,7 +68,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
-	public String changePassword(Login login) {
+	public String changePassword(@RequestBody Login login) {
 		if(service.changePassword(login) != null)
 		  return "Changed Password Successfully";
 		else

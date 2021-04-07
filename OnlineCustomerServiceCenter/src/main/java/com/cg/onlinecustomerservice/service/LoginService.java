@@ -13,8 +13,7 @@ public class LoginService implements ILoginService {
 		public String loginValidation(Login login) {  //definition of the loginvalidation function used in operatorController 
 			
 			int id=login.getUserId();
-			String pw= login.getPassword();
-			boolean log=(loginRepository.existsById(id)&&loginRepository.equals(pw));
+			boolean log=loginRepository.existsById(id);
 			if(log) {
 				return "Logged in successfully";
 			}

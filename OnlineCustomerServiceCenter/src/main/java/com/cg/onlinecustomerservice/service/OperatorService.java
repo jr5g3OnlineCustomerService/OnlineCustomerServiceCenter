@@ -99,9 +99,7 @@ else
 public List<Customer> findCustomerByName(String name)throws CustomerNotFoundException
 {
 	if(customerDao.findCustomerByName(name)!=null)
-	{
 		return customerDao.findCustomerByName(name);
-	}
 	else
 		throw new CustomerNotFoundException();
 }

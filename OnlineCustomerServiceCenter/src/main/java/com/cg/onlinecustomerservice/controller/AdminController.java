@@ -73,7 +73,8 @@ public class AdminController {    //Admin is one of the three actors
 		Operator oper=service.modifyOperator(operator);
 		return new ResponseEntity<Operator>(oper,HttpStatus.OK);
 	}
-	public String addOperator(@RequestBody OperatorDto dto) throws OperatorNotFoundException {
+	@PostMapping("/addOperator")  //adds operator 
+	public String addOperator(@RequestBody OperatorDto dto) {
 	if(service.addOperator(dto))
 		return "operator added";
 	else

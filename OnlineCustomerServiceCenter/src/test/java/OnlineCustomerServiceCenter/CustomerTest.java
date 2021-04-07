@@ -1,5 +1,8 @@
 package OnlineCustomerServiceCenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -13,13 +16,16 @@ import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.DepartmentDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.OperatorDao;
+import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Issue;
+import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.AdminService;
 import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
+import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerTest {
@@ -35,6 +41,8 @@ public class CustomerTest {
 	CustomerDao custDao;
 	@Mock
 	IssueDao IssDao;
+	@Mock
+	SolutionDao solDao;
 	@Before
 	public void init() {
 		//System.out.println("** before method ***");
@@ -60,4 +68,12 @@ public class CustomerTest {
 		Assertions.assertNotNull(issue.getIssueId());
 		Mockito.verify(IssDao, Mockito.times(1)).findById(1);
 	}
+	@Test(expected=SolutionNotFoundException.class)
+	public void testfindSolutionById() throws SolutionNotFoundException {
+		Solution issue=new Solution();
+		custService.viewSolutionsById(1);
+		Assertions.assertNotNull(issue.getSolutionId());
+		Mockito.verify(solDao, Mockito.times(1)).findById(1);
+	}
+	
 }

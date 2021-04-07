@@ -37,7 +37,7 @@ public class OperatorController {
 		String str=loginService.loginValidation(login);
 		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
-	@PostMapping("/addCustomer") //adds customer having given issue(foreign key) 
+	@PostMapping("/addCustomerIssue") //adds customer having given issue(foreign key) 
 	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) throws IssueNotFoundException {
 	Issue response=service.addCustomerIssue(issueDto);
 	return new ResponseEntity<Issue>(response,HttpStatus.OK);

@@ -25,7 +25,6 @@ public class Department {
 	
 	@OneToOne(mappedBy="department")
 	private Operator operator;
-	
 	public Department() {}
 	public int getDepartmentID() {
 		return departmentID;

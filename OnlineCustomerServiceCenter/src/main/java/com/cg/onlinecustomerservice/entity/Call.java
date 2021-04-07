@@ -25,7 +25,6 @@ private Date callDate;
 private double callDuration;
 @Column
 private String phoneNumber;
-
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
 private Operator operator;
@@ -34,7 +33,6 @@ private Operator operator;
 private Customer customer;
 public Call()
 {
-	
 }
 public Call(int callid, Date callDate, double callDuration, String phoneNumber) {
 	super();

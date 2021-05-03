@@ -165,4 +165,13 @@ public Operator operatorlogin(Operator operator) {
 	Operator op = operatorDao.operatorLogin(operator.getPassword(),operator.getEmail());
 	return op;
 }
+@Override
+public String changePassword(OperatorDto operatordto) {
+	int id=operatordto.getOperatorId();
+	Operator dto=operatorDao.findOperatorById(id);
+	dto.setPassword(operatordto.getPassword());
+	operatorDao.save(dto);
+	return "updated";
+}
+
 }

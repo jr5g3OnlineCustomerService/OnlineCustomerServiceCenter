@@ -18,10 +18,11 @@ public interface ICustomerService {
 	public String registerCustomer(Customer customer);
 	public Issue viewIssuesById(int issueid) throws IssueNotFoundException;
 	public List<Issue> ViewAllIssues() throws IssueNotFoundException;
-	public String changePassword(Login login);
+	//public String changePassword(Login login);
 	List<Customer> ViewAllCustomers() throws CustomerNotFoundException;
 	Issue reOpenIssue(int id) throws IssueNotFoundException;
 	List<Solution> ViewAllSolutions() throws SolutionNotFoundException;
 	Solution viewSolutionsById(int code) throws SolutionNotFoundException;	
 	public String addChat(ChatDto chatDto);
+	public String changePassword(Customer customer);
 }

@@ -69,21 +69,8 @@ public Department findDepartmentById(int id) throws DepartmentNotFoundException{
 		return deptDao.getDeptById(id);
 	//return deptDao.findById(id);
 }
-//adding new operator
-@Override
-public boolean addOperator(OperatorDto operatordto){
-	Operator operator=new Operator();
-	operator.setFirstName(operatordto.getFirstName());
-	operator.setLastName(operatordto.getLastName());
-	operator.setEmail(operatordto.getEmail());
-	operator.setCity(operatordto.getCity());
-	operator.setMobile(operatordto.getMobile());
-	operator.setPassword(operatordto.getPassword());
-	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
-	operator.setDepartment(dept);
-	operatorDao.save(operator);
-	return true;
-}
+
+
 //removing operator
 @Override
 public boolean removeOperator(int operatorID)throws OperatorNotFoundException{ 

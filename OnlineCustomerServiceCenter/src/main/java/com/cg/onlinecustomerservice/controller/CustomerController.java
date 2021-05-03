@@ -31,9 +31,9 @@ public class CustomerController {  //Customer is One of the Three actors
      @Autowired
 	LoginService loginService;
      @PostMapping("/login") //Takes  Login in credentials and shows successful or  not
-	public ResponseEntity<String> loginValidation(@RequestBody Login login)throws InvalidCredentialException {
-		String str=loginService.loginValidation(login);
-		return new ResponseEntity<String>(str,HttpStatus.OK);
+	public ResponseEntity<Customer> loginValidation(@RequestBody Customer customer)throws InvalidCredentialException {
+		Customer str=service.customerLogin(customer);
+		return new ResponseEntity<Customer>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addCustomer") //adds customer for given input data given
 	public String registerCustomer(@RequestBody Customer customer) {
@@ -68,11 +68,9 @@ public class CustomerController {  //Customer is One of the Three actors
 		return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
-	public String changePassword(@RequestBody Login login) {
-		if(service.changePassword(login) != null)
-		  return "Changed Password Successfully";
-		else
-		   return "Could Not Change";
+	public String changePassword(@RequestBody Customer customer){
+		service.changePassword(customer);
+		return "Updated";
 	}
 	@PutMapping("/reopenissue")  //re-activates issue for given id and exception if value does not exist
 	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {

@@ -56,7 +56,7 @@ public class CustomerService implements ICustomerService{
 			return issueDao.getIssueById(issueid);
 	}
 	//Change password
-	@Override
+	/*@Override
 	public String changePassword(Login login)
 	{	
 		int id=0;
@@ -70,7 +70,7 @@ public class CustomerService implements ICustomerService{
 		else {
 			return "User not found";
 		}
-	}
+	}*/
 	//viewing all issue
 	@Override
 	public List<Issue> ViewAllIssues()throws IssueNotFoundException {
@@ -142,5 +142,14 @@ public class CustomerService implements ICustomerService{
 		// TODO Auto-generated method stub
 		Customer cust = customerDao.customerLogin(customer.getPassword(),customer.getEmail());
 		return cust;
+	}
+	@Override
+	public String changePassword(Customer customer) {
+		int id=customer.getCustomerId();
+		Customer cust=customerDao.findCustomerById(id);
+		cust.setPassword(customer.getPassword());
+		customerDao.save(cust);
+		return "Updated";
+		
 	}
 }

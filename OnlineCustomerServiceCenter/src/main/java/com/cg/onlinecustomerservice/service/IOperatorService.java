@@ -26,4 +26,5 @@ public interface IOperatorService {
 	public Solution addSolution(SolutionDto solutiondto);
 	public List<Chat> viewAllChat(); 
 	public boolean addOperator(OperatorDto operatordto);
+	public String changePassword(OperatorDto operatordto);
 }

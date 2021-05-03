@@ -94,4 +94,9 @@ public class OperatorController {
 	List<Chat> response=service.viewAllChat();
 	return new ResponseEntity<List<Chat>>(response,HttpStatus.OK);
 	}
+	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
+	public String changePassword(@RequestBody OperatorDto dto){
+		service.changePassword(dto);
+		return "Updated";
+	}
 }

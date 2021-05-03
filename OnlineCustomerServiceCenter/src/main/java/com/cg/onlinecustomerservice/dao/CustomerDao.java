@@ -2,7 +2,10 @@ package com.cg.onlinecustomerservice.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +21,6 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	public Customer findCustomerByEmail(String email);
 	@Query(value = "from Customer cust where cust.password=?1 and cust.email=?2")
 	public Customer customerLogin(String password,String email);
+	
 	
 }

@@ -33,8 +33,11 @@ public class Operator {
 		@OneToOne(cascade = CascadeType.ALL)
 	    @JoinColumn(name = "departmentID", referencedColumnName = "departmentID")
 		private Department department;
-		@OneToOne(mappedBy="operator")
+		@OneToOne(mappedBy="Operator")
 		private Chat chat;
+		
+		@OneToOne(mappedBy="Operator")
+		private Issue issue;
 		public Operator()
 		{}
 		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city,String password) {

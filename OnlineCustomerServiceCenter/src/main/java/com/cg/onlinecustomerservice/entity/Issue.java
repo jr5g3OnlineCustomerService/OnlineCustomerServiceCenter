@@ -28,22 +28,26 @@ public class Issue {
 	private String description;
 	@Column
 	private String issueStatus;
-	@Column
-	private int operatorId;
-	public Issue(int issueId, String issueType, String description, String issueStatus,int operatorId) {
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
+	private Operator operator;
+		public Issue(int issueId, String issueType, String description, String issueStatus) {
 		super();
 		this.issueId = issueId;
 		this.issueType = issueType;
 		this.description = description;
 		this.issueStatus = issueStatus;
-		this.operatorId = operatorId;
+		
 	}
-	public int getOperatorId() {
-		return operatorId;
-	}
-	public void setOperatorId(int operatorId) {
-		this.operatorId = operatorId;
-	}
+	
+	public Operator getOperator() {
+			return operator;
+		}
+		public void setOperator(Operator operator) {
+			this.operator = operator;
+		}
+
+	
 	public Issue() {}
 	//public Customer getCustomer() {
 	//	return customer;

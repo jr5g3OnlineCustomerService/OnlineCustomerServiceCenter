@@ -28,7 +28,7 @@ public class Customer {
 	@Column
 	private String password;
 	@OneToOne(mappedBy="customer")
-	private Call call;
+	private Chat chat;
 	@OneToOne(mappedBy="customer")
 	private Issue issue;
 	public Customer(int customerId, String firstname, String lastname, String email, String mobile, String city,String password) {

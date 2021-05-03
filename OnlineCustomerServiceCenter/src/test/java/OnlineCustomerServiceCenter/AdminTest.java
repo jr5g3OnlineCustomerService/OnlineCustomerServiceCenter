@@ -55,7 +55,7 @@ public class AdminTest {
 	@Test
 	public void testGetAllOperator() throws OperatorNotFoundException {
 		List<Operator> operators=new ArrayList<Operator>();
-		operators.add(new Operator(1,"Nikhil","naik","sds","sds","sds"));
+		operators.add(new Operator(1,"Nikhil","naik","sds","sds","sds","ccc"));
 		Mockito.when(oDao.findAll()).thenReturn(operators);
 		List<Operator> list = service.findAllOperators();
 		Assertions.assertEquals(1, list.size());

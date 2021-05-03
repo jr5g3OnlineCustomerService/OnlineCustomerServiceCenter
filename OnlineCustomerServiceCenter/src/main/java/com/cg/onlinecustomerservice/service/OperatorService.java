@@ -25,8 +25,6 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 @Service
 public class OperatorService implements IOperatorService{
 @Autowired
-LoginDao loginDao;
-@Autowired
 CustomerDao customerDao;
 @Autowired
 IssueDao issueDao;
@@ -36,17 +34,6 @@ OperatorDao operatorDao;
 SolutionDao solutionDao;
 @Autowired
 ChatDao chatDao;
-@Override
-
-//Operator Login method
-public String login(Login l)
-{
-	if(loginDao.existsById(l.getUserId()))
-		return "Login successful";
-	else
-		return "User doesnt exist";
-	}
-
 //Add customer method
 @Override
 public Issue addCustomerIssue(IssueDto issueDto){
@@ -151,5 +138,12 @@ public Solution addSolution(SolutionDto solutiondto){
 public List<Chat> viewAllChat() {
      List<Chat> chat = chatDao.findAll();
      return chat;
+}
+
+@Override
+public Operator operatorlogin(Operator operator) {
+	// TODO Auto-generated method stub
+	Operator op = operatorDao.operatorLogin(operator.getPassword(),operator.getEmail());
+	return op;
 }
 }

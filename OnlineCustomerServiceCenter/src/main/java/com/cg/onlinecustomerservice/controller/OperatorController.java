@@ -19,6 +19,7 @@ import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
+import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.LoginService;
 import com.cg.onlinecustomerservice.service.OperatorService;
@@ -35,9 +36,9 @@ public class OperatorController {
 	@Autowired
 	LoginService loginService;
 	@PostMapping("/login")
-	public ResponseEntity<String> loginValidation(@RequestBody Login login){
-		String str=loginService.loginValidation(login);
-		return new ResponseEntity<String>(str,HttpStatus.OK);
+	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
+		Operator str=service.operatorlogin(operator);
+		return new ResponseEntity<Operator>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addCustomerIssue") //adds customer having given issue(foreign key) 
 	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) throws IssueNotFoundException {

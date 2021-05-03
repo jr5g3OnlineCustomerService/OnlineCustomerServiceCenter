@@ -7,14 +7,14 @@ import com.cg.onlinecustomerservice.dto.SolutionDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
-import com.cg.onlinecustomerservice.entity.Login;
+import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 
 public interface IOperatorService {
-	public String login(Login login);
+	public Operator operatorlogin(Operator operator);
 	public Issue modifyCustomerIssue(Issue issue) throws IssueNotFoundException;
 	public Issue addCustomerIssue(IssueDto issueDto);
 	public Issue closeCustomerIssue(Issue issue) throws IssueNotFoundException;

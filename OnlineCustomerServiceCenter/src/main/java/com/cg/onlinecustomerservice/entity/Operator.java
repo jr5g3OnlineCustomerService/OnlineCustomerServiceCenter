@@ -26,6 +26,8 @@ public class Operator {
 		private String mobile;
 		@Column
 		private String city;
+		@Column
+		private String password;
 		@OneToOne(mappedBy="operator")
 		private Solution solution;
 		@OneToOne(cascade = CascadeType.ALL)
@@ -35,7 +37,7 @@ public class Operator {
 		private Call call;
 		public Operator()
 		{}
-		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city) {
+		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city,String password) {
 			super();
 			this.operatorId = operatorId;
 			this.firstName = firstName;
@@ -43,6 +45,7 @@ public class Operator {
 			this.email = email;
 			this.mobile = mobile;
 			this.city = city;
+			this.password=password;
 		}
 		public int getOperatorId() {
 			return operatorId;
@@ -79,6 +82,13 @@ public class Operator {
 		}
 		public void setCity(String city) {
 			this.city = city;
+		}
+		
+		public String getPassword() {
+			return password;
+		}
+		public void setPassword(String password) {
+			this.password = password;
 		}
 		//public Solution getSolution() {
 		//	return solution;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.dto.IssueDto;
+import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
@@ -21,6 +22,7 @@ import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
+import com.cg.onlinecustomerservice.service.AdminService;
 import com.cg.onlinecustomerservice.service.LoginService;
 import com.cg.onlinecustomerservice.service.OperatorService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
@@ -39,6 +41,13 @@ public class OperatorController {
 	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
 		Operator str=service.operatorlogin(operator);
 		return new ResponseEntity<Operator>(str,HttpStatus.OK);
+	}
+	@PostMapping("/addOperator")  //adds operator to existing operators
+	public String addOperator(@RequestBody OperatorDto dto) {
+	if(service.addOperator(dto))
+		return "operator added";
+	else
+		return "Could not insert";
 	}
 	@PostMapping("/addCustomerIssue") //adds customer having given issue(foreign key) 
 	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) throws IssueNotFoundException {

@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.cg.onlinecustomerservice.dao.ChatDao;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
+import com.cg.onlinecustomerservice.dao.DepartmentDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.dao.OperatorDao;
 import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.dto.IssueDto;
+import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
+import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Operator;
@@ -34,6 +37,8 @@ OperatorDao operatorDao;
 SolutionDao solutionDao;
 @Autowired
 ChatDao chatDao;
+@Autowired
+DepartmentDao deptDao;
 //Add customer method
 @Override
 public Issue addCustomerIssue(IssueDto issueDto){
@@ -46,6 +51,20 @@ public Issue addCustomerIssue(IssueDto issueDto){
 	issues.setCustomer(cust);
 	issues.setOperator(op);
 	return issueDao.save(issues);		
+}
+@Override
+public boolean addOperator(OperatorDto operatordto){
+	Operator operator=new Operator();
+	operator.setFirstName(operatordto.getFirstName());
+	operator.setLastName(operatordto.getLastName());
+	operator.setEmail(operatordto.getEmail());
+	operator.setCity(operatordto.getCity());
+	operator.setMobile(operatordto.getMobile());
+	operator.setPassword(operatordto.getPassword());
+	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
+	operator.setDepartment(dept);
+	operatorDao.save(operator);
+	return true;
 }
 
 //closing customer issue

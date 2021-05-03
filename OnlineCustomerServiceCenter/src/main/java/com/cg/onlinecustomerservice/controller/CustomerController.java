@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.onlinecustomerservice.dto.ChatDto;
-import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -33,9 +31,9 @@ public class CustomerController {  //Customer is One of the Three actors
      @Autowired
 	LoginService loginService;
      @PostMapping("/login") //Takes  Login in credentials and shows successful or  not
-	public ResponseEntity<Customer> loginValidation(@RequestBody Customer customer)throws InvalidCredentialException {
-		Customer str=service.customerLogin(customer);
-		return new ResponseEntity<Customer>(str,HttpStatus.OK);
+	public ResponseEntity<String> loginValidation(@RequestBody Login login)throws InvalidCredentialException {
+		String str=loginService.loginValidation(login);
+		return new ResponseEntity<String>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addCustomer") //adds customer for given input data given
 	public String registerCustomer(@RequestBody Customer customer) {
@@ -80,10 +78,5 @@ public class CustomerController {  //Customer is One of the Three actors
 	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {
 		Issue issues=service.reOpenIssue(id);
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
-	}
-	@PostMapping("/addchat")
-	public ResponseEntity<String> addChats(@RequestBody ChatDto chatDto){
-		service.addChat(chatDto);
-		return new ResponseEntity<String>("Chat is added",HttpStatus.OK);
 	}
 }

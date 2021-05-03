@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
+import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -24,7 +26,7 @@ import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
-
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/operator")
 public class OperatorController {
@@ -76,5 +78,10 @@ public class OperatorController {
 	public ResponseEntity<Solution> addSolution(@RequestBody SolutionDto solutiondto) throws SolutionNotFoundException {
 		Solution response=service.addSolution(solutiondto);
 	return new ResponseEntity<Solution>(response,HttpStatus.OK);
+	}
+	@GetMapping("/viewChatIssue")
+	public ResponseEntity<List<Chat>>viewChatIssue(){
+	List<Chat> response=service.viewAllChat();
+	return new ResponseEntity<List<Chat>>(response,HttpStatus.OK);
 	}
 }

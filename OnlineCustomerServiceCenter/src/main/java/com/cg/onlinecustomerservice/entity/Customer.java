@@ -25,11 +25,13 @@ public class Customer {
 	private String mobile;
 	@Column
 	private String city;
+	@Column
+	private String password;
 	@OneToOne(mappedBy="customer")
 	private Call call;
 	@OneToOne(mappedBy="customer")
 	private Issue issue;
-	public Customer(int customerId, String firstname, String lastname, String email, String mobile, String city) {
+	public Customer(int customerId, String firstname, String lastname, String email, String mobile, String city,String password) {
 		super();
 		this.customerId = customerId;
 		this.firstname = firstname;
@@ -37,6 +39,7 @@ public class Customer {
 		this.email = email;
 		this.mobile = mobile;
 		this.city = city;
+		this.password = password;
 	}
 	public Customer() {}
 
@@ -77,4 +80,11 @@ public class Customer {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }

@@ -34,7 +34,7 @@ public class Operator {
 	    @JoinColumn(name = "departmentID", referencedColumnName = "departmentID")
 		private Department department;
 		@OneToOne(mappedBy="operator")
-		private Call call;
+		private Chat chat;
 		public Operator()
 		{}
 		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city,String password) {

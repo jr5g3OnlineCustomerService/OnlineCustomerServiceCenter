@@ -78,6 +78,7 @@ public boolean addOperator(OperatorDto operatordto){
 	operator.setEmail(operatordto.getEmail());
 	operator.setCity(operatordto.getCity());
 	operator.setMobile(operatordto.getMobile());
+	operator.setPassword(operatordto.getPassword());
 	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
 	operator.setDepartment(dept);
 	operatorDao.save(operator);

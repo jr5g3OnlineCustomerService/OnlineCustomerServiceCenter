@@ -7,6 +7,7 @@ public class OperatorDto {
 	private String email;
 	private String mobile;
 	private String city;
+	private String password;
 	private int departmentID;
 	public int getOperatorId() {
 		return operatorId;
@@ -50,8 +51,15 @@ public class OperatorDto {
 	public void setDepartmentID(int departmentID) {
 		this.departmentID = departmentID;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public OperatorDto(int operatorId, String firstName, String lastName, String email, String mobile, String city,
-			int departmentID) {
+			int departmentID,String password) {
 		super();
 		this.operatorId = operatorId;
 		this.firstName = firstName;
@@ -60,6 +68,7 @@ public class OperatorDto {
 		this.mobile = mobile;
 		this.city = city;
 		this.departmentID = departmentID;
+		this.password=password;
 	}
 	public OperatorDto() {}
 }

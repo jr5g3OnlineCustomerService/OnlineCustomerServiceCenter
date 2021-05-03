@@ -55,7 +55,9 @@ public Issue addCustomerIssue(IssueDto issueDto){
 	issues.setIssueType(issueDto.getIssueType());
 	issues.setDescription(issueDto.getDescription());
 	Customer cust=customerDao.findCustomerById(issueDto.getCustomerID());
+	Operator op=operatorDao.findOperatorById(issueDto.getOperatorId());
 	issues.setCustomer(cust);
+	issues.setOperator(op);
 	return issueDao.save(issues);		
 }
 

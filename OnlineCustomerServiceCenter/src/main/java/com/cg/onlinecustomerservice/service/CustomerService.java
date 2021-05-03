@@ -10,6 +10,7 @@ import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.dao.SolutionDao;
+import com.cg.onlinecustomerservice.dto.ChatDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
@@ -132,13 +133,20 @@ public class CustomerService implements ICustomerService{
 		if(response!=null)
 		return response;
 		else
-			throw new SolutionNotFoundException();
-			
+			throw new SolutionNotFoundException();	
 	}
-
 	@Override
-	public String addChat(Chat chat) {
+	public String addChat(ChatDto chatDto) {
+		Chat chat=new Chat();
+		chat.setChatDate(chatDto.getChatDate());
+		chat.setFirstName(chatDto.getFirstName());
+		chat.setLastName(chatDto.getLastName());
+		chat.setEmail(chatDto.getEmail());
+		chat.setComplaints(chatDto.getOpinion());
+		Customer cust=customerDao.findCustomerById(chatDto.getCustomerId());
+		chat.setCustomer(cust);
 		chatDao.save(chat);
 		return "Chat is added";
+	
 	}
 }

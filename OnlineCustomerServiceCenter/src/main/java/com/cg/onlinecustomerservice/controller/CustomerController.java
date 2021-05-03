@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlinecustomerservice.dto.ChatDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
@@ -81,8 +82,8 @@ public class CustomerController {  //Customer is One of the Three actors
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
 	}
 	@PostMapping("/addchat")
-	public ResponseEntity<String> addChats(@RequestBody Chat chat){
-		service.addChat(chat);
+	public ResponseEntity<String> addChats(@RequestBody ChatDto chatDto){
+		service.addChat(chatDto);
 		return new ResponseEntity<String>("Chat is added",HttpStatus.OK);
 	}
 }

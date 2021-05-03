@@ -42,6 +42,7 @@ public Chat(int chatId, Date chatDate, String complaints, String firstName, Stri
 	this.email = email;
 	
 }
+public Chat() {}
 public int getChatId() {
 	return chatId;
 }

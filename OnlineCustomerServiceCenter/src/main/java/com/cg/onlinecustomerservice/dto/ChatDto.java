@@ -9,6 +9,7 @@ public class ChatDto {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private int customerId;
 	public int getChatId() {
 		return chatId;
 	}
@@ -45,7 +46,14 @@ public class ChatDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public ChatDto(int chatId, Date chatDate, String opinion, String firstName, String lastName, String email) {
+	
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	public ChatDto(int chatId, Date chatDate, String opinion, String firstName, String lastName, String email,int customerId) {
 		super();
 		this.chatId = chatId;
 		this.chatDate = chatDate;
@@ -53,6 +61,7 @@ public class ChatDto {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.customerId=customerId;
 	}
 	public ChatDto() {
 		

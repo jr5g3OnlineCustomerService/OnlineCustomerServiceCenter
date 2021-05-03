@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.onlinecustomerservice.dao.ChatDao;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
@@ -12,6 +13,7 @@ import com.cg.onlinecustomerservice.dao.OperatorDao;
 import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
+import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -32,6 +34,8 @@ IssueDao issueDao;
 OperatorDao operatorDao;
 @Autowired
 SolutionDao solutionDao;
+@Autowired
+ChatDao chatDao;
 @Override
 
 //Operator Login method
@@ -121,7 +125,7 @@ public boolean lockCustomer(int id)throws InvalidCredentialException  {
 	if(login!=null) {
 		login.setActive(false);
 		loginDao.save(login);
-		return true;
+		return true; 
 	}
 	else
 		return false;
@@ -139,5 +143,11 @@ public Solution addSolution(SolutionDto solutiondto){
 	Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
 	soln.setIssue(issue);
 	return solutionDao.save(soln);
+}
+
+@Override
+public List<Chat> viewAllChat() {
+     List<Chat> chat = chatDao.findAll();
+     return chat;
 }
 }

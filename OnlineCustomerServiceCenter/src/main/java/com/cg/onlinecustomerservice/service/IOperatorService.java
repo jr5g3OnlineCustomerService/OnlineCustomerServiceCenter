@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
+import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -22,5 +23,5 @@ public interface IOperatorService {
 	public Customer findCustomerByEmail(String email) throws CustomerNotFoundException;
 	public boolean lockCustomer(int id) throws InvalidCredentialException;
 	public Solution addSolution(SolutionDto solutiondto);
-	
+	public List<Chat> viewAllChat(); 
 }

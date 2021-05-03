@@ -16,5 +16,7 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	public List<Customer> findCustomerByName(String name);
 	@Query(value = "from Customer customer where customer.email=?1")
 	public Customer findCustomerByEmail(String email);
+	@Query(value = "from Customer cust where cust.password=?1 and cust.email=?2")
+	public Customer customerLogin(String password,String email);
 	
 }

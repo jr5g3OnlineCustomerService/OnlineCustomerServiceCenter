@@ -14,7 +14,7 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 public interface ICustomerService {
-	public String login(Login login) throws InvalidCredentialException;
+	public Customer customerLogin(Customer customer) throws InvalidCredentialException;
 	public String registerCustomer(Customer customer);
 	public Issue viewIssuesById(int issueid) throws IssueNotFoundException;
 	public List<Issue> ViewAllIssues() throws IssueNotFoundException;

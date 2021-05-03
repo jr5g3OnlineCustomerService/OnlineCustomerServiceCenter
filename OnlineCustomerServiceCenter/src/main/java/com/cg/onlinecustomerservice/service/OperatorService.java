@@ -123,13 +123,13 @@ public Customer findCustomerByEmail(String email)throws CustomerNotFoundExceptio
 
 //changing the active status of login
 public boolean lockCustomer(int id)throws InvalidCredentialException  {
-	Login login=loginDao.getLogById(id);
+/*	Login login=loginDao.getLogById(id);
 	if(login!=null) {
 		login.setActive(false);
 		loginDao.save(login);
 		return true; 
 	}
-	else
+	else*/
 		return false;
 
 }

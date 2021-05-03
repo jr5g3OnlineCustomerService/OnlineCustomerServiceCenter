@@ -33,9 +33,9 @@ public class CustomerController {  //Customer is One of the Three actors
      @Autowired
 	LoginService loginService;
      @PostMapping("/login") //Takes  Login in credentials and shows successful or  not
-	public ResponseEntity<String> loginValidation(@RequestBody Login login)throws InvalidCredentialException {
-		String str=loginService.loginValidation(login);
-		return new ResponseEntity<String>(str,HttpStatus.OK);
+	public ResponseEntity<Customer> loginValidation(@RequestBody Customer customer)throws InvalidCredentialException {
+		Customer str=service.customerLogin(customer);
+		return new ResponseEntity<Customer>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addCustomer") //adds customer for given input data given
 	public String registerCustomer(@RequestBody Customer customer) {

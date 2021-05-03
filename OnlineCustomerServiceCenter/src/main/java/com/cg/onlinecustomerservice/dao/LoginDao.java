@@ -10,6 +10,4 @@ public interface LoginDao extends JpaRepository<Login , Integer>{
 	@Query(value = "from Login login where login.isActive=?1")
 	public boolean lockCustomer(int id);
 	
-	@Query(value = "from Login login where login.userId=?1")
-	public Login getLogById(int id);
 }

@@ -35,19 +35,6 @@ public class CustomerService implements ICustomerService{
 	@Autowired
 	ChatDao chatDao;
 	
-	//customer login
-  public String login(Login l)throws InvalidCredentialException
-	{
-	  int id=l.getUserId();
-	  if(!loginDao.findById(id).isPresent()) {
-		  throw new InvalidCredentialException();
-	  }
-	  else {
-		loginDao.existsById(l.getUserId());
-			return "Login successful";
-		
-	}
-	}
   
   //customer table insertion
 	@Override
@@ -148,5 +135,12 @@ public class CustomerService implements ICustomerService{
 		chatDao.save(chat);
 		return "Chat is added";
 	
+	}
+
+	@Override
+	public Customer customerLogin(Customer customer) throws InvalidCredentialException {
+		// TODO Auto-generated method stub
+		Customer cust = customerDao.customerLogin(customer.getPassword(),customer.getEmail());
+		return cust;
 	}
 }

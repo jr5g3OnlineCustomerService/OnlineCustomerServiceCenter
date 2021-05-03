@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.cg.onlinecustomerservice.dao.ChatDao;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.dao.SolutionDao;
+import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -30,6 +31,8 @@ public class CustomerService implements ICustomerService{
 	IssueDao issueDao;
 	@Autowired
 	SolutionDao solutionDao;
+	@Autowired
+	ChatDao chatDao;
 	
 	//customer login
   public String login(Login l)throws InvalidCredentialException
@@ -131,5 +134,11 @@ public class CustomerService implements ICustomerService{
 		else
 			throw new SolutionNotFoundException();
 			
+	}
+
+	@Override
+	public String addChat(Chat chat) {
+		chatDao.save(chat);
+		return "Chat is added";
 	}
 }

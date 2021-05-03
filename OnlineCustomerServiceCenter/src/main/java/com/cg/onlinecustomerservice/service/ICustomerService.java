@@ -2,6 +2,7 @@ package com.cg.onlinecustomerservice.service;
 
 import java.util.List;
 
+import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -21,4 +22,5 @@ public interface ICustomerService {
 	Issue reOpenIssue(int id) throws IssueNotFoundException;
 	List<Solution> ViewAllSolutions() throws SolutionNotFoundException;
 	Solution viewSolutionsById(int code) throws SolutionNotFoundException;	
+	public String addChat(Chat chat);
 }

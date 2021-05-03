@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -78,5 +79,10 @@ public class CustomerController {  //Customer is One of the Three actors
 	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {
 		Issue issues=service.reOpenIssue(id);
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
+	}
+	@PostMapping("/addchat")
+	public ResponseEntity<String> addChats(@RequestBody Chat chat){
+		service.addChat(chat);
+		return new ResponseEntity<String>("Chat is added",HttpStatus.OK);
 	}
 }

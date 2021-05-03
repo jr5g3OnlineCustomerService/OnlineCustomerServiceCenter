@@ -32,8 +32,7 @@ private String email;
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 private Customer customer;
-public Chat(int chatId, Date chatDate, String opinion, String firstName, String lastName, String email,
-		Customer customer) {
+public Chat(int chatId, Date chatDate, String opinion, String firstName, String lastName, String email) {
 	super();
 	this.chatId = chatId;
 	this.chatDate = chatDate;
@@ -41,7 +40,7 @@ public Chat(int chatId, Date chatDate, String opinion, String firstName, String 
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.email = email;
-	this.customer = customer;
+	
 }
 public int getChatId() {
 	return chatId;

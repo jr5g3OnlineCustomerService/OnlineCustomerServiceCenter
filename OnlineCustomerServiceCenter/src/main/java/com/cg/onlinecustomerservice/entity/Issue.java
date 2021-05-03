@@ -28,12 +28,21 @@ public class Issue {
 	private String description;
 	@Column
 	private String issueStatus;
-	public Issue(int issueId, String issueType, String description, String issueStatus) {
+	@Column
+	private int operatorId;
+	public Issue(int issueId, String issueType, String description, String issueStatus,int operatorId) {
 		super();
 		this.issueId = issueId;
 		this.issueType = issueType;
 		this.description = description;
 		this.issueStatus = issueStatus;
+		this.operatorId = operatorId;
+	}
+	public int getOperatorId() {
+		return operatorId;
+	}
+	public void setOperatorId(int operatorId) {
+		this.operatorId = operatorId;
 	}
 	public Issue() {}
 	//public Customer getCustomer() {

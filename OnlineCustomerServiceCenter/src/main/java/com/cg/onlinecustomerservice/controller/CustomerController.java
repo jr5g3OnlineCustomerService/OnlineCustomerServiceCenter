@@ -105,7 +105,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		else {
 		Issue issues=service.reOpenIssue(id);
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
-		}//
+		}
 		}
 
 }

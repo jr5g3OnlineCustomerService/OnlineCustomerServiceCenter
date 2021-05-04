@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cg.onlinecustomerservice.entity.Customer;
+import com.cg.onlinecustomerservice.entity.Department;
 
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
@@ -21,6 +22,7 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	public Customer findCustomerByEmail(String email);
 	@Query(value = "from Customer cust where cust.password=?1 and cust.email=?2")
 	public Customer customerLogin(String password,String email);
-	
-	
+	@Query(value="from Customer cust where cust.email=?1")
+	public Customer checkCustomer(String email);
+
 }

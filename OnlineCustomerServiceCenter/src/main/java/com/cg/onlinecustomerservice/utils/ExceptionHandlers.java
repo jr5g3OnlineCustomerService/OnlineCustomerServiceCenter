@@ -47,4 +47,8 @@ public class ExceptionHandlers {
 	public ResponseEntity<Object> exception(ListEmptyException exception){
 	  return new ResponseEntity<Object>("List is Empty!...",HttpStatus.NOT_FOUND);
 	}
+	@ExceptionHandler(value=DepartmentAlreadyExistException.class)
+	public ResponseEntity<Object> exception(DepartmentAlreadyExistException exception){
+		  return new ResponseEntity<Object>("Department already exists!...",HttpStatus.NOT_FOUND);
+		}
 }

@@ -14,7 +14,7 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 public interface ICustomerService {
-	public Customer customerLogin(Customer customer);
+	public Customer customerLogin(Customer customer);//
 	public String registerCustomer(Customer customer);
 	public Issue viewIssuesById(int issueid);
 	public List<Issue> ViewAllIssues();

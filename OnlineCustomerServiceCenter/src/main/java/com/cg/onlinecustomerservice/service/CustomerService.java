@@ -74,7 +74,7 @@ public class CustomerService implements ICustomerService{
 		List<Issue> response=issueDao.findAll();
 		return response;
 	}
-	//viewing all customers
+	//viewing all customers//
 	@Override
 	public List<Customer> ViewAllCustomers() {
 		List<Customer>response=customerDao.findAll();

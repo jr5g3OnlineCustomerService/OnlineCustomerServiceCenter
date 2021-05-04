@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Login;
@@ -30,6 +31,8 @@ public class CustomerController {  //Customer is One of the Three actors
 	CustomerService service;
      @Autowired
 	LoginService loginService;
+     @Autowired 
+     IssueDao idao;
      @PostMapping("/login") //Takes  Login in credentials and shows successful or  not
 	public ResponseEntity<Customer> loginValidation(@RequestBody Customer customer)throws InvalidCredentialException {
 		Customer str=service.customerLogin(customer);
@@ -50,22 +53,34 @@ public class CustomerController {  //Customer is One of the Three actors
 	@GetMapping("/viewIssuesById") //shows Issue having given id value and exception if it does not exist
 	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code) throws IssueNotFoundException{
 		Issue response=service.viewIssuesById(code);
-		return new ResponseEntity<Issue>(response,HttpStatus.OK);
+		if(!idao.findById(code).isPresent())
+			throw new IssueNotFoundException();
+		else
+			return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
 	@GetMapping("/allIssues") //shows the issue table and exception if table is empty 
 	public ResponseEntity<List<Issue>> ViewAllIssues() throws IssueNotFoundException{
 		List<Issue> issues=service.ViewAllIssues();
-		return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
-	}
+		if (issues!=null)
+			return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
+		else 
+			throw new IssueNotFoundException();
+	}//
 	@GetMapping("/viewSolutionsById") //Shows solution for given ID and exception if the ID value given does not exist
 	public ResponseEntity<Solution> viewSolutionsById(@RequestBody int code) throws SolutionNotFoundException{
 		Solution response=service.viewSolutionsById(code);
-		return new ResponseEntity<Solution>(response,HttpStatus.OK);
+		if (response!=null)
+			return new ResponseEntity<Solution>(response,HttpStatus.OK);
+		else 
+			throw new SolutionNotFoundException();
 	}
 	@GetMapping("/allSolutions")  //displays the solution table
 	public ResponseEntity<List<Solution>> ViewAllSolution() throws SolutionNotFoundException{
 		List<Solution> issues=service.ViewAllSolutions();
+		if(issues!=null)
 		return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
+		else 
+			throw new SolutionNotFoundException();
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
 	public String changePassword(@RequestBody Customer customer){
@@ -74,7 +89,11 @@ public class CustomerController {  //Customer is One of the Three actors
 	}
 	@PutMapping("/reopenissue")  //re-activates issue for given id and exception if value does not exist
 	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {
+		if(!idao.findById(id).isPresent())
+			throw new IssueNotFoundException();
+		else {
 		Issue issues=service.reOpenIssue(id);
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
-	}
+		}
+		}
 }

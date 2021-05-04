@@ -69,24 +69,23 @@ public boolean addOperator(OperatorDto operatordto){
 
 //closing customer issue
 @Override
-public Issue closeCustomerIssue(Issue issue)throws IssueNotFoundException{	
-	if(!issueDao.findById(issue.getIssueId()).isPresent())
-	throw new IssueNotFoundException();
-else {
+public Issue closeCustomerIssue(Issue issue){	
+	/*if(!issueDao.findById(issue.getIssueId()).isPresent())
+	throw new IssueNotFoundException();*/
 	int id=issue.getIssueId();
 	Issue result=issueDao.getIssueById(id);
 	result.setIssueStatus(issue.getIssueStatus());
 	issueDao.save(result);
 	return result;
-}
+
 }
 
 //modifying issue
 @Override
-public Issue modifyCustomerIssue(Issue issue)throws IssueNotFoundException {
-	if(!issueDao.findById(issue.getIssueId()).isPresent())
-		throw new IssueNotFoundException();
-	else {
+public Issue modifyCustomerIssue(Issue issue){
+	/*if(!issueDao.findById(issue.getIssueId()).isPresent())
+		throw new IssueNotFoundException();*/
+	
 	int id=issue.getIssueId();
 	Issue result=issueDao.findById(id).get();
 	result.setDescription(issue.getDescription());
@@ -94,42 +93,39 @@ public Issue modifyCustomerIssue(Issue issue)throws IssueNotFoundException {
 	result.setIssueStatus(issue.getIssueStatus());
 	issueDao.save(result);
 	return result;
-}
+
 }
 
 //finding customer using Id
 @Override
-public Customer findCustomerById(int id)throws CustomerNotFoundException{
-	if(!customerDao.findById(id).isPresent())
-	throw new CustomerNotFoundException();
-else
+public Customer findCustomerById(int id){
+	/*if(!customerDao.findById(id).isPresent())
+	throw new CustomerNotFoundException();*/
+
 	return customerDao.findCustomerById(id);
-	
 }
 //finding customer by Name
 @Override
-public List<Customer> findCustomerByName(String name)throws CustomerNotFoundException
+public List<Customer> findCustomerByName(String name)
 {
-	if(customerDao.findCustomerByName(name)!=null)
+	
 		return customerDao.findCustomerByName(name);
-	else
-		throw new CustomerNotFoundException();
+	
 }
 
 //finding customer by Email
 @Override
-public Customer findCustomerByEmail(String email)throws CustomerNotFoundException
+public Customer findCustomerByEmail(String email)
 {
-	if(customerDao.findCustomerByEmail(email)!=null)
+	//if(customerDao.findCustomerByEmail(email)!=null)
 		return customerDao.findCustomerByEmail(email);
-	else
-	throw new CustomerNotFoundException();
+	
 }
 @Override
 
 //changing the active status of login
-public boolean lockCustomer(int id)throws InvalidCredentialException  {
-/*	Login login=loginDao.getLogById(id);
+public boolean lockCustomer(int id)  {
+	/*Login login=loginDao.getLogById(id);
 	if(login!=null) {
 		login.setActive(false);
 		loginDao.save(login);

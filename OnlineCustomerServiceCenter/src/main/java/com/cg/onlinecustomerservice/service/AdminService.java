@@ -22,76 +22,40 @@ OperatorDao operatorDao;
 //adding department
 @Override
 public boolean addDepartment(Department dept){
-	boolean flag=true;
-	if(flag){
 	deptDao.save(dept);
-}
-	else{
-		flag=false;
-	}
-	return flag;
+	return true;
 }
 //removing department
 @Override
-public boolean removeDepartment(int departmentID)throws DepartmentNotFoundException{ 
-	boolean flag=true;
-	if(flag){
-		if(deptDao.findById(departmentID).isPresent()) {
-			deptDao.deleteById(departmentID);}
-		else
-			throw new DepartmentNotFoundException();
-}
-	else{
-		flag=false;
-	}
-	return flag;
+public boolean removeDepartment(int departmentID){
+	deptDao.deleteById(departmentID);
+	return true;
 	}
 //modifying department name
 @Override
-public Department modifyDepartment(Department dept)throws DepartmentNotFoundException{
-	if(!deptDao.findById(dept.getDepartmentID()).isPresent())
-		throw new DepartmentNotFoundException();
-	else {
+public Department modifyDepartment(Department dept){
 	int id=dept.getDepartmentID();
 	Department department=deptDao.findById(id).get();
 	department.setDepartmentName(dept.getDepartmentName());
 	deptDao.save(department);
 	return department;
-	}
 }
 
 //finding department by ID
 @Override
-public Department findDepartmentById(int id) throws DepartmentNotFoundException{
-	if(!deptDao.findById(id).isPresent())
-		throw new DepartmentNotFoundException();
-	else
+public Department findDepartmentById(int id){
 		return deptDao.getDeptById(id);
-	//return deptDao.findById(id);
+	
 }
-
-
 //removing operator
 @Override
-public boolean removeOperator(int operatorID)throws OperatorNotFoundException{ 
-	boolean flag=true;
-	if(flag){
-		if(operatorDao.findById(operatorID).isPresent())
-				operatorDao.deleteById(operatorID);
-		else
-			throw new OperatorNotFoundException();
+public boolean removeOperator(int operatorID){ 
+	operatorDao.deleteById(operatorID);
+	return true;
 }
-	else{
-		flag=false;
-	}
-	return flag;
-	}
 //modifying operator
 @Override
-public Operator modifyOperator(Operator operator)throws OperatorNotFoundException{
-	if(!operatorDao.findById(operator.getOperatorId()).isPresent())
-			throw new OperatorNotFoundException();
-	else {
+public Operator modifyOperator(Operator operator){
 	int id=operator.getOperatorId();
 	Operator oper=operatorDao.findById(id).get();
 	oper.setFirstName(operator.getFirstName());
@@ -101,36 +65,22 @@ public Operator modifyOperator(Operator operator)throws OperatorNotFoundExceptio
 	oper.setCity(operator.getCity());
 	operatorDao.save(oper);
 	return oper;
-	}
 }
 //finding operator using ID
 @Override
-public Operator findOperator(int id) throws OperatorNotFoundException{
-	if(!operatorDao.findById(id).isPresent())
-		throw new OperatorNotFoundException();
-	else
-		return operatorDao.findOperatorById(id);
-	
+public Operator findOperator(int id){
+	return operatorDao.findOperatorById(id);
 }
 //view all operators
 @Override
-public List<Operator> findAllOperators()throws OperatorNotFoundException{
+public List<Operator> findAllOperators(){
 	List<Operator> operators = operatorDao.findAll();
-	if(operators!=null) {
 	return operators;
-	}
-	else
-		throw new OperatorNotFoundException();
 }
 //view all department
 @Override
-public List<Department> findAllDepartments() throws DepartmentNotFoundException{
+public List<Department> findAllDepartments(){
 	List<Department> departments = deptDao.findAll();
-	if(departments!=null) {
-		return departments;
-	}
-	else
-		throw new DepartmentNotFoundException();
+	return departments;
 }
-
 }

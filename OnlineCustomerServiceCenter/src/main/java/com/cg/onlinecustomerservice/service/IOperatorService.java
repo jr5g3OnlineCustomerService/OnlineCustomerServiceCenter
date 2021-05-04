@@ -16,13 +16,13 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 
 public interface IOperatorService {
 	public Operator operatorlogin(Operator operator);
-	public Issue modifyCustomerIssue(Issue issue) throws IssueNotFoundException;
+	public Issue modifyCustomerIssue(Issue issue) ;
 	public Issue addCustomerIssue(IssueDto issueDto);
-	public Issue closeCustomerIssue(Issue issue) throws IssueNotFoundException;
-	public Customer findCustomerById(int id) throws CustomerNotFoundException;
-	public List<Customer> findCustomerByName(String name) throws CustomerNotFoundException;
-	public Customer findCustomerByEmail(String email) throws CustomerNotFoundException;
-	public boolean lockCustomer(int id) throws InvalidCredentialException;
+	public Issue closeCustomerIssue(Issue issue) ;
+	public Customer findCustomerById(int id);
+	public List<Customer> findCustomerByName(String name);
+	public Customer findCustomerByEmail(String email) ;
+	public boolean lockCustomer(int id);
 	public Solution addSolution(SolutionDto solutiondto);
 	public List<Chat> viewAllChat(); 
 	public boolean addOperator(OperatorDto operatordto);

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
+import com.cg.onlinecustomerservice.dao.OperatorDao;
 import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
@@ -28,6 +30,7 @@ import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
+import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
@@ -37,11 +40,11 @@ public class OperatorController {
 	OperatorService service;
 	@Autowired
 	IssueDao issueDao;
+	@Autowired
+	OperatorDao operatordao;
 	@PostMapping("/login")
 	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
 		Operator str=service.operatorlogin(operator);
-		if(str==null)
-			throw new InvalidCredentialException();
 		return new ResponseEntity<Operator>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addOperator")  //adds operator to existing operators
@@ -52,8 +55,7 @@ public class OperatorController {
 		return "Could not insert";
 	}
 	@PostMapping("/addCustomerIssue") //adds customer having given issue(foreign key) 
-	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) {
-		
+	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) {	
 	Issue response=service.addCustomerIssue(issueDto);
 	return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
@@ -67,9 +69,13 @@ public class OperatorController {
 	}
 	}
 	@PutMapping("/closeCustomer") // close the customer by changing issue status and exception if issue id does not exist
-	public ResponseEntity<Issue> closeCustomerIssue(@RequestBody Issue issue) throws IssueNotFoundException{
+	public ResponseEntity<Issue> closeCustomerIssue(@RequestBody Issue issue){
+		if(issueDao.existsById(issue.getIssueId()))
+			throw new IssueNotFoundException();
+		else {
 		Issue response=service. closeCustomerIssue(issue);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
+	}
 	}
 	@GetMapping("/findCustomerById")  //displays customer having given Id and exception if ID does not match
 	public ResponseEntity<Customer> findCustomerById(@RequestBody int code){
@@ -112,7 +118,11 @@ public class OperatorController {
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
 	public String changePassword(@RequestBody OperatorDto dto){
+		if(operatordao.existsById(dto.getOperatorId()))
+			throw new OperatorNotFoundException();
+		else {
 		service.changePassword(dto);
 		return "Updated";
+	}
 	}
 }

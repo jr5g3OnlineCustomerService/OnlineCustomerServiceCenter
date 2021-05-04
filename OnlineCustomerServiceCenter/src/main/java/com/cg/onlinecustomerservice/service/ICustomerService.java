@@ -14,15 +14,15 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 public interface ICustomerService {
-	public Customer customerLogin(Customer customer) throws InvalidCredentialException;
+	public Customer customerLogin(Customer customer);
 	public String registerCustomer(Customer customer);
-	public Issue viewIssuesById(int issueid) throws IssueNotFoundException;
-	public List<Issue> ViewAllIssues() throws IssueNotFoundException;
+	public Issue viewIssuesById(int issueid);
+	public List<Issue> ViewAllIssues();
 	//public String changePassword(Login login);
-	List<Customer> ViewAllCustomers() throws CustomerNotFoundException;
-	Issue reOpenIssue(int id) throws IssueNotFoundException;
-	List<Solution> ViewAllSolutions() throws SolutionNotFoundException;
-	Solution viewSolutionsById(int code) throws SolutionNotFoundException;	
+	List<Customer> ViewAllCustomers() ;
+	Issue reOpenIssue(int id) ;
+	List<Solution> ViewAllSolutions();
+	Solution viewSolutionsById(int code) ;	
 	public String addChat(ChatDto chatDto);
 	public String changePassword(Customer customer);
 }

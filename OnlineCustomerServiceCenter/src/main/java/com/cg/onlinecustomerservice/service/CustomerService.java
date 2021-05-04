@@ -49,10 +49,7 @@ public class CustomerService implements ICustomerService{
 	}
 	//view issues using id
 	@Override
-	public Issue viewIssuesById(int issueid) throws IssueNotFoundException{
-		if(!issueDao.findById(issueid).isPresent())
-			 throw new IssueNotFoundException();
-		else		
+	public Issue viewIssuesById(int issueid) {		
 			return issueDao.getIssueById(issueid);
 	}
 	//Change password
@@ -73,28 +70,19 @@ public class CustomerService implements ICustomerService{
 	}*/
 	//viewing all issue
 	@Override
-	public List<Issue> ViewAllIssues()throws IssueNotFoundException {
+	public List<Issue> ViewAllIssues() {
 		List<Issue> response=issueDao.findAll();
-		if(response!=null)	
 		return response;
-		else
-			throw new IssueNotFoundException();
 	}
 	//viewing all customers
 	@Override
-	public List<Customer> ViewAllCustomers() throws CustomerNotFoundException{
+	public List<Customer> ViewAllCustomers() {
 		List<Customer>response=customerDao.findAll();
-		if(response!=null)
 		return response;
-		else
-			throw new CustomerNotFoundException();
 	}
 	//changing issue status
 	@Override
-	public Issue reOpenIssue(int id) throws IssueNotFoundException {
-		if(!issueDao.findById(id).isPresent())
-			throw new IssueNotFoundException();
-	else {
+	public Issue reOpenIssue(int id) {
 		Issue result=issueDao.getIssueById(id);
 		result.setIssueStatus("Pending");
 		issueDao.save(result);
@@ -104,23 +92,16 @@ public class CustomerService implements ICustomerService{
 		result.setIssueStatus(issue.getIssueStatus());
 		issueDao.save(result);
 		return result;*/
-	}
 	//viewing solution using ID
 	@Override
-	public Solution viewSolutionsById(int code) throws SolutionNotFoundException{
-		if(!solutionDao.findById(code).isPresent())
-			throw new SolutionNotFoundException();
-		else		
+	public Solution viewSolutionsById(int code) {		
 			return solutionDao.getSolutionById(code);
 	}
 	//viewing all solution
 	@Override
-	public List<Solution> ViewAllSolutions() throws SolutionNotFoundException {
+	public List<Solution> ViewAllSolutions()  {
 		List<Solution> response=solutionDao.findAll();
-		if(response!=null)
 		return response;
-		else
-			throw new SolutionNotFoundException();	
 	}
 	@Override
 	public String addChat(ChatDto chatDto) {
@@ -138,7 +119,7 @@ public class CustomerService implements ICustomerService{
 	}
 
 	@Override
-	public Customer customerLogin(Customer customer) throws InvalidCredentialException {
+	public Customer customerLogin(Customer customer) {
 		// TODO Auto-generated method stub
 		Customer cust = customerDao.customerLogin(customer.getPassword(),customer.getEmail());
 		return cust;

@@ -20,6 +20,7 @@ import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.service.LoginService;
+import com.cg.onlinecustomerservice.utils.CustomerAlreadyExistingFoundException;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
@@ -35,6 +36,8 @@ public class CustomerController {  //Customer is One of the Three actors
 	LoginService loginService;
      @Autowired 
      IssueDao idao;
+     @Autowired
+     CustomerDao customerDao;
      @PostMapping("/login") //Takes  Login in credentials and shows successful or  not
 	public ResponseEntity<Customer> loginValidation(@RequestBody Customer customer)throws InvalidCredentialException {
 		Customer str=service.customerLogin(customer);
@@ -45,11 +48,15 @@ public class CustomerController {  //Customer is One of the Three actors
 	}
 	@PostMapping("/addCustomer") //adds customer for given input data given
 	public String registerCustomer(@RequestBody Customer customer) {
-	if(service.registerCustomer(customer) != null)
+		Customer cust = customerDao.checkCustomer(customer.getEmail());
+		if(cust!=null)
+		{
+		throw new CustomerAlreadyExistingFoundException();
+		}
+		service.registerCustomer(customer);
 		return "Customer added";
-	else
-		return "Could not insert";
-	}
+		}
+	
 	@GetMapping("/allCustomers") //shows the contents of the customer table and exception if table is empty
 	public ResponseEntity<List<Customer>> ViewAllCustomers() throws CustomerNotFoundException{
 		List<Customer> response=service.ViewAllCustomers();
@@ -95,6 +102,11 @@ public class CustomerController {  //Customer is One of the Three actors
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
 	public String changePassword(@RequestBody Customer customer) {
+		Customer cust = customerDao.checkCustomer(customer.getEmail());
+		if(cust!=null)
+		{
+		throw new CustomerAlreadyExistingFoundException();
+		}
 		service.changePassword(customer);
 		return "Updated";
 	}

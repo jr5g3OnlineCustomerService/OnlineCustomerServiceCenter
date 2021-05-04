@@ -83,7 +83,7 @@ public class CustomerController {  //Customer is One of the Three actors
 			throw new SolutionNotFoundException();
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
-	public String changePassword(@RequestBody Customer customer){
+	public String changePassword(@RequestBody Customer customer) {
 		service.changePassword(customer);
 		return "Updated";
 	}
@@ -94,6 +94,6 @@ public class CustomerController {  //Customer is One of the Three actors
 		else {
 		Issue issues=service.reOpenIssue(id);
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
-		}
+		}//
 		}
 }

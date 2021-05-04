@@ -25,6 +25,7 @@ import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
+import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 @RestController
@@ -102,11 +103,8 @@ public class CustomerController {  //Customer is One of the Three actors
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
 	public String changePassword(@RequestBody Customer customer) {
-		Customer cust = customerDao.checkCustomer(customer.getEmail());
-		if(cust!=null)
-		{
-		throw new CustomerAlreadyExistingFoundException();
-		}
+		if(!customerDao.existsById(customer.getCustomerId()))
+			throw new CustomerNotFoundException();
 		service.changePassword(customer);
 		return "Updated";
 	}

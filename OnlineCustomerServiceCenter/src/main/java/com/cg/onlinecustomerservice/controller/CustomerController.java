@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
@@ -22,6 +23,7 @@ import com.cg.onlinecustomerservice.service.LoginService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
+import com.cg.onlinecustomerservice.utils.ListEmptyException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 @RestController
@@ -36,6 +38,9 @@ public class CustomerController {  //Customer is One of the Three actors
      @PostMapping("/login") //Takes  Login in credentials and shows successful or  not
 	public ResponseEntity<Customer> loginValidation(@RequestBody Customer customer)throws InvalidCredentialException {
 		Customer str=service.customerLogin(customer);
+		if(str==null) {
+			throw new InvalidCredentialException();
+		}
 		return new ResponseEntity<Customer>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addCustomer") //adds customer for given input data given
@@ -48,7 +53,13 @@ public class CustomerController {  //Customer is One of the Three actors
 	@GetMapping("/allCustomers") //shows the contents of the customer table and exception if table is empty
 	public ResponseEntity<List<Customer>> ViewAllCustomers() throws CustomerNotFoundException{
 		List<Customer> response=service.ViewAllCustomers();
+		if(response.size()>0)
+		{
 		return new ResponseEntity<List<Customer>>(response,HttpStatus.OK);
+	}
+		else {
+			throw new ListEmptyException();
+		}
 	}
 	@GetMapping("/viewIssuesById") //shows Issue having given id value and exception if it does not exist
 	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code) throws IssueNotFoundException{

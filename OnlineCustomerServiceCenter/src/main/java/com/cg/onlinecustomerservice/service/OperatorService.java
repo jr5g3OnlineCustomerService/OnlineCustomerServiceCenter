@@ -9,7 +9,6 @@ import com.cg.onlinecustomerservice.dao.ChatDao;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.DepartmentDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
-import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.dao.OperatorDao;
 import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.dto.IssueDto;
@@ -19,12 +18,8 @@ import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Issue;
-import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
-import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
-import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
-import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 @Service
 public class OperatorService implements IOperatorService{
 @Autowired
@@ -157,7 +152,6 @@ public List<Chat> viewAllChat() {
 
 @Override
 public Operator operatorlogin(Operator operator) {
-	// TODO Auto-generated method stub
 	Operator op = operatorDao.operatorLogin(operator.getPassword(),operator.getEmail());
 	return op;
 }

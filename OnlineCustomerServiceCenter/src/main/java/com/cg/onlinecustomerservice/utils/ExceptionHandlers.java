@@ -11,6 +11,7 @@ public class ExceptionHandlers {
 	  return new ResponseEntity<Object>("Customer not found...",HttpStatus.NOT_FOUND);
 	}
     
+	
 	@ExceptionHandler(value=DepartmentNotFoundException.class)
 	public ResponseEntity<Object> exception(DepartmentNotFoundException exception){
 	  return new ResponseEntity<Object>("Department not found...",HttpStatus.NOT_FOUND);

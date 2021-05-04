@@ -15,11 +15,6 @@ public class ExceptionHandlers {
 	public ResponseEntity<Object> exception(DepartmentNotFoundException exception){
 	  return new ResponseEntity<Object>("Department not found...",HttpStatus.NOT_FOUND);
 	}
-
-	@ExceptionHandler(value=DuplicateCustomerException.class)
-	public ResponseEntity<Object> exception(DuplicateCustomerException exception){
-	  return new ResponseEntity<Object>("Duplicate Customer...",HttpStatus.NOT_FOUND);
-	}
 	
 	@ExceptionHandler(value=InvalidCredentialException.class)
 	public ResponseEntity<Object> exception(InvalidCredentialException exception){
@@ -38,5 +33,17 @@ public class ExceptionHandlers {
 	@ExceptionHandler(value=SolutionNotFoundException.class)
 	public ResponseEntity<Object> exception(SolutionNotFoundException exception){
 	  return new ResponseEntity<Object>("Solution not found...",HttpStatus.NOT_FOUND);
+	}
+	@ExceptionHandler(value=CustomerAlreadyExistingFoundException.class)
+	public ResponseEntity<Object> exception(CustomerAlreadyExistingFoundException exception){
+	  return new ResponseEntity<Object>("Customer already exists!...",HttpStatus.NOT_FOUND);
+	}
+	@ExceptionHandler(value=OperatorAlreadyExistingFoundException.class)
+	public ResponseEntity<Object> exception(OperatorAlreadyExistingFoundException exception){
+	  return new ResponseEntity<Object>("Operator already exists!...",HttpStatus.NOT_FOUND);
+	}
+	@ExceptionHandler(value=ListEmptyException.class)
+	public ResponseEntity<Object> exception(ListEmptyException exception){
+	  return new ResponseEntity<Object>("List is Empty!...",HttpStatus.NOT_FOUND);
 	}
 }

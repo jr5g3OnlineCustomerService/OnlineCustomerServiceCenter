@@ -1,6 +1,6 @@
 package com.cg.onlinecustomerservice.utils;
 
-public class SolutionNotFoundException extends RuntimeException{
+public class ListEmptyException extends RuntimeException {
 
 	/**
 	 * 

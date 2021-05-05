@@ -14,7 +14,7 @@ import com.cg.onlinecustomerservice.entity.Customer;
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	@Query(value = "from Customer customer where customer.customerId=?1")
 	public Customer findCustomerById(int code);
-	@Query(value = "from Customer customer where customer.firstname=?1")
+	@Query(value = "from Customer customer where customer.firstName=?1")
 	public List<Customer> findCustomerByName(String name);
 	@Query(value = "from Customer customer where customer.email=?1")
 	public Customer findCustomerByEmail(String email);

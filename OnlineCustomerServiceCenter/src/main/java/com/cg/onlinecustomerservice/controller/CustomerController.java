@@ -2,6 +2,8 @@ package com.cg.onlinecustomerservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +48,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		return new ResponseEntity<Customer>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addCustomer") //adds customer for given input data given
-	public String registerCustomer(@RequestBody Customer customer) {
+	public String registerCustomer(@Valid @RequestBody Customer customer) {
 		Customer cust = customerDao.checkCustomer(customer.getEmail());
 		if(cust!=null)
 		{
@@ -100,7 +102,7 @@ public class CustomerController {  //Customer is One of the Three actors
 			throw new SolutionNotFoundException();
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
-	public String changePassword(@RequestBody Customer customer) {
+	public String changePassword(@Valid @RequestBody Customer customer) {
 		if(!customerDao.existsById(customer.getCustomerId()))
 			throw new CustomerNotFoundException();
 		service.changePassword(customer);

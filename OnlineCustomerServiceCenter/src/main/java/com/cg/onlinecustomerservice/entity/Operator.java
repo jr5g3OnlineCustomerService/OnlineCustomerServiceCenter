@@ -18,12 +18,11 @@ public class Operator {
 		@Column(name="operatorId")
 		private int operatorId;
 		@Column
-		@NotNull(message="This cannot be empty")
+		@NotNull (message="This field cannot be empty")
 		private String firstName;
 		@Column
 		@NotNull(message="This cannot be empty")
 		private String lastName;
-		@NotNull(message="This cannot be empty")
 		@Column
 		@NotNull(message="This cannot be empty")
 		private String email;

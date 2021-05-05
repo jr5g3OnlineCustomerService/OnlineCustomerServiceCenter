@@ -2,6 +2,8 @@ package com.cg.onlinecustomerservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +53,7 @@ public class OperatorController {
 		return new ResponseEntity<Operator>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addOperator")  //adds operator to existing operators
-	public String addOperator(@RequestBody OperatorDto dto) {
+	public String addOperator(@Valid @RequestBody OperatorDto dto) {
 		Operator op=operatordao.checkoperator(dto.getEmail());
 		if(op==null)
 			throw new OperatorAlreadyExistingException();
@@ -63,7 +65,7 @@ public class OperatorController {
 	}
 	}
 	@PostMapping("/addCustomerIssue") //adds customer having given issue(foreign key) 
-	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) {	
+	public ResponseEntity<Issue> addCustomerIssue(@Valid @RequestBody IssueDto issueDto) {	
 		Customer cust=customerDao.findCustomerById(issueDto.getCustomerID());
 		if(cust==null)
 			throw new CustomerNotFoundException();
@@ -74,7 +76,7 @@ public class OperatorController {
 	}
 	}
 	@PutMapping("/updateCustomerIssue")   //update issue of the customer and exception if input is invalid ie if Id does not exist
-	public ResponseEntity<Issue> modifyCustomerIssue(@RequestBody Issue issue){
+	public ResponseEntity<Issue> modifyCustomerIssue(@Valid @RequestBody Issue issue){
 		if(issueDao.existsById(issue.getIssueId()))
 			throw new IssueNotFoundException();
 		else {
@@ -118,7 +120,7 @@ public class OperatorController {
 		return new ResponseEntity<Boolean>(response,HttpStatus.OK);
 	}
 	@PostMapping("/addSolution")  //Adds solution having given details and members into the tables
-	public ResponseEntity<Solution> addSolution(@RequestBody SolutionDto solutiondto) {
+	public ResponseEntity<Solution> addSolution(@Valid @RequestBody SolutionDto solutiondto) {
 		Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
 		if(issue!=null) {
 			Solution response=service.addSolution(solutiondto);
@@ -136,7 +138,7 @@ public class OperatorController {
 	return new ResponseEntity<List<Chat>>(response,HttpStatus.OK);
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
-	public String changePassword(@RequestBody OperatorDto dto){
+	public String changePassword(@Valid @RequestBody OperatorDto dto){
 		if(operatordao.existsById(dto.getOperatorId()))
 			throw new OperatorNotFoundException();
 		else {

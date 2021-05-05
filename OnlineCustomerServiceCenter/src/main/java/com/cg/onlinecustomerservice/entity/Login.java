@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="login")
@@ -15,10 +16,13 @@ public class Login {
 	@Column(name="userId")
 	private int userId;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String password;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private UserType type;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private boolean isActive;
 	public Login(int userId, String password, UserType type, boolean isActive) {
 		super();

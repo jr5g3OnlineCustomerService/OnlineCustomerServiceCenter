@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 // issueClass
 @Entity
 @Table(name="issue")
@@ -23,10 +24,13 @@ public class Issue {
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 	private Customer customer;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String issueType;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String description;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String issueStatus;
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")

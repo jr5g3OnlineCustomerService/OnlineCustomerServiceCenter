@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="customer")
@@ -16,26 +17,32 @@ public class Customer {
 	@Column(name="customerId")
 	private int customerId;
 	@Column
-	private String firstname;
+	@NotNull (message="This field cannot be empty")
+	private String firstName;
 	@Column
-	private String lastname;
+	@NotNull (message="This field cannot be empty")
+	private String lastName;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String email;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String mobile;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String city;
 	@Column
+	@NotNull (message="This field cannot be empty")
 	private String password;
 	@OneToOne(mappedBy="customer")
 	private Chat chat;
 	@OneToOne(mappedBy="customer")
 	private Issue issue;
-	public Customer(int customerId, String firstname, String lastname, String email, String mobile, String city,String password) {
+	public Customer(int customerId, String firstName, String lastName, String email, String mobile, String city,String password) {
 		super();
 		this.customerId = customerId;
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.mobile = mobile;
 		this.city = city;
@@ -49,17 +56,17 @@ public class Customer {
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastname(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getEmail() {
 		return email;

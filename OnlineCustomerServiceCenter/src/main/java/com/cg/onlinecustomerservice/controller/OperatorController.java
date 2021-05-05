@@ -2,9 +2,12 @@ package com.cg.onlinecustomerservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -105,9 +108,14 @@ public class OperatorController {
 	}
 	@PostMapping("/addSolution")  //Adds solution having given details and members into the tables
 	public ResponseEntity<Solution> addSolution(@RequestBody SolutionDto solutiondto) {
-		Solution response=service.addSolution(solutiondto);
-		
-	return new ResponseEntity<Solution>(response,HttpStatus.OK);
+		Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
+		if(issue!=null) {
+			Solution response=service.addSolution(solutiondto);
+			return new ResponseEntity<Solution>(response,HttpStatus.OK);
+			}
+		else {
+			throw new IssueNotFoundException();
+		}
 	}
 	@GetMapping("/viewChatIssue")
 	public ResponseEntity<List<Chat>>viewChatIssue(){

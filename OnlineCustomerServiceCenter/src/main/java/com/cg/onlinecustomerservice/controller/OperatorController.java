@@ -55,7 +55,7 @@ public class OperatorController {
 	@PostMapping("/addOperator")  //adds operator to existing operators
 	public String addOperator(@Valid @RequestBody OperatorDto dto) {
 		Operator op=operatordao.checkoperator(dto.getEmail());
-		if(op==null)
+		if(op!=null)
 			throw new OperatorAlreadyExistingException();
 		else {
 	if(service.addOperator(dto))

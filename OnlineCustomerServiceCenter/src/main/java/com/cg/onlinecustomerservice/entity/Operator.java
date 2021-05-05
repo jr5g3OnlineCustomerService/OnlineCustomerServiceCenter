@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="operator")
 public class Operator {
@@ -17,16 +18,23 @@ public class Operator {
 		@Column(name="operatorId")
 		private int operatorId;
 		@Column
+		@NotNull(message="This cannot be empty")
 		private String firstName;
 		@Column
+		@NotNull(message="This cannot be empty")
 		private String lastName;
+		@NotNull(message="This cannot be empty")
 		@Column
+		@NotNull(message="This cannot be empty")
 		private String email;
 		@Column
+		@NotNull(message="This cannot be empty")
 		private String mobile;
 		@Column
+		@NotNull(message="This cannot be empty")
 		private String city;
 		@Column
+		@NotNull(message="This cannot be empty")
 		private String password;
 		@OneToOne(mappedBy="operator")
 		private Solution solution;

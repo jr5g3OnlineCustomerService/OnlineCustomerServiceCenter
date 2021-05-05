@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+
 
 @Entity
 @Table(name="department")
@@ -16,6 +19,7 @@ public class Department {
 	@Column(name="departmentID")
 	private int departmentID;
 	@Column(name="departmentName")
+	@NotNull(message="This cannot be empty")
 	private String departmentName;
 	public Department(int departmentID, String departmentName) { // department 
 		super();

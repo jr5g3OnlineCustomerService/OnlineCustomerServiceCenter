@@ -2,6 +2,8 @@ package com.cg.onlinecustomerservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,7 @@ public class AdminController {    //Admin is one of the three actors
 	OperatorDao operDao;
 	
 	@PostMapping("/addDepartment")    // adds department for whatever values given to the members
-	public String addDepartment(@RequestBody Department department) {
+	public String addDepartment(@Valid @RequestBody Department department) {
 		Department dept=deptDao.checkDept(department.getDepartmentName());
 		if(dept!=null)
 		{
@@ -55,7 +57,7 @@ public class AdminController {    //Admin is one of the three actors
 		}
 	}
 	@PostMapping("/updateDepartment")    // Makes modification to department without altering primarykey and throws exception if ID not found
-	public ResponseEntity<Department> updateDepartment(@RequestBody Department department) throws DepartmentNotFoundException{
+	public ResponseEntity<Department> updateDepartment(@Valid @RequestBody Department department) throws DepartmentNotFoundException{
 		if(deptDao.existsById(department.getDepartmentID())) {
 			Department dept=deptDao.checkDept(department.getDepartmentName());
 			if(dept!=null)
@@ -113,7 +115,7 @@ public class AdminController {    //Admin is one of the three actors
 		}
 	}
 	@PutMapping("/updateOperator")  //Modifies or updates for given ID number or exception otherwise
-	public ResponseEntity<Operator> updateOperator(@RequestBody Operator operator) throws OperatorNotFoundException{
+	public ResponseEntity<Operator> updateOperator(@Valid @RequestBody Operator operator) throws OperatorNotFoundException{
 		if(operDao.existsById(operator.getOperatorId())) {
 			Operator oper=service.modifyOperator(operator);
 			return new ResponseEntity<Operator>(oper,HttpStatus.OK);

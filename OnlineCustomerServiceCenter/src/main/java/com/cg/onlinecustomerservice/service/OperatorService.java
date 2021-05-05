@@ -33,7 +33,7 @@ SolutionDao solutionDao;
 @Autowired
 ChatDao chatDao;
 @Autowired
-DepartmentDao deptDao;
+DepartmentDao departMentDao;
 //Add customer method
 @Override
 public Issue addCustomerIssue(IssueDto issueDto){
@@ -56,7 +56,7 @@ public boolean addOperator(OperatorDto operatordto){
 	operator.setCity(operatordto.getCity());
 	operator.setMobile(operatordto.getMobile());
 	operator.setPassword(operatordto.getPassword());
-	Department dept=deptDao.getDeptById(operatordto.getDepartmentID());
+	Department dept=departMentDao.getDeptById(operatordto.getDepartmentID());
 	operator.setDepartment(dept);
 	operatorDao.save(operator);
 	return true;
@@ -65,22 +65,15 @@ public boolean addOperator(OperatorDto operatordto){
 //closing customer issue
 @Override
 public Issue closeCustomerIssue(Issue issue){	
-	/*if(!issueDao.findById(issue.getIssueId()).isPresent())
-	throw new IssueNotFoundException();*/
 	int id=issue.getIssueId();
 	Issue result=issueDao.getIssueById(id);
 	result.setIssueStatus(issue.getIssueStatus());
 	issueDao.save(result);
 	return result;
-
 }
-
 //modifying issue
 @Override
 public Issue modifyCustomerIssue(Issue issue){
-	/*if(!issueDao.findById(issue.getIssueId()).isPresent())
-		throw new IssueNotFoundException();*/
-	
 	int id=issue.getIssueId();
 	Issue result=issueDao.findById(id).get();
 	result.setDescription(issue.getDescription());
@@ -88,49 +81,26 @@ public Issue modifyCustomerIssue(Issue issue){
 	result.setIssueStatus(issue.getIssueStatus());
 	issueDao.save(result);
 	return result;
-
 }
 
 //finding customer using Id
 @Override
 public Customer findCustomerById(int id){
-	/*if(!customerDao.findById(id).isPresent())
-	throw new CustomerNotFoundException();*/
-
 	return customerDao.findCustomerById(id);
 }
 //finding customer by Name
 @Override
 public List<Customer> findCustomerByName(String name)
 {
-	
-		return customerDao.findCustomerByName(name);
-	
+	return customerDao.findCustomerByName(name);
 }
 
 //finding customer by Email
 @Override
 public Customer findCustomerByEmail(String email)
 {
-	//if(customerDao.findCustomerByEmail(email)!=null)
-		return customerDao.findCustomerByEmail(email);
-	
+	return customerDao.findCustomerByEmail(email);
 }
-@Override
-
-//changing the active status of login
-public boolean lockCustomer(int id)  {
-	/*Login login=loginDao.getLogById(id);
-	if(login!=null) {
-		login.setActive(false);
-		loginDao.save(login);
-		return true; 
-	}
-	else*/
-		return false;
-
-}
-
 //adding solution by operator
 @Override
 public Solution addSolution(SolutionDto solutiondto){
@@ -143,7 +113,6 @@ public Solution addSolution(SolutionDto solutiondto){
 	soln.setIssue(issue);
 	return solutionDao.save(soln);
 }
-
 @Override
 public List<Chat> viewAllChat() {
      List<Chat> chat = chatDao.findAll();

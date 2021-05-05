@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.cg.onlinecustomerservice.dao.ChatDao;
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
-import com.cg.onlinecustomerservice.dao.LoginDao;
 import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.dto.ChatDto;
 import com.cg.onlinecustomerservice.entity.Chat;
@@ -19,8 +18,6 @@ import com.cg.onlinecustomerservice.entity.Solution;
 
 @Service
 public class CustomerService implements ICustomerService{
-	@Autowired
-	LoginDao loginDao;
 	@Autowired
 	CustomerDao customerDao;
 	@Autowired
@@ -47,22 +44,7 @@ public class CustomerService implements ICustomerService{
 	public Issue viewIssuesById(int issueid) {		
 			return issueDao.getIssueById(issueid);
 	}
-	//Change password
-	/*@Override
-	public String changePassword(Login login)
-	{	
-		int id=0;
-		id=login.getUserId();
-		if(id!=0) {
-			Login log=loginDao.findById(id).get();
-			log.setPassword(login.getPassword());
-			loginDao.save(log);
-			return "Email updated";
-		}
-		else {
-			return "User not found";
-		}
-	}*/
+	
 	//viewing all issue
 	@Override
 	public List<Issue> ViewAllIssues() {
@@ -70,11 +52,11 @@ public class CustomerService implements ICustomerService{
 		return response;
 	}
 	//viewing all customers//
-	@Override
+	/*@Override
 	public List<Customer> ViewAllCustomers() {
 		List<Customer>response=customerDao.findAll();
 		return response;
-	}
+	}*/
 	//changing issue status
 	@Override
 	public Issue reOpenIssue(int id) {
@@ -82,11 +64,7 @@ public class CustomerService implements ICustomerService{
 		result.setIssueStatus("Pending");
 		issueDao.save(result);
 		return result;}
-		/*int id=issue.getIssueId();
-		Issue result=issueDao.findById(id).get();
-		result.setIssueStatus(issue.getIssueStatus());
-		issueDao.save(result);
-		return result;*/
+		
 	//viewing solution using ID
 	@Override
 	public Solution viewSolutionsById(int code) {		

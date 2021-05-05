@@ -22,7 +22,7 @@ public interface IOperatorService {
 	public Customer findCustomerById(int id);
 	public List<Customer> findCustomerByName(String name);
 	public Customer findCustomerByEmail(String email) ;
-	public boolean lockCustomer(int id);
+	//public boolean lockCustomer(int id);
 	public Solution addSolution(SolutionDto solutiondto);
 	public List<Chat> viewAllChat(); 
 	public boolean addOperator(OperatorDto operatordto);

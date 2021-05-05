@@ -19,7 +19,7 @@ public interface ICustomerService {
 	public Issue viewIssuesById(int issueid);
 	public List<Issue> ViewAllIssues();
 	//public String changePassword(Login login);
-	List<Customer> ViewAllCustomers() ;
+	//List<Customer> ViewAllCustomers() ;
 	Issue reOpenIssue(int id) ;
 	List<Solution> ViewAllSolutions();
 	Solution viewSolutionsById(int code) ;	

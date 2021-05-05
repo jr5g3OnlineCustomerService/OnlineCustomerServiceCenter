@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.dao.CustomerDao;
+import com.cg.onlinecustomerservice.dao.DepartmentDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.OperatorDao;
 import com.cg.onlinecustomerservice.dto.IssueDto;
@@ -23,11 +24,13 @@ import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
+import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.OperatorService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
+import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
@@ -45,6 +48,8 @@ public class OperatorController {
 	OperatorDao operatordao;
 	@Autowired
 	CustomerDao customerDao;
+	@Autowired
+	DepartmentDao departmentDao;
 	@PostMapping("/login")
 	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
 		Operator str=service.operatorlogin(operator);
@@ -57,6 +62,9 @@ public class OperatorController {
 		Operator op=operatordao.checkoperator(dto.getEmail());
 		if(op!=null)
 			throw new OperatorAlreadyExistingException();
+		Department department=departmentDao.getDeptById(dto.getDepartmentID());
+	    if(department==null)
+	    	throw new DepartmentNotFoundException();
 		else {
 	if(service.addOperator(dto))
 		return "operator added";

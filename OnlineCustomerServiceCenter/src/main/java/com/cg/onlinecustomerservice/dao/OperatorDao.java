@@ -10,4 +10,6 @@ public interface OperatorDao extends JpaRepository<Operator , Integer>{
 	public Operator findOperatorById(int code);
 	@Query(value = "from Operator operator where operator.password=?1 and operator.email=?2")
 	public Operator operatorLogin(String password,String email);
+	@Query(value = "from Operator operator where operator.email=?2")
+	public Operator checkoperator(String email);
 }

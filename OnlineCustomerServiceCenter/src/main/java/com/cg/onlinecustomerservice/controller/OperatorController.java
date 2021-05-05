@@ -2,12 +2,9 @@ package com.cg.onlinecustomerservice.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,14 +24,13 @@ import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
-import com.cg.onlinecustomerservice.service.LoginService;
 import com.cg.onlinecustomerservice.service.OperatorService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
+import com.cg.onlinecustomerservice.utils.OperatorAlreadyExistingException;
 import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
-import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/operator")
@@ -45,22 +41,37 @@ public class OperatorController {
 	IssueDao issueDao;
 	@Autowired
 	OperatorDao operatordao;
+	@Autowired
+	CustomerDao customerDao;
 	@PostMapping("/login")
 	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
 		Operator str=service.operatorlogin(operator);
+		if(str==null)
+			throw new InvalidCredentialException();
 		return new ResponseEntity<Operator>(str,HttpStatus.OK);
 	}
 	@PostMapping("/addOperator")  //adds operator to existing operators
 	public String addOperator(@RequestBody OperatorDto dto) {
+		Operator op=operatordao.checkoperator(dto.getEmail());
+		if(op==null)
+			throw new OperatorAlreadyExistingException();
+		else {
 	if(service.addOperator(dto))
 		return "operator added";
 	else
 		return "Could not insert";
 	}
+	}
 	@PostMapping("/addCustomerIssue") //adds customer having given issue(foreign key) 
 	public ResponseEntity<Issue> addCustomerIssue(@RequestBody IssueDto issueDto) {	
+		Customer cust=customerDao.findCustomerById(issueDto.getCustomerID());
+		if(cust==null)
+			throw new CustomerNotFoundException();
+		else
+		{
 	Issue response=service.addCustomerIssue(issueDto);
 	return new ResponseEntity<Issue>(response,HttpStatus.OK);
+	}
 	}
 	@PutMapping("/updateCustomerIssue")   //update issue of the customer and exception if input is invalid ie if Id does not exist
 	public ResponseEntity<Issue> modifyCustomerIssue(@RequestBody Issue issue){

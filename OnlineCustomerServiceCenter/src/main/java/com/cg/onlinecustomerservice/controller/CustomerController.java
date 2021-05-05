@@ -16,16 +16,14 @@ import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
-import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.service.LoginService;
-import com.cg.onlinecustomerservice.utils.CustomerAlreadyExistingFoundException;
+import com.cg.onlinecustomerservice.utils.CustomerAlreadyExistingException;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
-import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 @RestController
@@ -52,7 +50,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		Customer cust = customerDao.checkCustomer(customer.getEmail());
 		if(cust!=null)
 		{
-		throw new CustomerAlreadyExistingFoundException();
+		throw new CustomerAlreadyExistingException();
 		}
 		service.registerCustomer(customer);
 		return "Customer added";
@@ -97,7 +95,7 @@ public class CustomerController {  //Customer is One of the Three actors
 	public ResponseEntity<List<Solution>> ViewAllSolution() throws SolutionNotFoundException{
 		List<Solution> issues=service.ViewAllSolutions();
 		if(issues!=null)
-		return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
+		    return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
 		else 
 			throw new SolutionNotFoundException();
 	}

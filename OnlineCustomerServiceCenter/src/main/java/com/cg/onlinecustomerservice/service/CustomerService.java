@@ -14,12 +14,7 @@ import com.cg.onlinecustomerservice.dto.ChatDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
-import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Solution;
-import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
-import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
-import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
-import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 
 @Service
@@ -120,7 +115,6 @@ public class CustomerService implements ICustomerService{
 
 	@Override
 	public Customer customerLogin(Customer customer) {
-		// TODO Auto-generated method stub
 		Customer cust = customerDao.customerLogin(customer.getPassword(),customer.getEmail());
 		return cust;
 	}

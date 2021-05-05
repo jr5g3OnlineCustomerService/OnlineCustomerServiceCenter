@@ -1,12 +1,8 @@
 package com.cg.onlinecustomerservice.service;
 
 import java.util.List;
-
-import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
-import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
-import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
 
 public interface IAdminService {
 	public boolean addDepartment(Department dept);

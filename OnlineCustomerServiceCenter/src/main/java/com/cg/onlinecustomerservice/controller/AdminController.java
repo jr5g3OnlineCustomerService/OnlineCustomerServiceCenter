@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.dao.DepartmentDao;
 import com.cg.onlinecustomerservice.dao.OperatorDao;
-import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.service.AdminService;

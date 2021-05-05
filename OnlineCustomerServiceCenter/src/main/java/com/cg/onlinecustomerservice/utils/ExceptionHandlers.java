@@ -35,12 +35,12 @@ public class ExceptionHandlers {
 	public ResponseEntity<Object> exception(SolutionNotFoundException exception){
 	  return new ResponseEntity<Object>("Solution not found...",HttpStatus.NOT_FOUND);
 	}
-	@ExceptionHandler(value=CustomerAlreadyExistingFoundException.class)
-	public ResponseEntity<Object> exception(CustomerAlreadyExistingFoundException exception){
+	@ExceptionHandler(value=CustomerAlreadyExistingException.class)
+	public ResponseEntity<Object> exception(CustomerAlreadyExistingException exception){
 	  return new ResponseEntity<Object>("Customer already exists!...",HttpStatus.NOT_FOUND);
 	}
-	@ExceptionHandler(value=OperatorAlreadyExistingFoundException.class)
-	public ResponseEntity<Object> exception(OperatorAlreadyExistingFoundException exception){
+	@ExceptionHandler(value=OperatorAlreadyExistingException.class)
+	public ResponseEntity<Object> exception(OperatorAlreadyExistingException exception){
 	  return new ResponseEntity<Object>("Operator already exists!...",HttpStatus.NOT_FOUND);
 	}
 	@ExceptionHandler(value=ListEmptyException.class)

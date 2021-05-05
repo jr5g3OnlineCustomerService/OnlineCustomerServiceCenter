@@ -2,15 +2,13 @@ package com.cg.onlinecustomerservice.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cg.onlinecustomerservice.entity.Customer;
-import com.cg.onlinecustomerservice.entity.Department;
+
 
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer>{

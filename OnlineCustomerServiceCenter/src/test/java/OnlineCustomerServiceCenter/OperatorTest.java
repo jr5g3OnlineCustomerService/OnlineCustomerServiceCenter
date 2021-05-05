@@ -52,7 +52,7 @@ public class OperatorTest {
 	public void testfindCustomerByEmail() throws CustomerNotFoundException {
 		Customer customer=new Customer();
 		opService.findCustomerByEmail("Nikhil");
-		Assertions.assertNotNull(customer.getFirstname());
+		Assertions.assertNotNull(customer.getFirstName());
 		Mockito.verify(custDao, Mockito.times(1)).findCustomerByEmail("Nikhil");
 	}
 	

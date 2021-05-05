@@ -65,7 +65,7 @@ public class Customer {
 	public String getLastName() {
 		return lastName;
 	}
-	public void setLastname(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	public String getEmail() {

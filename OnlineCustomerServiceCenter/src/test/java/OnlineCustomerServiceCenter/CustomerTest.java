@@ -52,8 +52,8 @@ public class CustomerTest {
 	public void testAddCustomer() {
 		Customer customer=new Customer();
 		customer.setCustomerId(1);
-		customer.setFirstname("Nikhil");
-		customer.setLastname("Naik");
+		customer.setFirstName("Nikhil");
+		customer.setLastName("Naik");
 		customer.setEmail("nik@gmail.com");
 		customer.setMobile("9988776655");
 		customer.setCity("Mangalore");

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="chat")
@@ -18,17 +19,22 @@ public class Chat {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name="chatId")
 private int chatId;
-
 @Column
+@NotNull (message="This field cannot be empty")
 private Date chatDate;
 @Column
+@NotNull (message="This field cannot be empty")
 private String complaints;
 @Column
+@NotNull (message="This field cannot be empty")
 private String firstName;
 @Column
+@NotNull (message="This field cannot be empty")
 private String lastName;
 @Column
+@NotNull (message="This field cannot be empty")
 private String email;
+
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 private Customer customer;
@@ -57,7 +63,7 @@ public void setChatDate(Date chatDate) {
 }
 
 public String getComplaints() {
-	return complaints;
+	return complaints;//
 }
 public void setComplaints(String complaints) {
 	this.complaints = complaints;

@@ -88,7 +88,7 @@ public class OperatorController {
 	}
 	@PutMapping("/updateCustomerIssue")   //update issue of the customer and exception if input is invalid ie if Id does not exist
 	public ResponseEntity<Issue> modifyCustomerIssue(@Valid @RequestBody Issue issue){
-		if(issueDao.existsById(issue.getIssueId()))
+		if(!issueDao.existsById(issue.getIssueId()))
 			throw new IssueNotFoundException();
 		else {
 		Issue response=service. modifyCustomerIssue(issue);

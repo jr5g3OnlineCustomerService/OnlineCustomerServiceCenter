@@ -74,7 +74,7 @@ public Issue closeCustomerIssue(int Id){
 @Override
 public Issue modifyCustomerIssue(Issue issue){
 	int id=issue.getIssueId();
-	Issue result=issueDao.findById(id).get();
+	Issue result=issueDao.getIssueById(id);
 	result.setDescription(issue.getDescription());
 	result.setIssueType(issue.getIssueType());
 	result.setIssueStatus(issue.getIssueStatus());

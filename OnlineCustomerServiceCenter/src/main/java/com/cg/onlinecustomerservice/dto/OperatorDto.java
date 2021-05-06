@@ -1,13 +1,22 @@
 package com.cg.onlinecustomerservice.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class OperatorDto {
 	private int operatorId;
+	@NotNull(message="This cannot be empty")
 	private String firstName;
+	@NotNull(message="This cannot be empty")
 	private String lastName;
+	@NotNull(message="This cannot be empty")
 	private String email;
+	@NotNull(message="This cannot be empty")
 	private String mobile;
+	@NotNull(message="This cannot be empty")
 	private String city;
+	@NotNull(message="This cannot be empty")
 	private String password;
+	@NotNull(message="This cannot be empty")
 	private int departmentID;
 	public int getOperatorId() {
 		return operatorId;
@@ -51,7 +60,6 @@ public class OperatorDto {
 	public void setDepartmentID(int departmentID) {
 		this.departmentID = departmentID;
 	}
-	
 	public String getPassword() {
 		return password;
 	}
@@ -70,5 +78,5 @@ public class OperatorDto {
 		this.departmentID = departmentID;
 		this.password=password;
 	}
-	public OperatorDto() {}
+	public OperatorDto(){}
 }

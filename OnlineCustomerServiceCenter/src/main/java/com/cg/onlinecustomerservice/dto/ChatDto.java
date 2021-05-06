@@ -2,13 +2,21 @@ package com.cg.onlinecustomerservice.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class ChatDto {
 	private int chatId;
+	@NotNull (message="This field cannot be empty")
 	private Date chatDate;
+	@NotNull (message="This field cannot be empty")
 	private String opinion;
+	@NotNull (message="This field cannot be empty")
 	private String firstName;
+	@NotNull (message="This field cannot be empty")
 	private String lastName;
+	@NotNull (message="This field cannot be empty")
 	private String email;
+	@NotNull (message="This field cannot be empty")
 	private int customerId;
 	public int getChatId() {
 		return chatId;

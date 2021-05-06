@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
+import com.cg.onlinecustomerservice.dto.ChatDto;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Solution;
@@ -107,6 +108,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		service.changePassword(customer);
 		return "Updated";
 	}
+	
 	@PutMapping("/reopenissue")  //re-activates issue for given id and exception if value does not exist
 	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {
 		if(!idao.findById(id).isPresent())
@@ -116,6 +118,18 @@ public class CustomerController {  //Customer is One of the Three actors
 		return new ResponseEntity<Issue>(issues,HttpStatus.OK);
 		}
 		}
+	@PostMapping("/addComplaints") //adds customer for given input data given
+	public ResponseEntity<String> addComplaints(@RequestBody ChatDto chatDto) {
+		Customer cust = customerDao.findCustomerById(chatDto.getCustomerId());
+		if(cust==null)
+		{
+		throw new CustomerNotFoundException();
+		}
+		else {
+		service.addChat(chatDto);
+		return new ResponseEntity<String>("Added complaints",HttpStatus.OK);
+		}
 
+}
 }
 

@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -35,7 +35,7 @@ private String lastName;
 @NotNull (message="This field cannot be empty")
 private String email;
 
-@OneToOne(cascade = CascadeType.ALL)
+@ManyToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 private Customer customer;
 public Chat(int chatId, Date chatDate, String complaints, String firstName, String lastName, String email) {

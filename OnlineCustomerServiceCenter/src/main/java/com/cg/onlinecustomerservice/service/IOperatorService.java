@@ -10,9 +10,7 @@ import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
-import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
-import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
-import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
+
 
 public interface IOperatorService {
 	public Operator operatorlogin(Operator operator);

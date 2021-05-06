@@ -122,11 +122,11 @@ public class OperatorController {
 			throw new CustomerNotFoundException();
 		return new ResponseEntity<Customer>(response,HttpStatus.OK);
 	}
-	@PutMapping("/lockAccount") //Locks the customer with given Id by changing to In-Active or exception if ID does not exist
+	/*@PutMapping("/lockAccount") //Locks the customer with given Id by changing to In-Active or exception if ID does not exist
 	public ResponseEntity<Boolean> lockCustomer(@RequestBody int code) throws InvalidCredentialException{
 		boolean response=service.lockCustomer(code);
 		return new ResponseEntity<Boolean>(response,HttpStatus.OK);
-	}
+	}*/
 	@PostMapping("/addSolution")  //Adds solution having given details and members into the tables
 	public ResponseEntity<Solution> addSolution(@Valid @RequestBody SolutionDto solutiondto) {
 		Issue issue=issueDao.getIssueById(solutiondto.getIssueId());

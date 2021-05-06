@@ -6,7 +6,6 @@ import com.cg.onlinecustomerservice.dto.ChatDto;
 import com.cg.onlinecustomerservice.entity.Chat;
 import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
-import com.cg.onlinecustomerservice.entity.Login;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;

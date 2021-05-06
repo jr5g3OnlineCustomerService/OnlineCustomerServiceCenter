@@ -20,7 +20,7 @@ import com.cg.onlinecustomerservice.entity.Customer;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Solution;
 import com.cg.onlinecustomerservice.service.CustomerService;
-import com.cg.onlinecustomerservice.service.LoginService;
+
 import com.cg.onlinecustomerservice.utils.CustomerAlreadyExistingException;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
@@ -33,8 +33,7 @@ import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 public class CustomerController {  //Customer is One of the Three actors
 	@Autowired
 	CustomerService service;
-     @Autowired
-	LoginService loginService;
+    
      @Autowired 
      IssueDao idao;
      @Autowired
@@ -58,7 +57,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		return "Customer added";
 		}
 	
-	@GetMapping("/allCustomers") //shows the contents of the customer table and exception if table is empty
+	/*@GetMapping("/allCustomers") //shows the contents of the customer table and exception if table is empty
 	public ResponseEntity<List<Customer>> ViewAllCustomers() throws CustomerNotFoundException{
 		List<Customer> response=service.ViewAllCustomers();
 		if(response.size()>0)
@@ -68,7 +67,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		else {
 			throw new ListEmptyException();
 		}
-	}
+	}*/
 	@GetMapping("/viewIssuesById") //shows Issue having given id value and exception if it does not exist
 	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code) throws IssueNotFoundException{
 		Issue response=service.viewIssuesById(code);

@@ -93,11 +93,11 @@ public class OperatorController {
 	}
 	}
 	@PutMapping("/closeCustomer") // close the customer by changing issue status and exception if issue id does not exist
-	public ResponseEntity<Issue> closeCustomerIssue(@RequestBody Issue issue){
-		if(issueDao.existsById(issue.getIssueId()))
+	public ResponseEntity<Issue> closeCustomerIssue(@RequestBody Integer Id){
+		if(!issueDao.existsById(Id))
 			throw new IssueNotFoundException();
 		else {
-		Issue response=service. closeCustomerIssue(issue);
+		Issue response=service. closeCustomerIssue(Id);
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
 	}
@@ -147,7 +147,7 @@ public class OperatorController {
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
 	public String changePassword(@Valid @RequestBody OperatorDto dto){
-		if(operatordao.existsById(dto.getOperatorId()))
+		if(!operatordao.existsById(dto.getOperatorId()))
 			throw new OperatorNotFoundException();
 		else {
 		service.changePassword(dto);

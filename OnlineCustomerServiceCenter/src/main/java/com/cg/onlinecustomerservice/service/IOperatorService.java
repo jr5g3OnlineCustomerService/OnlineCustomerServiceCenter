@@ -18,7 +18,7 @@ public interface IOperatorService {
 	public Operator operatorlogin(Operator operator);
 	public Issue modifyCustomerIssue(Issue issue) ;
 	public Issue addCustomerIssue(IssueDto issueDto);
-	public Issue closeCustomerIssue(Issue issue) ;
+	public Issue closeCustomerIssue(int Id) ;
 	public Customer findCustomerById(int id);
 	public List<Customer> findCustomerByName(String name);
 	public Customer findCustomerByEmail(String email) ;

@@ -64,10 +64,9 @@ public boolean addOperator(OperatorDto operatordto){
 
 //closing customer issue
 @Override
-public Issue closeCustomerIssue(Issue issue){	
-	int id=issue.getIssueId();
-	Issue result=issueDao.getIssueById(id);
-	result.setIssueStatus(issue.getIssueStatus());
+public Issue closeCustomerIssue(int Id){	
+	Issue result=issueDao.getIssueById(Id);
+	result.setIssueStatus("Closed");
 	issueDao.save(result);
 	return result;
 }

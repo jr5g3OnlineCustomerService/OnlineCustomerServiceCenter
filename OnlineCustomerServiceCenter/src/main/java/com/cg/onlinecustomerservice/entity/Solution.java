@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,7 +27,7 @@ public class Solution {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "issueId", referencedColumnName = "issueId")
 	private Issue issue;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
 	private Operator operator;
     public Solution()

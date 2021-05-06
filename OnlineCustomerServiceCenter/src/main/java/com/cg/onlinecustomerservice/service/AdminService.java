@@ -60,6 +60,7 @@ public Operator modifyOperator(Operator operator){
 	oper.setMobile(operator.getMobile());
 	oper.setEmail(operator.getEmail());
 	oper.setCity(operator.getCity());
+	oper.setPassword(operator.getPassword());
 	operatorDao.save(oper);
 	return oper;
 }

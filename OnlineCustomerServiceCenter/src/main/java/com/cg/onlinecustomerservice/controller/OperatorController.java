@@ -77,6 +77,9 @@ public class OperatorController {
 		Customer cust=customerDao.findCustomerById(issueDto.getCustomerID());
 		if(cust==null)
 			throw new CustomerNotFoundException();
+		Operator op=operatordao.findOperatorById(issueDto.getOperatorId());
+		if(op==null)
+			throw new OperatorNotFoundException();
 		else
 		{
 	Issue response=service.addCustomerIssue(issueDto);

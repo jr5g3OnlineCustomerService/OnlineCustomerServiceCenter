@@ -101,7 +101,7 @@ public class CustomerController {  //Customer is One of the Three actors
 			throw new SolutionNotFoundException();
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
-	public String changePassword(@Valid @RequestBody Customer customer) {
+	public String changePassword(@RequestBody Customer customer) {
 		if(!customerDao.existsById(customer.getCustomerId()))
 			throw new CustomerNotFoundException();
 		service.changePassword(customer);

@@ -2,11 +2,17 @@ package com.cg.onlinecustomerservice.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class SolutionDto {
 	private int solutionId;
+	@NotNull (message="This field cannot be empty")
 	private String solutionDescription;
+	@NotNull (message="This field cannot be empty")
 	private Date solutionDate;
+	@NotNull (message="This field cannot be empty")
 	private int issueId;
+	@NotNull (message="This field cannot be empty")
 	private int operatorId;
 	public int getSolutionId() {
 		return solutionId;

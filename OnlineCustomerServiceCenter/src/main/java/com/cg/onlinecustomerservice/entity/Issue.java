@@ -1,6 +1,5 @@
 package com.cg.onlinecustomerservice.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ public class Issue {
 	private int issueId;
 	@OneToOne(mappedBy="issue")
 	private Solution solution;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
 	private Customer customer;
 	@Column

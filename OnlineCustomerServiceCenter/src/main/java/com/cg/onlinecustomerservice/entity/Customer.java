@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -39,8 +38,8 @@ public class Customer {
 	private String password;
 	@OneToMany(mappedBy="customer")
 	private List<Chat> chat;
-	@OneToOne(mappedBy="customer")
-	private Issue issue;
+	@OneToMany(mappedBy="customer")
+	private List<Issue> issue;
 	public Customer(int customerId, String firstName, String lastName, String email, String mobile, String city,String password) {
 		super();
 		this.customerId = customerId;

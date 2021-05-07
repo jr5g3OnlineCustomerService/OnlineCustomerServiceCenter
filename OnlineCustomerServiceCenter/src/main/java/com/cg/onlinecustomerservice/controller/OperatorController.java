@@ -28,6 +28,7 @@ import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
+import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.service.OperatorService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
@@ -50,6 +51,8 @@ public class OperatorController {
 	CustomerDao customerDao;
 	@Autowired
 	DepartmentDao departmentDao;
+	@Autowired
+	CustomerService custService;
 	@PostMapping("/login")
 	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
 		Operator str=service.operatorlogin(operator);
@@ -125,11 +128,6 @@ public class OperatorController {
 			throw new CustomerNotFoundException();
 		return new ResponseEntity<Customer>(response,HttpStatus.OK);
 	}
-	/*@PutMapping("/lockAccount") //Locks the customer with given Id by changing to In-Active or exception if ID does not exist
-	public ResponseEntity<Boolean> lockCustomer(@RequestBody int code) throws InvalidCredentialException{
-		boolean response=service.lockCustomer(code);
-		return new ResponseEntity<Boolean>(response,HttpStatus.OK);
-	}*/
 	@PostMapping("/addSolution")  //Adds solution having given details and members into the tables
 	public ResponseEntity<Solution> addSolution(@Valid @RequestBody SolutionDto solutiondto) {
 		Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
@@ -156,5 +154,13 @@ public class OperatorController {
 		service.changePassword(dto);
 		return "Updated";
 	}
+	}
+	@GetMapping("/allIssues") //shows the issue table and exception if table is empty 
+	public ResponseEntity<List<Issue>> ViewAllIssues() throws IssueNotFoundException{
+		List<Issue> issues=custService.ViewAllIssues();
+		if (issues!=null)
+			return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
+		else 
+			throw new IssueNotFoundException();
 	}
 }

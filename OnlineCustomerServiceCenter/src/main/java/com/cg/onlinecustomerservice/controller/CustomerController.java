@@ -56,18 +56,6 @@ public class CustomerController {  //Customer is One of the Three actors
 		service.registerCustomer(customer);
 		return "Customer added";
 		}
-	
-	/*@GetMapping("/allCustomers") //shows the contents of the customer table and exception if table is empty
-	public ResponseEntity<List<Customer>> ViewAllCustomers() throws CustomerNotFoundException{
-		List<Customer> response=service.ViewAllCustomers();
-		if(response.size()>0)
-		{
-		return new ResponseEntity<List<Customer>>(response,HttpStatus.OK);
-	}
-		else {
-			throw new ListEmptyException();
-		}
-	}*/
 	@GetMapping("/viewIssuesById") //shows Issue having given id value and exception if it does not exist
 	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code) throws IssueNotFoundException{
 		Issue response=service.viewIssuesById(code);
@@ -76,14 +64,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		else
 			return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
-	@GetMapping("/allIssues") //shows the issue table and exception if table is empty 
-	public ResponseEntity<List<Issue>> ViewAllIssues() throws IssueNotFoundException{
-		List<Issue> issues=service.ViewAllIssues();
-		if (issues!=null)
-			return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
-		else 
-			throw new IssueNotFoundException();
-	}//
+	
 	@GetMapping("/viewSolutionsById") //Shows solution for given ID and exception if the ID value given does not exist
 	public ResponseEntity<Solution> viewSolutionsById(@RequestBody int code) throws SolutionNotFoundException{
 		Solution response=service.viewSolutionsById(code);

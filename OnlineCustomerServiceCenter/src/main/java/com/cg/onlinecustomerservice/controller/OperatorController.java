@@ -149,7 +149,7 @@ public class OperatorController {
 	return new ResponseEntity<List<Chat>>(response,HttpStatus.OK);
 	}
 	@PutMapping("/ChangePassword")  //for given login credentials allows to update password
-	public String changePassword(@Valid @RequestBody OperatorDto dto){
+	public String changePassword(@RequestBody OperatorDto dto){
 		if(!operatordao.existsById(dto.getOperatorId()))
 			throw new OperatorNotFoundException();
 		else {

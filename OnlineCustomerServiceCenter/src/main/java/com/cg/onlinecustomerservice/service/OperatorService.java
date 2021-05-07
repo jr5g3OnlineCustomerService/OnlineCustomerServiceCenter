@@ -1,5 +1,6 @@
 package com.cg.onlinecustomerservice.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +105,8 @@ public Customer findCustomerByEmail(String email)
 @Override
 public Solution addSolution(SolutionDto solutiondto){
 	Solution soln=new Solution();
-	soln.setSolutionDate(solutiondto.getSolutionDate());
+	LocalDate todaysDate = LocalDate.now();
+	soln.setSolutionDate(todaysDate);
 	soln.setSolutionDescription(solutiondto.getSolutionDescription());
 	Operator operator=operatorDao.findOperatorById(solutiondto.getOperatorId());
      soln.setOperator(operator);

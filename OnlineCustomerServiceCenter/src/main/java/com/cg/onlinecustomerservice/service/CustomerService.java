@@ -1,5 +1,6 @@
 package com.cg.onlinecustomerservice.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,8 @@ public class CustomerService implements ICustomerService{
 	@Override
 	public String addChat(ChatDto chatDto) {
 		Chat chat=new Chat();
-		chat.setChatDate(chatDto.getChatDate());
+		LocalDate todaysDate = LocalDate.now();
+		chat.setChatDate(todaysDate);
 		chat.setFirstName(chatDto.getFirstName());
 		chat.setLastName(chatDto.getLastName());
 		chat.setEmail(chatDto.getEmail());

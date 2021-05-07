@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 public class ChatDto {
 	private int chatId;
-	@NotNull (message="This field cannot be empty")
+	//@NotNull (message="This field cannot be empty")
 	private Date chatDate;
 	@NotNull (message="This field cannot be empty")
 	private String opinion;

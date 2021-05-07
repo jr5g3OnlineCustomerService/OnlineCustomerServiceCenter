@@ -1,4 +1,5 @@
 package com.cg.onlinecustomerservice.entity;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,8 +23,8 @@ public class Solution {
 	@NotNull (message="This field cannot be empty")
 	private String solutionDescription;
 	@Column
-	@NotNull (message="This field cannot be empty")
-	private Date solutionDate;
+	//@NotNull (message="This field cannot be empty")
+	private LocalDate solutionDate;
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "issueId", referencedColumnName = "issueId")
 	private Issue issue;
@@ -33,7 +34,7 @@ public class Solution {
     public Solution()
     {
     }
-	public Solution(int solutionId, String solutionDescription, Date solutionDate) {
+	public Solution(int solutionId, String solutionDescription, LocalDate solutionDate) {
 		super();
 		this.solutionId = solutionId;
 		this.solutionDescription = solutionDescription;
@@ -57,10 +58,10 @@ public class Solution {
 	public void setSolutionDescription(String solutionDescription) {
 		this.solutionDescription = solutionDescription;
 	}
-	public Date getSolutionDate() {
+	public LocalDate getSolutionDate() {
 		return solutionDate;
 	}
-	public void setSolutionDate(Date solutionDate) {
+	public void setSolutionDate(LocalDate solutionDate) {
 		this.solutionDate = solutionDate;
 	}
 	public Issue getIssue() {

@@ -28,7 +28,6 @@ import com.cg.onlinecustomerservice.entity.Department;
 import com.cg.onlinecustomerservice.entity.Issue;
 import com.cg.onlinecustomerservice.entity.Operator;
 import com.cg.onlinecustomerservice.entity.Solution;
-import com.cg.onlinecustomerservice.service.CustomerService;
 import com.cg.onlinecustomerservice.service.OperatorService;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.DepartmentNotFoundException;
@@ -130,12 +129,14 @@ public class OperatorController {
 	@PostMapping("/addSolution")  //Adds solution having given details and members into the tables
 	public ResponseEntity<Solution> addSolution(@Valid @RequestBody SolutionDto solutiondto) {
 		Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
-		if(issue!=null) {
+		if(issue==null) 
+			throw new IssueNotFoundException();
+            Operator op=operatordao.findOperatorById(solutiondto.getOperatorId());
+			if(op==null)
+			throw new OperatorNotFoundException();
+			else {
 			Solution response=service.addSolution(solutiondto);
 			return new ResponseEntity<Solution>(response,HttpStatus.OK);
-			}
-		else {
-			throw new IssueNotFoundException();
 		}
 	}
 	@GetMapping("/viewChatIssue")

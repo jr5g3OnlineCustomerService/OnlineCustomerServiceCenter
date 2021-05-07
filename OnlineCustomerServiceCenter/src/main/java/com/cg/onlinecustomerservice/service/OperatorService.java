@@ -131,5 +131,10 @@ public String changePassword(OperatorDto operatordto) {
 	operatorDao.save(dto);
 	return "updated";
 }
+@Override
+public List<Issue> ViewAllIssues() {
+	List<Issue> response=issueDao.findAll();
+	return response;
+}
 
 }

@@ -12,9 +12,6 @@ public interface ICustomerService {
 	public Customer customerLogin(Customer customer);//
 	public String registerCustomer(Customer customer);
 	public Issue viewIssuesById(int issueid);
-	public List<Issue> ViewAllIssues();
-	//public String changePassword(Login login);
-	//List<Customer> ViewAllCustomers() ;
 	Issue reOpenIssue(int id) ;
 	List<Solution> ViewAllSolutions();
 	Solution viewSolutionsById(int code) ;	

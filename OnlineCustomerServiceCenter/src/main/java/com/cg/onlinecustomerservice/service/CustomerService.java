@@ -45,18 +45,6 @@ public class CustomerService implements ICustomerService{
 			return issueDao.getIssueById(issueid);
 	}
 	
-	//viewing all issue
-	@Override
-	public List<Issue> ViewAllIssues() {
-		List<Issue> response=issueDao.findAll();
-		return response;
-	}
-	//viewing all customers//
-	/*@Override
-	public List<Customer> ViewAllCustomers() {
-		List<Customer>response=customerDao.findAll();
-		return response;
-	}*/
 	//changing issue status
 	@Override
 	public Issue reOpenIssue(int id) {

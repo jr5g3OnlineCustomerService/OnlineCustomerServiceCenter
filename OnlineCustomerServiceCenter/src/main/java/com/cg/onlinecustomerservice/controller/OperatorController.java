@@ -51,8 +51,6 @@ public class OperatorController {
 	CustomerDao customerDao;
 	@Autowired
 	DepartmentDao departmentDao;
-	@Autowired
-	CustomerService custService;
 	@PostMapping("/login")
 	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
 		Operator str=service.operatorlogin(operator);
@@ -128,6 +126,7 @@ public class OperatorController {
 			throw new CustomerNotFoundException();
 		return new ResponseEntity<Customer>(response,HttpStatus.OK);
 	}
+	
 	@PostMapping("/addSolution")  //Adds solution having given details and members into the tables
 	public ResponseEntity<Solution> addSolution(@Valid @RequestBody SolutionDto solutiondto) {
 		Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
@@ -157,7 +156,7 @@ public class OperatorController {
 	}
 	@GetMapping("/allIssues") //shows the issue table and exception if table is empty 
 	public ResponseEntity<List<Issue>> ViewAllIssues() throws IssueNotFoundException{
-		List<Issue> issues=custService.ViewAllIssues();
+		List<Issue> issues=service.ViewAllIssues();
 		if (issues!=null)
 			return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
 		else 

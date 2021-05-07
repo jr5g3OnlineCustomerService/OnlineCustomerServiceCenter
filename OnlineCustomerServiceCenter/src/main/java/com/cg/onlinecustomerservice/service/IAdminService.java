@@ -10,7 +10,6 @@ public interface IAdminService {
 	public Department modifyDepartment(Department dept);
 	public Department findDepartmentById(int id);
 	public List<Department> findAllDepartments();
-	//public boolean addOperator(OperatorDto operatordto);
 	public boolean removeOperator(int operatorID);
 	public Operator modifyOperator(Operator operator);
 	public Operator findOperator(int id);

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -32,7 +33,7 @@ public class Issue {
 	@Column
 	@NotNull (message="This field cannot be empty")
 	private String issueStatus;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
 	private Operator operator;
 		public Issue(int issueId, String issueType, String description, String issueStatus) {

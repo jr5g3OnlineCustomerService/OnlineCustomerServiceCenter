@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 @Entity
@@ -46,8 +45,8 @@ public class Operator {
 		/*@OneToOne(mappedBy="operator")
 		private Chat chat;*/
 		
-		@OneToOne(mappedBy="operator")
-		private Issue issue;
+		@OneToMany(mappedBy="operator")
+		private List<Issue> issue;
 		public Operator()
 		{}
 		public Operator(int operatorId, String firstName, String lastName, String email, String mobile, String city,String password) {

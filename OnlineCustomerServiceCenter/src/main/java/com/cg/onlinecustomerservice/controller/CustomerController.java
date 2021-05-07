@@ -26,7 +26,6 @@ import com.cg.onlinecustomerservice.utils.CustomerAlreadyExistingException;
 import com.cg.onlinecustomerservice.utils.CustomerNotFoundException;
 import com.cg.onlinecustomerservice.utils.InvalidCredentialException;
 import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
-import com.cg.onlinecustomerservice.utils.ListEmptyException;
 import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 
 @RestController
@@ -119,7 +118,7 @@ public class CustomerController {  //Customer is One of the Three actors
 		}
 		}
 	@PostMapping("/addComplaints") //adds customer for given input data given
-	public ResponseEntity<String> addComplaints(@RequestBody ChatDto chatDto) {
+	public ResponseEntity<String> addComplaints(@Valid @RequestBody ChatDto chatDto) {
 		Customer cust = customerDao.findCustomerById(chatDto.getCustomerId());
 		if(cust==null)
 		{

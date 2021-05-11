@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,8 +48,8 @@ public class AdminController {    //Admin is one of the three actors
 		return "Department added";
 	
 	}
-	@DeleteMapping("/deleteDepartment")  //deletes the department having the given departmentID(integer given as ip)
-	public String deleteDepartment(@RequestBody int code) throws DepartmentNotFoundException{
+	@DeleteMapping("/deleteDepartment/{code}")  //deletes the department having the given departmentID(integer given as ip)
+	public String deleteDepartment(@PathVariable int code) throws DepartmentNotFoundException{
 		if(deptDao.existsById(code)) {
 			service.removeDepartment(code);
 			return "Deleted";

@@ -86,8 +86,8 @@ public class AdminController {    //Admin is one of the three actors
 		}
 	}
 	
-	@DeleteMapping("/deleteOperator") //Deletes operator having given operatorID and throws exception if integer passed does not match any existing Id no 
-	public String deleteOperator(@RequestBody int code) throws OperatorNotFoundException{
+	@DeleteMapping("/deleteOperator/{code}") //Deletes operator having given operatorID and throws exception if integer passed does not match any existing Id no 
+	public String deleteOperator(@PathVariable int code) throws OperatorNotFoundException{
 		if(operDao.existsById(code)) {
 		service.removeOperator(code);
 		return "Deleted";

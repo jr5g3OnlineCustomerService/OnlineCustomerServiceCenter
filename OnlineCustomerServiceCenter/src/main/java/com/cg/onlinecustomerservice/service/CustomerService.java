@@ -73,7 +73,7 @@ public class CustomerService implements ICustomerService{
 		chat.setFirstName(chatDto.getFirstName());
 		chat.setLastName(chatDto.getLastName());
 		chat.setEmail(chatDto.getEmail());
-		chat.setComplaints(chatDto.getOpinion());
+		chat.setComplaints(chatDto.getComplaints());
 		Customer cust=customerDao.findCustomerById(chatDto.getCustomerId());
 		chat.setCustomer(cust);
 		chatDao.save(chat);

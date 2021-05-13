@@ -9,7 +9,7 @@ public class ChatDto {
 	//@NotNull (message="This field cannot be empty")
 	private Date chatDate;
 	@NotNull (message="This field cannot be empty")
-	private String opinion;
+	private String complaints;
 	@NotNull (message="This field cannot be empty")
 	private String firstName;
 	@NotNull (message="This field cannot be empty")
@@ -30,11 +30,12 @@ public class ChatDto {
 	public void setChatDate(Date chatDate) {
 		this.chatDate = chatDate;
 	}
-	public String getOpinion() {
-		return opinion;
+	
+	public String getComplaints() {
+		return complaints;
 	}
-	public void setOpinion(String opinion) {
-		this.opinion = opinion;
+	public void setComplaints(String complaints) {
+		this.complaints = complaints;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -65,7 +66,7 @@ public class ChatDto {
 		super();
 		this.chatId = chatId;
 		this.chatDate = chatDate;
-		this.opinion = opinion;
+		this.complaints = opinion;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

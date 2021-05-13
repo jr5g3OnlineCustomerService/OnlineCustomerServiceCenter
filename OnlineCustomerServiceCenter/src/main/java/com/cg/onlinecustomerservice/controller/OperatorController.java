@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -104,22 +105,22 @@ public class OperatorController {
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
 	}
-	@GetMapping("/findCustomerById")  //displays customer having given Id and exception if ID does not match
-	public ResponseEntity<Customer> findCustomerById(@RequestBody int code){
+	@GetMapping("/findCustomerById/{code}")  //displays customer having given Id and exception if ID does not match
+	public ResponseEntity<Customer> findCustomerById(@PathVariable int code){
 		Customer response=service.findCustomerById(code);
 		if(response==null)
 			throw new CustomerNotFoundException();
 		return new ResponseEntity<Customer>(response,HttpStatus.OK);
 	}
-	@GetMapping("/findCustomerByName")  //Takes input as string and shows the detail of customer and exception if name does not exist
-	public ResponseEntity<List<Customer>> findCustomerByName(@RequestBody String name){
+	@GetMapping("/findCustomerByName/{name}")  //Takes input as string and shows the detail of customer and exception if name does not exist
+	public ResponseEntity<List<Customer>> findCustomerByName(@PathVariable String name){
 		List<Customer> response=service.findCustomerByName(name);
 		if(response.size()<=0)
 			throw new ListEmptyException();
 		return new ResponseEntity<List<Customer>>(response,HttpStatus.OK);
 	}
-	@GetMapping("/findCustomerByEmail")  //Takes input as email(text) and shows customer or exception if email does not exist
-	public ResponseEntity<Customer> findCustomerByEmail(@RequestBody String email){
+	@GetMapping("/findCustomerByEmail/{email}")  //Takes input as email(text) and shows customer or exception if email does not exist
+	public ResponseEntity<Customer> findCustomerByEmail(@PathVariable String email){
 		Customer response=service.findCustomerByEmail(email);
 		if(response==null)
 			throw new CustomerNotFoundException();

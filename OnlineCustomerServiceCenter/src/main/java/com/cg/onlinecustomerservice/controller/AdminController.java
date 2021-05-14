@@ -96,7 +96,7 @@ public class AdminController {    //Admin is one of the three actors
 			throw new OperatorNotFoundException();
 		}
 	}
-//	@GetMapping("/findOperator/{code}") //Finds and shows operator having given operatorID and throws exception otherwise
+	@GetMapping("/findOperator/{code}") //Finds and shows operator having given operatorID and throws exception otherwise
 	public ResponseEntity<Operator> findOperator(@PathVariable int code) throws OperatorNotFoundException{
 		if(operDao.existsById(code)) {
 			Operator operator=service.findOperator(code);

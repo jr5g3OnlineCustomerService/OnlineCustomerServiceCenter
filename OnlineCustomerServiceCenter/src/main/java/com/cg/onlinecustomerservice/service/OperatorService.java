@@ -134,8 +134,8 @@ public String changePassword(OperatorDto operatordto) {
 	return "updated";
 }
 @Override
-public List<Issue> ViewAllIssues() {
-	List<Issue> response=issueDao.findAll();
+public List<Issue> ViewAllIssues(int code) {
+	List<Issue> response=issueDao.getOpIssue(code);
 	return response;
 }
 

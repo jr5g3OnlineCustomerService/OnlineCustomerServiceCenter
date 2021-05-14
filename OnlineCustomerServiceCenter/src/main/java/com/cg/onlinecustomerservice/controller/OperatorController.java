@@ -96,8 +96,8 @@ public class OperatorController {
 		return new ResponseEntity<Issue>(response,HttpStatus.OK);
 	}
 	}
-	@PutMapping("/closeCustomer") // close the customer by changing issue status and exception if issue id does not exist
-	public ResponseEntity<Issue> closeCustomerIssue(@RequestBody Integer Id){
+	@PutMapping("/closeCustomer/{Id}") // close the customer by changing issue status and exception if issue id does not exist
+	public ResponseEntity<Issue> closeCustomerIssue(@PathVariable Integer Id){
 		if(!issueDao.existsById(Id))
 			throw new IssueNotFoundException();
 		else {
@@ -156,9 +156,9 @@ public class OperatorController {
 		return "Updated";
 	}
 	}
-	@GetMapping("/allIssues") //shows the issue table and exception if table is empty 
-	public ResponseEntity<List<Issue>> ViewAllIssues() throws IssueNotFoundException{
-		List<Issue> issues=service.ViewAllIssues();
+	@GetMapping("/allIssues/{code}") //shows the issue table and exception if table is empty 
+	public ResponseEntity<List<Issue>> ViewAllIssues(@PathVariable int code) throws IssueNotFoundException{
+		List<Issue> issues=service.ViewAllIssues(code);
 		if (issues!=null)
 			return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
 		else 

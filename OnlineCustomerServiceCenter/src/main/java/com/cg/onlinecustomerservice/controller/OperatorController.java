@@ -20,6 +20,7 @@ import com.cg.onlinecustomerservice.dao.CustomerDao;
 import com.cg.onlinecustomerservice.dao.DepartmentDao;
 import com.cg.onlinecustomerservice.dao.IssueDao;
 import com.cg.onlinecustomerservice.dao.OperatorDao;
+import com.cg.onlinecustomerservice.dao.SolutionDao;
 import com.cg.onlinecustomerservice.dto.IssueDto;
 import com.cg.onlinecustomerservice.dto.OperatorDto;
 import com.cg.onlinecustomerservice.dto.SolutionDto;
@@ -37,6 +38,7 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
 import com.cg.onlinecustomerservice.utils.OperatorAlreadyExistingException;
 import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
+import com.cg.onlinecustomerservice.utils.SolutionAlreadyExistsException;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/operator")
@@ -51,6 +53,8 @@ public class OperatorController {
 	CustomerDao customerDao;
 	@Autowired
 	DepartmentDao departmentDao;
+	@Autowired
+	SolutionDao solutionDao;
 	@PostMapping("/login")
 	public ResponseEntity<Operator> loginValidation(@RequestBody Operator operator){
 		Operator str=service.operatorlogin(operator);
@@ -132,9 +136,15 @@ public class OperatorController {
 		Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
 		if(issue==null) 
 			throw new IssueNotFoundException();
-            Operator op=operatordao.findOperatorById(solutiondto.getOperatorId());
-			if(op==null)
-			throw new OperatorNotFoundException();
+        Operator op=operatordao.findOperatorById(solutiondto.getOperatorId());
+		if(op==null)
+		   throw new OperatorNotFoundException();
+		Customer cust=customerDao.findCustomerById(solutiondto.getCustomerId());
+		if(cust==null)
+			throw new CustomerNotFoundException();
+		Solution soln=solutionDao.getSolutionbyIssueId(solutiondto.getIssueId());
+		if(soln!=null)
+			throw new SolutionAlreadyExistsException();
 			else {
 			Solution response=service.addSolution(solutiondto);
 			return new ResponseEntity<Solution>(response,HttpStatus.OK);

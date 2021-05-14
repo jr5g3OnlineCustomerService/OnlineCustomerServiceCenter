@@ -1,7 +1,6 @@
 package com.cg.onlinecustomerservice.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
@@ -15,6 +14,8 @@ public class SolutionDto {
 	private int issueId;
 	@NotNull (message="This field cannot be empty")
 	private int operatorId;
+	@NotNull (message="This field cannot be empty")
+	private int customerId;
 	public int getSolutionId() {
 		return solutionId;
 	}
@@ -46,13 +47,22 @@ public class SolutionDto {
 	public void setOperatorId(int operatorId) {
 		this.operatorId = operatorId;
 	}
-	public SolutionDto(int solutionId, String solutionDescription, LocalDate solutionDate, int issueId, int operatorId) {
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public SolutionDto(int solutionId, String solutionDescription, LocalDate solutionDate, int issueId, int operatorId,int customerId) {
 		super();
 		this.solutionId = solutionId;
 		this.solutionDescription = solutionDescription;
 		this.solutionDate = solutionDate;
 		this.issueId = issueId;
 		this.operatorId = operatorId;
+		this.customerId=customerId;
 	}
 	public SolutionDto() {}
 }

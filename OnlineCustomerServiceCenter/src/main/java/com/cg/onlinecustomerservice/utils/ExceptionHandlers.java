@@ -51,4 +51,8 @@ public class ExceptionHandlers {
 	public ResponseEntity<Object> exception(DepartmentAlreadyExistException exception){
 		  return new ResponseEntity<Object>("Department already exists!...",HttpStatus.NOT_FOUND);
 		}
+	@ExceptionHandler(value=SolutionAlreadyExistsException.class)
+	public ResponseEntity<Object> exception(SolutionAlreadyExistsException exception){
+		  return new ResponseEntity<Object>("Solution already exists for this issue!...",HttpStatus.NOT_FOUND);
+		}
 }

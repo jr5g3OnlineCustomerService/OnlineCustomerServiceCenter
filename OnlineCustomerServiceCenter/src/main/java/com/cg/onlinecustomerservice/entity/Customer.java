@@ -40,6 +40,8 @@ public class Customer {
 	private List<Chat> chat;
 	@OneToMany(mappedBy="customer")
 	private List<Issue> issue;
+	@OneToMany(mappedBy="customer")
+	private List<Solution> soln;
 	public Customer(int customerId, String firstName, String lastName, String email, String mobile, String city,String password) {
 		super();
 		this.customerId = customerId;

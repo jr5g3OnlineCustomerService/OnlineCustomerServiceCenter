@@ -1,6 +1,5 @@
 package com.cg.onlinecustomerservice.entity;
 import java.time.LocalDate;
-import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +30,11 @@ public class Solution {
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "operatorId", referencedColumnName = "operatorId")
 	private Operator operator;
-    public Solution()
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "customerId", referencedColumnName = "customerId")
+	private Customer customer;
+   
+	public Solution()
     {
     }
 	public Solution(int solutionId, String solutionDescription, LocalDate solutionDate) {
@@ -40,6 +43,9 @@ public class Solution {
 		this.solutionDescription = solutionDescription;
 		this.solutionDate = solutionDate;
 	}
+	 public void setCustomer(Customer customer) {
+			this.customer = customer;
+		}
 	/*public Operator getOperator() {
 		return operator;
 	}*/

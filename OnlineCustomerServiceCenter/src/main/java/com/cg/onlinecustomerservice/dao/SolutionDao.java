@@ -9,5 +9,8 @@ import com.cg.onlinecustomerservice.entity.Solution;
 public interface SolutionDao extends JpaRepository<Solution , Integer>{
 	@Query(value = "from Solution solution where solution.solutionId=?1")
 	public Solution getSolutionById(int code);
+	
+	@Query(value="from Solution solution where solution.issue.issueId=?1")
+	public Solution getSolutionbyIssueId(int code);
 }
 

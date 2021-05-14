@@ -112,6 +112,8 @@ public Solution addSolution(SolutionDto solutiondto){
      soln.setOperator(operator);
 	Issue issue=issueDao.getIssueById(solutiondto.getIssueId());
 	soln.setIssue(issue);
+	Customer customer=customerDao.findCustomerById(solutiondto.getCustomerId());
+	soln.setCustomer(customer);
 	return solutionDao.save(soln);
 }
 @Override

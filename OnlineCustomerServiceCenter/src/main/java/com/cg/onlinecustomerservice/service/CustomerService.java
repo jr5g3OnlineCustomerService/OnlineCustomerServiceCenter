@@ -42,8 +42,9 @@ public class CustomerService implements ICustomerService{
 	}
 	//view issues using id
 	@Override
-	public Issue viewIssuesById(int issueid) {		
-			return issueDao.getIssueById(issueid);
+	public List<Issue> viewAllIssuesById(int custid) {
+			List<Issue> issues=issueDao.getCustIssue(custid);
+			return issues;
 	}
 	
 	//changing issue status

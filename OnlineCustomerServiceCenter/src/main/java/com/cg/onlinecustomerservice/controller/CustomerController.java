@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,13 +58,13 @@ public class CustomerController {  //Customer is One of the Three actors
 		service.registerCustomer(customer);
 		return "Customer added";
 		}
-	@GetMapping("/viewIssuesById") //shows Issue having given id value and exception if it does not exist
-	public ResponseEntity<Issue> viewIssuesById(@RequestBody int code) throws IssueNotFoundException{
-		Issue response=service.viewIssuesById(code);
+	@GetMapping("/viewAllIssue/{code}") //shows Issue having given id value and exception if it does not exist
+	public ResponseEntity<List<Issue>> viewIssuesById(@PathVariable int code) throws IssueNotFoundException{
+		List<Issue> response=service.viewAllIssuesById(code);
 		if(!idao.findById(code).isPresent())
 			throw new IssueNotFoundException();
 		else
-			return new ResponseEntity<Issue>(response,HttpStatus.OK);
+			return new ResponseEntity<List<Issue>>(response,HttpStatus.OK);
 	}
 	
 	@GetMapping("/viewSolutionsById") //Shows solution for given ID and exception if the ID value given does not exist

@@ -64,7 +64,7 @@ public class CustomerTest {
 	@Test(expected=IssueNotFoundException.class)
 	public void testfindIssueById() throws IssueNotFoundException {
 		Issue issue=new Issue();
-		custService.viewIssuesById(1);
+		custService.viewAllIssuesById(1);
 		Assertions.assertNotNull(issue.getIssueId());
 		Mockito.verify(IssDao, Mockito.times(1)).findById(1);
 	}

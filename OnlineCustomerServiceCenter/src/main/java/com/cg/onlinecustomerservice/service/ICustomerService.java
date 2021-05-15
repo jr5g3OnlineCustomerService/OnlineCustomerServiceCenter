@@ -11,7 +11,7 @@ import com.cg.onlinecustomerservice.entity.Solution;
 public interface ICustomerService {
 	public Customer customerLogin(Customer customer);//
 	public String registerCustomer(Customer customer);
-	public Issue viewIssuesById(int issueid);
+	public List<Issue> viewAllIssuesById(int issueid);
 	Issue reOpenIssue(int id) ;
 	List<Solution> ViewAllSolutions();
 	Solution viewSolutionsById(int code) ;	

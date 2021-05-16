@@ -91,8 +91,8 @@ public class CustomerController {  //Customer is One of the Three actors
 		return "Updated";
 	}
 	
-	@PutMapping("/reopenissue")  //re-activates issue for given id and exception if value does not exist
-	public ResponseEntity<Issue> changeIssueStatus(@RequestBody int id) throws IssueNotFoundException {
+	@PutMapping("/reopenissue/{id}")  //re-activates issue for given id and exception if value does not exist
+	public ResponseEntity<Issue> changeIssueStatus(@PathVariable int id) throws IssueNotFoundException {
 		if(!idao.findById(id).isPresent())
 			throw new IssueNotFoundException();
 		else {

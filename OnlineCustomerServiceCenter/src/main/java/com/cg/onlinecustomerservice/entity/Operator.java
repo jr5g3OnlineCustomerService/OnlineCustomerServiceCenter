@@ -108,9 +108,9 @@ public class Operator {
 		public void setSolution(List<Solution> solution) {
 			this.solution = solution;
 		}
-		//public Department getDepartment() {
-		//	return department;
-		//}
+		public Department getDepartment() {
+			return department;
+		}
 		public void setDepartment(Department department) {
 			this.department = department;
 		}

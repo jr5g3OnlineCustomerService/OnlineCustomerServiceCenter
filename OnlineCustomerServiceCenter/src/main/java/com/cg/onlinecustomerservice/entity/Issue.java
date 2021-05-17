@@ -44,18 +44,18 @@ public class Issue {
 		
 	}
 	
-		//public Operator getOperator() {
-		//	return operator;
-		//}
+		public Operator getOperator() {
+			return operator;
+		}
 		public void setOperator(Operator operator) {
 			this.operator = operator;
 		}
 
 	
 	public Issue() {}
-	//public Customer getCustomer() {
-	//	return customer;
-	//}
+	public Customer getCustomer() {
+		return customer;
+	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}

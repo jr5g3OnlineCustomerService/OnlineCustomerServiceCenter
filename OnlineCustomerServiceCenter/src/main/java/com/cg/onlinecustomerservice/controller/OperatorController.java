@@ -142,8 +142,8 @@ public class OperatorController {
 		Customer cust=customerDao.findCustomerById(solutiondto.getCustomerId());
 		if(cust==null)
 			throw new CustomerNotFoundException();
-		Solution soln=solutionDao.getSolutionbyIssueId(solutiondto.getIssueId());
-		if(soln!=null)
+		List<Solution> soln=solutionDao.getSolutionbyIssueId(solutiondto.getIssueId());
+		if(soln.size()>0)
 			throw new SolutionAlreadyExistsException();
 			else {
 			Solution response=service.addSolution(solutiondto);

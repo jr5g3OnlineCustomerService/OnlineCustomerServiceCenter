@@ -62,8 +62,8 @@ public class CustomerService implements ICustomerService{
 	}
 	//viewing all solution
 	@Override
-	public List<Solution> ViewAllSolutions()  {
-		List<Solution> response=solutionDao.findAll();
+	public List<Solution> ViewAllSolutions(int issueId)  {
+		List<Solution> response=solutionDao.getSolutionbyIssueId(issueId);
 		return response;
 	}
 	@Override

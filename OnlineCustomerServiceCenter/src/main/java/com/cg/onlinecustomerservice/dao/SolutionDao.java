@@ -1,5 +1,7 @@
 package com.cg.onlinecustomerservice.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,6 +13,6 @@ public interface SolutionDao extends JpaRepository<Solution , Integer>{
 	public Solution getSolutionById(int code);
 	
 	@Query(value="from Solution solution where solution.issue.issueId=?1")
-	public Solution getSolutionbyIssueId(int code);
+	public List<Solution> getSolutionbyIssueId(int code);
 }
 

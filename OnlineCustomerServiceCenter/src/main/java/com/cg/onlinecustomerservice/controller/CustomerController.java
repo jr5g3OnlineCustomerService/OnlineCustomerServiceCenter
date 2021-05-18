@@ -75,9 +75,9 @@ public class CustomerController {  //Customer is One of the Three actors
 		else 
 			throw new SolutionNotFoundException();
 	}
-	@GetMapping("/allSolutions")  //displays the solution table
-	public ResponseEntity<List<Solution>> ViewAllSolution() throws SolutionNotFoundException{
-		List<Solution> issues=service.ViewAllSolutions();
+	@GetMapping("/allSolutions/{code}")  //displays the solution table
+	public ResponseEntity<List<Solution>> ViewAllSolution(@PathVariable int code ) throws SolutionNotFoundException{
+		List<Solution> issues=service.ViewAllSolutions(code);
 		if(issues!=null)
 		    return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
 		else 

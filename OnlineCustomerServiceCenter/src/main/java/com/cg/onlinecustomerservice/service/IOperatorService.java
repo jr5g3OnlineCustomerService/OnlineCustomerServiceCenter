@@ -25,4 +25,5 @@ public interface IOperatorService {
 	public boolean addOperator(OperatorDto operatordto);
 	public String changePassword(OperatorDto operatordto);
 	public List<Issue> ViewAllIssues(int code);
+	public Solution modifySolution(Solution sol);  
 }

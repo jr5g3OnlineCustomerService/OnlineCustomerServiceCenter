@@ -38,6 +38,7 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
 import com.cg.onlinecustomerservice.utils.OperatorAlreadyExistingException;
 import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
+import com.cg.onlinecustomerservice.utils.SolutionNotFoundException;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/operator")
@@ -169,5 +170,14 @@ public class OperatorController {
 			return new ResponseEntity<List<Issue>>(issues,HttpStatus.OK);
 		else 
 			throw new IssueNotFoundException();
+	}
+@PutMapping("/updateSol")   //update issue of the customer and exception if input is invalid ie if Id does not exist
+public ResponseEntity<Solution> modifySolution(@Valid @RequestBody Solution solution){
+	if(!solutionDao.existsById(solution.getSolutionId()))
+		throw new SolutionNotFoundException();
+	else {
+	Solution response=service.modifySolution(solution);
+	return 
+			new ResponseEntity<Solution>(response,HttpStatus.OK);}
 	}
 }

@@ -68,18 +68,18 @@ public class CustomerController {  //Customer is One of the Three actors
 	}
 	
 	@GetMapping("/viewSolutionsById") //Shows solution for given ID and exception if the ID value given does not exist
-	public ResponseEntity<Solution> viewSolutionsById(@RequestBody int code) throws SolutionNotFoundException{
-		Solution response=service.viewSolutionsById(code);
+	public ResponseEntity<List<Solution>> viewSolutionsById(@RequestBody int code) throws SolutionNotFoundException{
+		List<Solution> response=service.viewSolutionsById(code);
 		if (response!=null)
-			return new ResponseEntity<Solution>(response,HttpStatus.OK);
+			return new ResponseEntity<List<Solution>>(response,HttpStatus.OK);
 		else 
 			throw new SolutionNotFoundException();
 	}
-	@GetMapping("/allSolutions/{code}")  //displays the solution table
-	public ResponseEntity<List<Solution>> ViewAllSolution(@PathVariable int code ) throws SolutionNotFoundException{
-		List<Solution> issues=service.ViewAllSolutions(code);
+	@GetMapping("/Solutionsbyissueid/{code}")  //displays the solution table
+	public ResponseEntity<Solution> ViewAllSolution(@PathVariable int code ) throws SolutionNotFoundException{
+		Solution issues=service.ViewAllSolutions(code);
 		if(issues!=null)
-		    return new ResponseEntity<List<Solution>>(issues,HttpStatus.OK);
+		    return new ResponseEntity<Solution>(issues,HttpStatus.OK);
 		else 
 			throw new SolutionNotFoundException();
 	}

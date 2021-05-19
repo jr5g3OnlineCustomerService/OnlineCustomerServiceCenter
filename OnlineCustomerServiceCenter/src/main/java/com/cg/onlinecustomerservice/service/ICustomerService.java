@@ -13,8 +13,8 @@ public interface ICustomerService {
 	public String registerCustomer(Customer customer);
 	public List<Issue> viewAllIssuesById(int issueid);
 	Issue reOpenIssue(int id) ;
-	public List<Solution> ViewAllSolutions(int issueId);
-	Solution viewSolutionsById(int code) ;	
+	public Solution ViewAllSolutions(int issueId);
+	public List<Solution> viewSolutionsById(int code) ;	
 	public String addChat(ChatDto chatDto);
 	public String changePassword(Customer customer);
 }

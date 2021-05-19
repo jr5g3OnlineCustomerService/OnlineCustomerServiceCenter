@@ -57,13 +57,14 @@ public class CustomerService implements ICustomerService{
 		
 	//viewing solution using ID
 	@Override
-	public Solution viewSolutionsById(int code) {		
-			return solutionDao.getSolutionById(code);
+	public List<Solution> viewSolutionsById(int opcode) {		
+			List<Solution>soln= solutionDao.getSolutionByOpId(opcode);
+			return soln;
 	}
 	//viewing all solution
 	@Override
-	public List<Solution> ViewAllSolutions(int issueId)  {
-		List<Solution> response=solutionDao.getSolutionbyIssueId(issueId);
+	public Solution ViewAllSolutions(int code)  {
+		Solution response=solutionDao.getSolutionbyIssueId(code);
 		return response;
 	}
 	@Override

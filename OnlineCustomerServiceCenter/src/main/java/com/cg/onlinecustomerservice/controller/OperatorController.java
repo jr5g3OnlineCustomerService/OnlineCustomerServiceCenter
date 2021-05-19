@@ -38,7 +38,6 @@ import com.cg.onlinecustomerservice.utils.IssueNotFoundException;
 import com.cg.onlinecustomerservice.utils.ListEmptyException;
 import com.cg.onlinecustomerservice.utils.OperatorAlreadyExistingException;
 import com.cg.onlinecustomerservice.utils.OperatorNotFoundException;
-import com.cg.onlinecustomerservice.utils.SolutionAlreadyExistsException;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/operator")
@@ -142,9 +141,6 @@ public class OperatorController {
 		Customer cust=customerDao.findCustomerById(solutiondto.getCustomerId());
 		if(cust==null)
 			throw new CustomerNotFoundException();
-		List<Solution> soln=solutionDao.getSolutionbyIssueId(solutiondto.getIssueId());
-		if(soln.size()>0)
-			throw new SolutionAlreadyExistsException();
 			else {
 			Solution response=service.addSolution(solutiondto);
 			return new ResponseEntity<Solution>(response,HttpStatus.OK);

@@ -87,9 +87,9 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
-/*public Customer getCustomer() {
+public Customer getCustomer() {
 	return customer;
-}*/
+}
 public void setCustomer(Customer customer) {
 	this.customer = customer;
 }

@@ -145,7 +145,7 @@ public Solution modifySolution(Solution sol) {
 	int id=sol.getSolutionId();
 	Solution solution=solutionDao.findById(id).get();
 	solution.setSolutionDescription(sol.getSolutionDescription());
-	solution.setSolutionDate(sol.getSolutionDate());
+	//solution.setSolutionDate(sol.getSolutionDate());
 	solutionDao.save(solution);
 	return solution;  
 }

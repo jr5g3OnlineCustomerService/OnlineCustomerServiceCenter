@@ -67,8 +67,8 @@ public class CustomerController {  //Customer is One of the Three actors
 			return new ResponseEntity<List<Issue>>(response,HttpStatus.OK);
 	}
 	
-	@GetMapping("/viewSolutionsById") //Shows solution for given ID and exception if the ID value given does not exist
-	public ResponseEntity<List<Solution>> viewSolutionsById(@RequestBody int code) throws SolutionNotFoundException{
+	@GetMapping("/viewSolutionsById/{code}") //Shows solution for given ID and exception if the ID value given does not exist
+	public ResponseEntity<List<Solution>> viewSolutionsById(@PathVariable int code) throws SolutionNotFoundException{
 		List<Solution> response=service.viewSolutionsById(code);
 		if (response!=null)
 			return new ResponseEntity<List<Solution>>(response,HttpStatus.OK);
